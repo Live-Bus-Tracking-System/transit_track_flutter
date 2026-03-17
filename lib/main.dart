@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transit_track_flutter/features/presentation/view/login.dart';
 import 'package:transit_track_flutter/features/presentation/view/splash.dart';
 
 void main() {
@@ -10,6 +11,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Splash());
+    return MaterialApp(home: Login());
   }
 }
