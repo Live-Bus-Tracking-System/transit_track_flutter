@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transit_track_flutter/core/constants/theme.dart';
 import 'package:transit_track_flutter/features/presentation/view/login.dart';
 import 'package:transit_track_flutter/features/presentation/widgets/textfeild.dart';
 
@@ -24,10 +25,10 @@ class _SignupState extends State<Signup> {
             spacing: 10,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               SizedBox(height: 20),
+              SizedBox(height: 20),
               Center(
                 child: CircleAvatar(
-                  backgroundColor: Colors.deepOrange,
+                  backgroundColor:AppTheme.color,
                   radius: 30,
                   child: Icon(
                     Icons.directions_bus,
@@ -48,7 +49,7 @@ class _SignupState extends State<Signup> {
                     their city in real-time.
                  '''),
               ),
-              
+
               Padding(
                 padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                 child: Text("Full Name"),
@@ -86,7 +87,7 @@ class _SignupState extends State<Signup> {
                   },
                 ),
               ),
-             
+
               Padding(
                 padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                 child: Text("Email"),
@@ -149,7 +150,9 @@ class _SignupState extends State<Signup> {
                   Row(
                     children: [
                       Checkbox(value: false, onChanged: (v) {}),
-                      Text("I agree to the Terms of Service and Privacy Policy."),
+                      Text(
+                        "I agree to the Terms of Service and Privacy Policy.",
+                      ),
                     ],
                   ),
                 ],
@@ -161,7 +164,7 @@ class _SignupState extends State<Signup> {
 
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepOrange,
+                    backgroundColor: AppTheme.color,
                   ),
                   onPressed: () {},
                   child: Text(
@@ -199,7 +202,7 @@ class _SignupState extends State<Signup> {
                   TextButton(
                     child: Text(
                       "Sign In",
-                      style: TextStyle(color: Colors.orange),
+                      style: TextStyle(color: AppTheme.color),
                     ),
                     onPressed: () {
                       Navigator.pushReplacement(
@@ -211,7 +214,7 @@ class _SignupState extends State<Signup> {
                 ],
               ),
             ],
-          )
+          ),
         ],
       ),
     );
