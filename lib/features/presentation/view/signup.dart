@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transit_track_flutter/features/presentation/view/login.dart';
+import 'package:transit_track_flutter/features/presentation/view/otp.dart';
 import 'package:transit_track_flutter/features/presentation/widgets/textfeild.dart';
 
 class Signup extends StatefulWidget {
@@ -24,7 +25,7 @@ class _SignupState extends State<Signup> {
             spacing: 10,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               SizedBox(height: 20),
+              SizedBox(height: 20),
               Center(
                 child: CircleAvatar(
                   backgroundColor: Colors.deepOrange,
@@ -48,7 +49,7 @@ class _SignupState extends State<Signup> {
                     their city in real-time.
                  '''),
               ),
-              
+
               Padding(
                 padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                 child: Text("Full Name"),
@@ -86,7 +87,7 @@ class _SignupState extends State<Signup> {
                   },
                 ),
               ),
-             
+
               Padding(
                 padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                 child: Text("Email"),
@@ -149,7 +150,9 @@ class _SignupState extends State<Signup> {
                   Row(
                     children: [
                       Checkbox(value: false, onChanged: (v) {}),
-                      Text("I agree to the Terms of Service and Privacy Policy."),
+                      Text(
+                        "I agree to the Terms of Service and Privacy Policy.",
+                      ),
                     ],
                   ),
                 ],
@@ -163,7 +166,12 @@ class _SignupState extends State<Signup> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepOrange,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (_) => Otp()),
+                    );
+                  },
                   child: Text(
                     "Create  Account→",
                     style: TextStyle(fontSize: 18, color: Colors.white),
@@ -211,7 +219,7 @@ class _SignupState extends State<Signup> {
                 ],
               ),
             ],
-          )
+          ),
         ],
       ),
     );
