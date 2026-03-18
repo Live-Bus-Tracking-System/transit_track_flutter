@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transit_track_flutter/core/constants/theme.dart';
 import 'package:transit_track_flutter/features/presentation/view/signup.dart';
 import 'package:transit_track_flutter/features/presentation/widgets/textfeild.dart';
 
@@ -24,7 +25,7 @@ class _LoginState extends State<Login> {
               SizedBox(height: 20),
               Center(
                 child: CircleAvatar(
-                  backgroundColor: Colors.deepOrange,
+                  backgroundColor: AppTheme.color,
                   radius: 30,
                   child: Icon(
                     Icons.directions_bus,
@@ -97,7 +98,7 @@ Track your ride and reach your
                     padding: const EdgeInsets.only(right: 8.0),
                     child: Text(
                       "Forgot Password?",
-                      style: TextStyle(color: Colors.orange),
+                      style: TextStyle(color: AppTheme.color),
                     ),
                   ),
                 ],
@@ -110,7 +111,7 @@ Track your ride and reach your
 
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepOrange,
+                    backgroundColor: AppTheme.color,
                   ),
                   onPressed: () {},
                   child: Text(
@@ -148,7 +149,7 @@ Track your ride and reach your
                   TextButton(
                     child: Text(
                       "Sign Up",
-                      style: TextStyle(color: Colors.orange),
+                      style: TextStyle(color: AppTheme.color),
                     ),
                     onPressed: () {
                       Navigator.pushReplacement(

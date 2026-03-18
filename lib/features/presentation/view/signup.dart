@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transit_track_flutter/core/constants/theme.dart';
 import 'package:transit_track_flutter/features/presentation/view/login.dart';
 import 'package:transit_track_flutter/features/presentation/view/otp.dart';
 import 'package:transit_track_flutter/features/presentation/widgets/textfeild.dart';
@@ -28,7 +29,7 @@ class _SignupState extends State<Signup> {
               SizedBox(height: 20),
               Center(
                 child: CircleAvatar(
-                  backgroundColor: Colors.deepOrange,
+                  backgroundColor:AppTheme.color,
                   radius: 30,
                   child: Icon(
                     Icons.directions_bus,
@@ -164,7 +165,7 @@ class _SignupState extends State<Signup> {
 
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepOrange,
+                    backgroundColor: AppTheme.color,
                   ),
                   onPressed: () {
                     Navigator.pushReplacement(
@@ -207,7 +208,7 @@ class _SignupState extends State<Signup> {
                   TextButton(
                     child: Text(
                       "Sign In",
-                      style: TextStyle(color: Colors.orange),
+                      style: TextStyle(color: AppTheme.color),
                     ),
                     onPressed: () {
                       Navigator.pushReplacement(

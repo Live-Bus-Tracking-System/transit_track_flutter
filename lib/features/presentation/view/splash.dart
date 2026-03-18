@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transit_track_flutter/core/constants/theme.dart';
 import 'package:transit_track_flutter/features/presentation/view/start.dart';
 
 class Splash extends StatefulWidget {
@@ -25,7 +26,7 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: Colors.deepOrange,
+       backgroundColor: AppTheme.color,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
