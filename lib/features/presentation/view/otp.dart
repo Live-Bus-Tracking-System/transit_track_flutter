@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class Otp extends StatefulWidget {
@@ -20,12 +22,18 @@ class _OtpState extends State<Otp> {
       body: ListView(
         children: [
           Column(
-            spacing: 20,
+            spacing: 10,
             // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("We just sent an SMS"),
+              Text("We just sent an SMS",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
               Text("Enter the security code we sent to"),
-              Text(number!),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(number!),
+                  IconButton(onPressed: (){}, icon: Icon(Icons.edit))
+                ],
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: List.generate(6, (index) {
@@ -53,29 +61,29 @@ class _OtpState extends State<Otp> {
                   );
                 }),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 20),
               SizedBox(
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
+                  backgroundColor: Colors.deepOrange,
                 ),
                 onPressed: () {
                   String otp = controllers
                       .map((e) => e.text)
                       .join();
 
-                  print("OTP: $otp");
+                  log("OTP: $otp");
                 },
-                child: const Text(
+                child: Text(
                   "Verify",
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 18,color: Colors.white),
                 ),
               ),
             ),
             Column(
-              children: const [
+              children: [
                 Text("Didn’t receive code?"),
                 SizedBox(height: 5),
                 Text(
