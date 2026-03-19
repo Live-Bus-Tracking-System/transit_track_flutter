@@ -1,31 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:transit_track_flutter/core/constants/theme.dart';
-import 'package:transit_track_flutter/features/presentation/view/signup.dart';
-import 'package:transit_track_flutter/features/presentation/widgets/textfeild.dart';
+import 'package:transit_track_flutter/features/auth/presentation/view/login.dart';
+import 'package:transit_track_flutter/features/auth/presentation/widgets/textfeild.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Signup extends StatefulWidget {
+  const Signup({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Signup> createState() => _SignupState();
 }
 
-class _LoginState extends State<Login> {
+class _SignupState extends State<Signup> {
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
         children: [
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 10,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 20),
               Center(
                 child: CircleAvatar(
-                  backgroundColor: AppTheme.color,
+                  backgroundColor:AppTheme.color,
                   radius: 30,
                   child: Icon(
                     Icons.directions_bus,
@@ -36,30 +39,68 @@ class _LoginState extends State<Login> {
               ),
               Center(
                 child: Text(
-                  "Welcome Back",
+                  "Create Account",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
               Center(
                 child: Text(''' 
-Track your ride and reach your 
-          destination on time. 
-              '''),
+            Join thousands of commuters tracking 
+                    their city in real-time.
+                 '''),
               ),
-              SizedBox(height: 10),
+
               Padding(
                 padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                child: Text("Phone or Email"),
+                child: Text("Full Name"),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                child: CustomTextField(
+                  controller: nameController,
+                  hint: "Full Name",
+                  icon: Icons.person,
+                  validator: (v) {
+                    if (v == null || v.isEmpty) {
+                      return "Enter a Full Name";
+                    }
+                  },
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                child: Text("Phone Number"),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                child: CustomTextField(
+                  controller: phoneController,
+                  hint: "Enter a Phone",
+                  obscure: true,
+                  icon: Icons.lock,
+                  validator: (v) {
+                    if (v == null || v.isEmpty) {
+                      return "Enter a Phone";
+                    }
+                  },
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                child: Text("Email"),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                 child: CustomTextField(
                   controller: emailController,
-                  hint: "E-mail or Phone",
+                  hint: "E-mail",
                   icon: Icons.person,
                   validator: (v) {
                     if (v == null || v.isEmpty) {
-                      return "Enter a Phone or email";
+                      return "Enter a email";
                     }
                   },
                 ),
@@ -84,27 +125,39 @@ Track your ride and reach your
                   },
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                child: Text("Confirm Password"),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                child: CustomTextField(
+                  controller: confirmController,
+                  hint: "Enter a Confirm Password",
+                  obscure: true,
+                  icon: Icons.lock,
+                  validator: (v) {
+                    if (v == null || v.isEmpty) {
+                      return "Enter a Confirm Password";
+                    }
+                  },
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
                       Checkbox(value: false, onChanged: (v) {}),
-                      Text("Remember me"),
+                      Text(
+                        "I agree to the Terms of Service and Privacy Policy.",
+                      ),
                     ],
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: Text(
-                      "Forgot Password?",
-                      style: TextStyle(color: AppTheme.color),
-                    ),
                   ),
                 ],
               ),
 
-              SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
                 height: 50,
@@ -115,7 +168,7 @@ Track your ride and reach your
                   ),
                   onPressed: () {},
                   child: Text(
-                    "Sign In →",
+                    "Create  Account→",
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
@@ -148,13 +201,13 @@ Track your ride and reach your
                   Text("Don't have an account? "),
                   TextButton(
                     child: Text(
-                      "Sign Up",
+                      "Sign In",
                       style: TextStyle(color: AppTheme.color),
                     ),
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (_) => Signup()),
+                        MaterialPageRoute(builder: (_) => Login()),
                       );
                     },
                   ),
