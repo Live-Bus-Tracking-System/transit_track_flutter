@@ -1,34 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:transit_track_flutter/core/constants/theme.dart';
-import 'package:transit_track_flutter/features/presentation/view/login.dart';
-import 'package:transit_track_flutter/features/presentation/widgets/textfeild.dart';
+import 'package:transit_track_flutter/features/auth/presentation/view/signup.dart';
+import 'package:transit_track_flutter/features/auth/presentation/widgets/textfeild.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<Signup> createState() => _SignupState();
+  State<Login> createState() => _LoginState();
 }
 
-class _SignupState extends State<Signup> {
-  final nameController = TextEditingController();
-  final phoneController = TextEditingController();
+class _LoginState extends State<Login> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final confirmController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
         children: [
           Column(
-            spacing: 10,
             crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 10,
             children: [
               SizedBox(height: 20),
               Center(
                 child: CircleAvatar(
-                  backgroundColor:AppTheme.color,
+                  backgroundColor: AppTheme.color,
                   radius: 30,
                   child: Icon(
                     Icons.directions_bus,
@@ -39,69 +36,32 @@ class _SignupState extends State<Signup> {
               ),
               Center(
                 child: Text(
-                  "Create Account",
+                  "Welcome Back",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
               Center(
                 child: Text(''' 
-            Join thousands of commuters tracking 
-                    their city in real-time.
-                 '''),
+Track your ride and reach your 
+          destination on time. 
+              '''),
               ),
-
+              SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                child: Text("Full Name"),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                child: CustomTextField(
-                  controller: nameController,
-                  hint: "Full Name",
-                  icon: Icons.person,
-                  validator: (v) {
-                    if (v == null || v.isEmpty) {
-                      return "Enter a Full Name";
-                    }
-                  },
-                ),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                child: Text("Phone Number"),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                child: CustomTextField(
-                  controller: phoneController,
-                  hint: "Enter a Phone",
-                  obscure: true,
-                  icon: Icons.lock,
-                  validator: (v) {
-                    if (v == null || v.isEmpty) {
-                      return "Enter a Phone";
-                    }
-                  },
-                ),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                child: Text("Email"),
+                child: Text("Phone or Email"),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                 child: CustomTextField(
                   controller: emailController,
-                  hint: "E-mail",
+                  hint: "E-mail or Phone",
                   icon: Icons.person,
                   validator: (v) {
                     if (v == null || v.isEmpty) {
-                      return "Enter a email";
+                      return "Enter a Phone or email";
                     }
+                    
                   },
                 ),
               ),
@@ -125,39 +85,27 @@ class _SignupState extends State<Signup> {
                   },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                child: Text("Confirm Password"),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                child: CustomTextField(
-                  controller: confirmController,
-                  hint: "Enter a Confirm Password",
-                  obscure: true,
-                  icon: Icons.lock,
-                  validator: (v) {
-                    if (v == null || v.isEmpty) {
-                      return "Enter a Confirm Password";
-                    }
-                  },
-                ),
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
                       Checkbox(value: false, onChanged: (v) {}),
-                      Text(
-                        "I agree to the Terms of Service and Privacy Policy.",
-                      ),
+                      Text("Remember me"),
                     ],
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Text(
+                      "Forgot Password?",
+                      style: TextStyle(color: AppTheme.color),
+                    ),
                   ),
                 ],
               ),
 
+              SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
                 height: 50,
@@ -168,7 +116,7 @@ class _SignupState extends State<Signup> {
                   ),
                   onPressed: () {},
                   child: Text(
-                    "Create  Account→",
+                    "Sign In →",
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
@@ -201,13 +149,13 @@ class _SignupState extends State<Signup> {
                   Text("Don't have an account? "),
                   TextButton(
                     child: Text(
-                      "Sign In",
+                      "Sign Up",
                       style: TextStyle(color: AppTheme.color),
                     ),
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (_) => Login()),
+                        MaterialPageRoute(builder: (_) => Signup()),
                       );
                     },
                   ),

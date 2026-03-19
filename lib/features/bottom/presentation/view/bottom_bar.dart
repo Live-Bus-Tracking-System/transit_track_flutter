@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:transit_track_flutter/features/presentation/view/home.dart';
-import 'package:transit_track_flutter/features/presentation/view/profile.dart';
-import 'package:transit_track_flutter/features/presentation/view/rout.dart';
+import 'package:transit_track_flutter/features/home/presentation/view/home.dart';
+import 'package:transit_track_flutter/features/profile/presentation/view/profile.dart';
+import 'package:transit_track_flutter/features/root/presentation/view/rout.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
