@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:transit_track_flutter/apps/user_app/presentation/intro/view/landing.dart';
 import 'package:transit_track_flutter/core/constants/theme.dart';
-import 'package:transit_track_flutter/features/intro/presentation/view/start.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -19,7 +19,7 @@ class _SplashState extends State<Splash> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const Start(),
+          builder: (context) => const Landing(),
         ),
       );
     });
