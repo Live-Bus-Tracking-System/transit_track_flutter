@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:transit_track_flutter/features/home/presentation/view/home.dart';
-import 'package:transit_track_flutter/features/profile/presentation/view/profile.dart';
-import 'package:transit_track_flutter/features/root/presentation/view/rout.dart';
+import 'package:transit_track_flutter/apps/user_app/presentation/home/view/home.dart';
+import 'package:transit_track_flutter/apps/user_app/presentation/profile/view/profile.dart';
+import 'package:transit_track_flutter/apps/user_app/presentation/root/view/root.dart';
+
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -12,7 +13,7 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   int selectedIndex = 0;
-  List<Widget> pages = [Home(), Rout(), Profile()];
+  List<Widget> pages = [Home(), Root(), Profile()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

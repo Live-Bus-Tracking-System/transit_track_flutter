@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:transit_track_flutter/apps/user_app/presentation/intro/widget/text.dart';
 import 'package:transit_track_flutter/core/constants/theme.dart';
-import 'package:transit_track_flutter/features/intro/presentation/widgets/text.dart';
 
-class Start extends StatefulWidget {
-  const Start({super.key});
+
+class Landing extends StatefulWidget {
+  const Landing({super.key});
 
   @override
-  State<Start> createState() => _StartState();
+  State<Landing> createState() => _LandingState();
 }
 
-class _StartState extends State<Start> {
+class _LandingState extends State<Landing> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
