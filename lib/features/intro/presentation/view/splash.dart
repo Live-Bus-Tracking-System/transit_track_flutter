@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transit_track_flutter/core/constants/theme.dart';
-import 'package:transit_track_flutter/features/presentation/view/start.dart';
+import 'package:transit_track_flutter/features/intro/presentation/view/start.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});

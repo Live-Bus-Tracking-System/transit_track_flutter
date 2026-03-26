@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:transit_track_flutter/features/presentation/view/home.dart';
-import 'package:transit_track_flutter/features/presentation/view/profile.dart';
-import 'package:transit_track_flutter/features/presentation/view/rout.dart';
+import 'package:transit_track_flutter/core/constants/theme.dart';
+import 'package:transit_track_flutter/features/home/presentation/view/home.dart';
+import 'package:transit_track_flutter/features/root/presentation/view/rout.dart';
+import 'package:transit_track_flutter/features/profile/presentation/view/profile.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -17,10 +18,10 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
+        backgroundColor: AppTheme.colors,
         type: BottomNavigationBarType.fixed,
         unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.grey,
+        selectedItemColor: AppTheme.color,
         currentIndex: selectedIndex,
         onTap: (index) {
           setState(() {
@@ -29,7 +30,7 @@ class _BottomBarState extends State<BottomBar> {
         },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.bus_alert), label: 'Rout'),
+          BottomNavigationBarItem(icon: Icon(Icons.route), label: 'Rout'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),

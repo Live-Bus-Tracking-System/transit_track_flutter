@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:transit_track_flutter/core/constants/theme.dart';
-import 'package:transit_track_flutter/features/presentation/widgets/text.dart';
+import 'package:transit_track_flutter/features/auth/presentation/widget/text.dart';
 
 class Start extends StatefulWidget {
   const Start({super.key});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:transit_track_flutter/core/constants/theme.dart';
-import 'package:transit_track_flutter/features/presentation/view/login.dart';
-import 'package:transit_track_flutter/features/presentation/view/otp.dart';
-import 'package:transit_track_flutter/features/presentation/widgets/textfeild.dart';
+import 'package:transit_track_flutter/features/auth/presentation/view/login.dart';
+import 'package:transit_track_flutter/features/auth/presentation/view/otp.dart';
+import 'package:transit_track_flutter/features/auth/presentation/widget/textfeild.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
