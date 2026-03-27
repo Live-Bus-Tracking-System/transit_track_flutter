@@ -7,7 +7,7 @@ import 'package:transit_track_flutter/apps/admin_app/presentation/layout/fleet.d
 import 'package:transit_track_flutter/apps/admin_app/presentation/layout/route.dart';
 import 'package:transit_track_flutter/apps/admin_app/presentation/layout/users.dart';
 
-void main() {
+void main(){
   runApp(const AdminApp());
 }
 

@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:transit_track_flutter/apps/user_app/presentation/auth/view/login.dart';
-import 'package:transit_track_flutter/apps/user_app/presentation/auth/widget/text_field.dart';
+
 import 'package:transit_track_flutter/core/constants/theme.dart';
+
+import 'package:transit_track_flutter/apps/user_app/presentation/auth/view/login.dart';
+import 'package:transit_track_flutter/apps/user_app/presentation/auth/view/otp.dart';
+import 'package:transit_track_flutter/apps/user_app/presentation/auth/widget/textfeild.dart';
+
+
 
 
 class Signup extends StatefulWidget {
@@ -167,7 +173,12 @@ class _SignupState extends State<Signup> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppTheme.color,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (_) => Otp()),
+                    );
+                  },
                   child: Text(
                     "Create  Account→",
                     style: TextStyle(fontSize: 18, color: Colors.white),
