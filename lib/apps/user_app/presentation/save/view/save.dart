@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:transit_track_flutter/apps/user_app/presentation/root/view/details.dart';
 import 'package:transit_track_flutter/core/constants/theme.dart';
 
-class Rout extends StatefulWidget {
-  const Rout({super.key});
+class Save extends StatefulWidget {
+  const Save({super.key});
 
   @override
-  State<Rout> createState() => _RoutState();
+  State<Save> createState() => _SaveState();
 }
 
-class _RoutState extends State<Rout> {
+class _SaveState extends State<Save> {
 
   TextEditingController searchController = TextEditingController();
 
@@ -51,13 +51,13 @@ class _RoutState extends State<Rout> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Rout"),
+        title: const Text("Saved"),
       ),
 
       body: Column(
         children: [
 
-          
+          // 🔍 SEARCH BAR
           Padding(
             padding: const EdgeInsets.all(10),
             child: TextField(
@@ -77,7 +77,7 @@ class _RoutState extends State<Rout> {
             ),
           ),
 
-         
+          // 📋 LIST
           Expanded(
             child: ListView.builder(
               itemCount: filteredList.length,
@@ -102,7 +102,7 @@ class _RoutState extends State<Rout> {
                       child: Column(
                         children: [
 
-                        
+                          // 🚍 TOP ROW
                           Row(
                             children: [
                               Container(
@@ -135,14 +135,14 @@ class _RoutState extends State<Rout> {
                               IconButton(
                                 onPressed: () {},
                                 icon: const Icon(Icons.bookmark,
-                                    color: Colors.black),
+                                    color: Colors.blue),
                               ),
                             ],
                           ),
 
                           const SizedBox(height: 15),
 
-                        
+                          // 📍 NEXT STOP
                           Row(
                             children: [
                               const Text("Next Stop : "),
