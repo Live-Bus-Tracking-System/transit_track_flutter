@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:transit_track_flutter/apps/user_app/notifications/view/notifications.dart';
+import 'package:transit_track_flutter/apps/user_app/presentation/root/widgets/action_item.dart';
+import 'package:transit_track_flutter/apps/user_app/presentation/save/view/save.dart';
 import 'package:transit_track_flutter/core/constants/theme.dart';
 import 'package:transit_track_flutter/apps/user_app/presentation/home/widgets/route_card.dart';
 import 'package:transit_track_flutter/apps/user_app/presentation/profile/widget/route_card.dart';
@@ -11,10 +14,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool isDark = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: isDark ? Colors.black : Colors.grey,
       appBar: AppBar(
         leading: Container(
           height: 30,
@@ -26,8 +30,21 @@ class _HomeState extends State<Home> {
         actions: [
           Row(
             children: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.sunny)),
-              IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
+              IconButton(
+                onPressed: () {
+      
+                },
+                icon: Icon(isDark ? Icons.dark_mode : Icons.light_mode),
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => Notifications()),
+                  );
+                },
+                icon: Icon(Icons.notifications),
+              ),
               CircleAvatar(),
             ],
           ),
@@ -38,8 +55,14 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Recently Viewed"),
-            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Recently Viewed",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+
             Row(
               children: [
                 Expanded(
@@ -62,55 +85,37 @@ class _HomeState extends State<Home> {
               ],
             ),
             SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              height: 70,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                child: Container(
-                  
-                  height: 70,
-                  width: double.infinity,
-                  
-                  decoration: BoxDecoration(
-                    color: AppTheme.colors,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: AppTheme.colors),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ActionItem(
+                    icon: Icons.share,
+                    label: "Shave",
+                    function: () {},
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                    children: [
-                      Column(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.share, size: 10),
-                          ),
-                          Text("share", style: TextStyle(fontSize: 10)),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.currency_rupee, size: 10),
-                          ),
-                          Text("money", style: TextStyle(fontSize: 10)),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.bookmark_border, size: 10),
-                          ),
-                          Text("share", style: TextStyle(fontSize: 10)),
-                        ],
-                      ),
-                    ],
+                  ActionItem(
+                    icon: Icons.bookmark,
+                    label: "Save Bus",
+                    function: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => Save()),
+                      );
+                    },
                   ),
-                ),
+                  ActionItem(
+                    icon: Icons.currency_rupee_sharp,
+                    label: "Pay Ticket",
+                    function: () {},
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 20),
@@ -132,17 +137,13 @@ class _HomeState extends State<Home> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
                     const SizedBox(height: 15),
-
                     // Route Cards
                     const RouteCard(
                       title: "Vyttila Hub Stand → Guruvayoor",
                       tag: "M2",
                     ),
-
                     const SizedBox(height: 10),
-
                     const RouteCard(
                       title: "Guruvayoor → Vyttila Hub Stand",
                       tag: "M1",

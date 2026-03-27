@@ -1,7 +1,8 @@
-
 import 'package:flutter/material.dart';
+import 'package:transit_track_flutter/apps/user_app/presentation/map/view/map.dart';
 import 'package:transit_track_flutter/apps/user_app/presentation/root/widgets/action_item.dart';
 import 'package:transit_track_flutter/apps/user_app/presentation/root/widgets/time_line_tile.dart';
+import 'package:transit_track_flutter/apps/user_app/presentation/save/view/save.dart';
 
 class BusScreen extends StatelessWidget {
   const BusScreen({super.key});
@@ -14,18 +15,13 @@ class BusScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: const Icon(Icons.arrow_back, color: Colors.black),
-        title: const Text(
-          "SRANGER",
-          style: TextStyle(color: Colors.black),
-        ),
+        title: const Text("SRANGER", style: TextStyle(color: Colors.black)),
         centerTitle: false,
       ),
 
       body: SingleChildScrollView(
         child: Column(
           children: [
-
             Container(
               margin: const EdgeInsets.all(16),
               padding: const EdgeInsets.all(16),
@@ -35,7 +31,6 @@ class BusScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-
                   Row(
                     children: [
                       Container(
@@ -44,7 +39,10 @@ class BusScreen extends StatelessWidget {
                           color: Colors.orange,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Icon(Icons.directions_bus, color: Colors.white),
+                        child: const Icon(
+                          Icons.directions_bus,
+                          color: Colors.white,
+                        ),
                       ),
                       const SizedBox(width: 10),
 
@@ -52,25 +50,32 @@ class BusScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("STRANGER",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold)),
-                            Text("Vytila Hub → Aluva",
-                                style: TextStyle(fontSize: 12)),
+                            Text(
+                              "STRANGER",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "Vytila Hub → Aluva",
+                              style: TextStyle(fontSize: 12),
+                            ),
                           ],
                         ),
                       ),
 
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 4),
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.red,
                           borderRadius: BorderRadius.circular(6),
                         ),
-                        child: const Text("Limited",
-                            style: TextStyle(color: Colors.white, fontSize: 12)),
-                      )
+                        child: const Text(
+                          "Limited",
+                          style: TextStyle(color: Colors.white, fontSize: 12),
+                        ),
+                      ),
                     ],
                   ),
 
@@ -79,8 +84,10 @@ class BusScreen extends StatelessWidget {
                   const Row(
                     children: [
                       Text("Current Stop : "),
-                      Text("Palarivattam",
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text(
+                        "Palarivattam",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ],
                   ),
 
@@ -89,8 +96,10 @@ class BusScreen extends StatelessWidget {
                   Row(
                     children: [
                       const Text("Next Stop : "),
-                      const Text("Idappally",
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      const Text(
+                        "Idappally",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                       const SizedBox(width: 10),
                       Container(
                         width: 10,
@@ -101,15 +110,17 @@ class BusScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 5),
-                      const Text("Online",
-                          style: TextStyle(color: Colors.green)),
+                      const Text(
+                        "Online",
+                        style: TextStyle(color: Colors.green),
+                      ),
                     ],
                   ),
                 ],
               ),
             ),
 
-             Container(
+            Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -118,31 +129,56 @@ class BusScreen extends StatelessWidget {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const [
-                  ActionItem(icon: Icons.share, label: "Share"),
-                  ActionItem(icon: Icons.bookmark, label: "Save Bus"),
-                  ActionItem(icon: Icons.confirmation_num, label: "Pay Ticket"),
-                  ActionItem(icon: Icons.map, label: "Live Map"),
+                children: [
+                  ActionItem(
+                    icon: Icons.share,
+                    label: "Shave",
+                    function: () {},
+                  ),
+                  ActionItem(
+                    icon: Icons.bookmark,
+                    label: "Save Bus",
+                    function: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => Save()),
+                      );
+                    },
+                  ),
+                  ActionItem(
+                    icon: Icons.confirmation_num,
+                    label: "Pay Ticket",
+                    function: () {},
+                  ),
+                  ActionItem(
+                    icon: Icons.map,
+                    label: "Live Map",
+                    function: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => LiveTrackingScreen()),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
 
             const SizedBox(height: 20),
 
-            
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text("Route Time Line",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                child: Text(
+                  "Route Time Line",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
               ),
             ),
 
             const SizedBox(height: 10),
 
-            
             Column(
               children: const [
                 TimelineTile("Vytila Bus Stand", "10:45 AM", false),

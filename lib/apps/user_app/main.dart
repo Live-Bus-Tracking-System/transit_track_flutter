@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:transit_track_flutter/apps/user_app/presentation/auth/view/login.dart';
+import 'package:transit_track_flutter/apps/user_app/presentation/bottom/view/bottom_bar.dart';
 import 'package:transit_track_flutter/apps/user_app/presentation/intro/view/landing.dart';
+import 'package:transit_track_flutter/apps/user_app/presentation/save/view/save.dart';
 
 
 
@@ -14,6 +16,6 @@ class UserApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: Landing());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: const BottomBar());
   }
 }
