@@ -17,7 +17,9 @@ class Dashboard extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     double h(double value) => size.height * value;
     double w(double value) => size.width * value;
+    
     return Scaffold(
+      
       backgroundColor: AppColors.bg,
       body: Row(
         children: [

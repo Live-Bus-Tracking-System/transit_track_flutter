@@ -34,7 +34,7 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/apps/admin_app/main.dart",
-    //   "deviceId": "chrome"
+            "deviceId": "chrome"
         }
     ]
 }

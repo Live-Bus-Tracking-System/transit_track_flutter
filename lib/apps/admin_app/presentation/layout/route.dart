@@ -327,7 +327,7 @@ class Routes extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SizedBox(
-                                  width: 200,
+                                  width:  w(0.13),
                                   child: orgHead2(
                                     'ROUTE ID',
                                     w(0.011),
@@ -335,7 +335,7 @@ class Routes extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 180,
+                                  width: w(0.115),
                                   child: orgHead2(
                                     'GEAOGRAPHY',
                                     w(0.011),
@@ -343,7 +343,7 @@ class Routes extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 100,
+                                  width: w(0.065),
                                   child: orgHead2(
                                     'MATRICS',
                                     w(0.011),
@@ -351,7 +351,7 @@ class Routes extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 100,
+                                  width: w(0.073),
                                   child: orgHead2(
                                     'OPERATING WINDOW',
                                     w(0.011),
@@ -359,14 +359,16 @@ class Routes extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 200,
+                                  width: w(0.1),
                                   child: orgHead2(
                                     'STATUS',
                                     w(0.011),
                                     const Color.fromARGB(255, 127, 127, 127),
                                   ),
                                 ),
-                                  SizedBox(
+                                SizedBox(width: w(0.00),),
+                                SizedBox(
+                                  width: w(0.043),
                                   child: orgHead2(
                                     'ACTION',
                                     w(0.011),
@@ -375,11 +377,32 @@ class Routes extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            routRow(w, h),
+                            Expanded(
+                              child: ListView(
+                                children: [
+                                  SizedBox(height: h(0.06)),
+                                  routRow(w, h),
+                                  SizedBox(height: h(0.06)),
+                                  routRow(w, h),
+                                  SizedBox(height: h(0.06)),
+                                  routRow(w, h),
+                                  SizedBox(height: h(0.06)),
+                                  routRow(w, h),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                         20,
                         AppColors.ltOrange,
+                      ),
+                      SizedBox(height: h(0.05)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          overContainer(w(0.535), h(0.55), SizedBox(), w(0.12),const Color.fromARGB(255, 35, 34, 56)),
+                           overContainer(w(0.2), h(0.55), SizedBox(), w(0.12),AppColors.ltOrange),
+                        ],
                       ),
                     ],
                   ),

@@ -13,7 +13,8 @@ class Sidebar extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     double h(double value) => size.height * value;
     double w(double value) => size.width * value;
-    final page = GoRouterState.of(context).matchedLocation;
+    // final page = GoRouterState.of(context).matchedLocation;
+    final local = ModalRoute.of(context)?.settings.name;
     return Container(
       width: w(0.2),
       color: AppColors.ltOrange,
@@ -68,9 +69,9 @@ class Sidebar extends StatelessWidget {
           sideBarItem(
             Icons.dashboard,
             'Dashboard',
-            page == '/',
+            local == '/',
             () {
-              context.go('/');
+              Navigator.pushReplacementNamed(context, '/',);
             },
             h,
             w,
@@ -78,19 +79,29 @@ class Sidebar extends StatelessWidget {
           sideBarItem(
             Icons.build,
             'Organaization',
-            page.startsWith('/organaizations'),
+            local == '/organaizations',
+
             () {
-              context.go('/organaizations');
+              Navigator.pushReplacementNamed(
+                context,
+                '/organaizations',
+                
+              );
             },
             h,
             w,
           ),
           sideBarItem(
-            Icons.public,
-            'Public',
-            page.startsWith('/public'),
+            Icons.directions_bus,
+            'Fleet',
+            local == '/public',
+
             () {
-              context.go('/public');
+              Navigator.pushReplacementNamed(
+                context,
+                '/public',
+             
+              );
             },
             h,
             w,
@@ -98,9 +109,14 @@ class Sidebar extends StatelessWidget {
           sideBarItem(
             Icons.route,
             'Routes',
-            page.startsWith('/routes'),
+            local == '/routes',
+
             () {
-              context.go('/routes');
+              Navigator.pushReplacementNamed(
+                context,
+                '/routes',
+             
+              );
             },
             h,
             w,
@@ -108,9 +124,14 @@ class Sidebar extends StatelessWidget {
           sideBarItem(
             Icons.perm_identity,
             'Permit',
-            page.startsWith('/permit'),
+            local == '/permit',
+
             () {
-              context.go('/permit');
+              Navigator.pushReplacementNamed(
+                context,
+                '/permit',
+                
+              );
             },
             h,
             w,
@@ -118,9 +139,14 @@ class Sidebar extends StatelessWidget {
           sideBarItem(
             Icons.person,
             'Users',
-            page.startsWith('/users'),
+            local == '/users',
+
             () {
-              context.go('/users');
+              Navigator.pushReplacementNamed(
+                context,
+                '/users',
+                
+              );
             },
             h,
             w,

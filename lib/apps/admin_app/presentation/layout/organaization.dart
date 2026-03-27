@@ -24,6 +24,7 @@ class _OrganaizationState extends State<Organaization> {
     final size = MediaQuery.of(context).size;
     double h(double value) => size.height * value;
     double w(double value) => size.width * value;
+    
     return Scaffold(
       backgroundColor: AppColors.bg,
       body: Row(
@@ -130,7 +131,13 @@ class _OrganaizationState extends State<Organaization> {
                                         const Color.fromARGB(255, 87, 87, 87),
                                       ),
                                     ),
-                                    SizedBox(child: orgHead1('42', w(0.035), AppTheme.color)),
+                                    SizedBox(
+                                      child: orgHead1(
+                                        '42',
+                                        w(0.035),
+                                        AppTheme.color,
+                                      ),
+                                    ),
                                     Expanded(
                                       child: orgHead2(
                                         '12% growth this quater',
@@ -168,8 +175,14 @@ class _OrganaizationState extends State<Organaization> {
                                     const Color.fromARGB(255, 87, 87, 87),
                                   ),
                                 ),
-                                SizedBox(child: orgHead1('1,284', w(0.035), Colors.black)),
-                             
+                                SizedBox(
+                                  child: orgHead1(
+                                    '1,284',
+                                    w(0.035),
+                                    Colors.black,
+                                  ),
+                                ),
+
                                 Expanded(
                                   child: orgHead2(
                                     '12% ',
@@ -241,7 +254,9 @@ class _OrganaizationState extends State<Organaization> {
                                       ),
                                     ),
                                   ),
-                                  child: Center(child: Icon(Icons.refresh,size: w(0.02),)),
+                                  child: Center(
+                                    child: Icon(Icons.refresh, size: w(0.02)),
+                                  ),
                                 ),
                               ],
                             ),
@@ -307,6 +322,15 @@ class _OrganaizationState extends State<Organaization> {
                           ],
                         ),
                         20,
+                      ),
+                      SizedBox(height: h(0.05)),
+
+                      overContainer(
+                        double.infinity,
+                        h(0.55),
+                        SizedBox(),
+                        w(0.12),
+                        const Color.fromARGB(255, 92, 92, 93),
                       ),
                     ],
                   ),
