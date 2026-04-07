@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:transit_track_flutter/apps/user_app/presentation/profile/view/profile_edit.dart';
-import 'package:transit_track_flutter/apps/user_app/presentation/profile/widget/route_card.dart';
-import 'package:transit_track_flutter/apps/user_app/presentation/profile/widget/setting_tile.dart';
+import 'package:transit_track_flutter/features/profile/presentation/view/profile_edit.dart';
+import 'package:transit_track_flutter/features/profile/presentation/widget/route_card.dart';
+import 'package:transit_track_flutter/features/profile/presentation/widget/setting_tile.dart';
+import 'package:transit_track_flutter/core/constants/text.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
   @override
   Widget build(BuildContext context) {
+    double w=MediaQuery.of(context).size.width;
+    double h=MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -19,13 +22,18 @@ class Profile extends StatelessWidget {
               child: Icon(Icons.directions_bus, color: Colors.white),
             ),
             SizedBox(width: 10),
-            Text("Profile"),
+            Text(ConstText.profile),
           ],
         ),
+        actions: [
+          IconButton(
+            onPressed: (){}, 
+            icon: Icon(Icons.settings))
+        ],
       ),
 
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding:  EdgeInsets.all(w*0.03),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -43,7 +51,7 @@ class Profile extends StatelessWidget {
                       backgroundColor: Colors.white,
                     ),
 
-                    const SizedBox(height: 10),
+                     SizedBox(height: 10),
 
                     const Text(
                       "Full Name",
@@ -81,7 +89,7 @@ class Profile extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 20),
+             SizedBox(height: h*0.03),
 
             const Text(
               "Saved Routes",
@@ -92,7 +100,7 @@ class Profile extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 10),
+             SizedBox(height: h*0.03),
 
             Row(
               children: [
@@ -104,7 +112,7 @@ class Profile extends StatelessWidget {
                     "3 min ago",
                   ),
                 ),
-                const SizedBox(width: 10),
+                 SizedBox(width: w*0.03),
                 Expanded(
                   child: routeCard(
                     "KL40",
@@ -116,9 +124,8 @@ class Profile extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 20),
+             SizedBox(height: h*0.03),
 
-            
             const Text(
               "Support & Legal",
               style: TextStyle(
@@ -127,21 +134,22 @@ class Profile extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 10),
+             SizedBox(height: h*0.3),
 
-            /// LIST ITEMS
             settingTile(
               Icons.security,
               "Privacy & Security",
-              "Manage your data",
+              "Manage your data",(){},
             ),
             settingTile(
               Icons.help_outline,
               "Help & Support",
-              "FAQs and contact",
+              "FAQs and contact",(){},
             ),
+            settingTile(Icons.info_outline, "About", "subtitle",(){}),
+            settingTile(Icons.share, "Share", "Share this app",(){}),
 
-            const SizedBox(height: 10),
+             SizedBox(height: h*0.03),
 
             /// LOGOUT
             ListTile(

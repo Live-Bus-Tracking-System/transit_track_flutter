@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:transit_track_flutter/apps/user_app/presentation/auth/view/login.dart';
-import 'package:transit_track_flutter/apps/user_app/presentation/bottom/view/bottom_bar.dart';
-import 'package:transit_track_flutter/apps/user_app/presentation/intro/view/landing.dart';
+import 'package:transit_track_flutter/features/auth/presentation/view/login.dart';
+import 'package:transit_track_flutter/features/bottom/view/bottom_bar.dart';
+import 'package:transit_track_flutter/features/intro/presentation/view/landing.dart';
 import 'package:transit_track_flutter/apps/user_app/presentation/save/view/save.dart';
 
 
