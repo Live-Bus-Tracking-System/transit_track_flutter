@@ -3,6 +3,7 @@ import 'package:transit_track_flutter/apps/user_app/presentation/map/view/map.da
 import 'package:transit_track_flutter/apps/user_app/presentation/root/widgets/action_item.dart';
 import 'package:transit_track_flutter/apps/user_app/presentation/root/widgets/time_line_tile.dart';
 import 'package:transit_track_flutter/apps/user_app/presentation/save/view/save.dart';
+import 'package:transit_track_flutter/core/constants/text.dart';
 
 class BusScreen extends StatelessWidget {
   const BusScreen({super.key});
@@ -83,7 +84,7 @@ class BusScreen extends StatelessWidget {
 
                   const Row(
                     children: [
-                      Text("Current Stop : "),
+                      Text(ConstText.currentstop),
                       Text(
                         "Palarivattam",
                         style: TextStyle(fontWeight: FontWeight.bold),
@@ -98,7 +99,7 @@ class BusScreen extends StatelessWidget {
                       const Text("Next Stop : "),
                       const Text(
                         "Idappally",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                       style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(width: 10),
                       Container(
@@ -111,7 +112,7 @@ class BusScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: 5),
                       const Text(
-                        "Online",
+                        ConstText.oline,
                         style: TextStyle(color: Colors.green),
                       ),
                     ],

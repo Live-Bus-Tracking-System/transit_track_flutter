@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:transit_track_flutter/apps/user_app/presentation/root/view/details.dart';
 import 'package:transit_track_flutter/core/constants/theme.dart';
@@ -11,7 +10,6 @@ class Rout extends StatefulWidget {
 }
 
 class _RoutState extends State<Rout> {
-
   TextEditingController searchController = TextEditingController();
 
   List<Map<String, String>> busList = [
@@ -19,13 +17,13 @@ class _RoutState extends State<Rout> {
       "name": "STRANGER",
       "number": "KL07C0312",
       "route": "Vytila Hub → Aluva",
-      "next": "Idappally"
+      "next": "Idappally",
     },
     {
       "name": "CITY FAST",
       "number": "KL08A1234",
       "route": "Kakkanad → Kaloor",
-      "next": "Edappally"
+      "next": "Edappally",
     },
   ];
 
@@ -40,9 +38,11 @@ class _RoutState extends State<Rout> {
   void searchBus(String value) {
     setState(() {
       filteredList = busList
-          .where((bus) =>
-              bus["name"]!.toLowerCase().contains(value.toLowerCase()) ||
-              bus["number"]!.toLowerCase().contains(value.toLowerCase()))
+          .where(
+            (bus) =>
+                bus["name"]!.toLowerCase().contains(value.toLowerCase()) ||
+                bus["number"]!.toLowerCase().contains(value.toLowerCase()),
+          )
           .toList();
     });
   }
@@ -50,14 +50,10 @@ class _RoutState extends State<Rout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Rout"),
-      ),
+      appBar: AppBar(title: const Text("Rout")),
 
       body: Column(
         children: [
-
-          
           Padding(
             padding: const EdgeInsets.all(10),
             child: TextField(
@@ -77,7 +73,6 @@ class _RoutState extends State<Rout> {
             ),
           ),
 
-         
           Expanded(
             child: ListView.builder(
               itemCount: filteredList.length,
@@ -101,8 +96,6 @@ class _RoutState extends State<Rout> {
                       ),
                       child: Column(
                         children: [
-
-                        
                           Row(
                             children: [
                               Container(
@@ -112,8 +105,10 @@ class _RoutState extends State<Rout> {
                                   color: AppTheme.color,
                                   borderRadius: BorderRadius.circular(15),
                                 ),
-                                child: const Icon(Icons.directions_bus,
-                                    color: Colors.white),
+                                child: const Icon(
+                                  Icons.directions_bus,
+                                  color: Colors.white,
+                                ),
                               ),
 
                               const SizedBox(width: 10),
@@ -122,33 +117,42 @@ class _RoutState extends State<Rout> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(bus["name"]!,
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.bold)),
+                                    Text(
+                                      bus["name"]!,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                     Text(bus["number"]!),
-                                    Text(bus["route"]!,
-                                        style: const TextStyle(fontSize: 12)),
+                                    Text(
+                                      bus["route"]!,
+                                      style: const TextStyle(fontSize: 12),
+                                    ),
                                   ],
                                 ),
                               ),
 
                               IconButton(
                                 onPressed: () {},
-                                icon: const Icon(Icons.bookmark,
-                                    color: Colors.black),
+                                icon: const Icon(
+                                  Icons.bookmark,
+                                  color: Colors.black,
+                                ),
                               ),
                             ],
                           ),
 
                           const SizedBox(height: 15),
 
-                        
                           Row(
                             children: [
                               const Text("Next Stop : "),
-                              Text(bus["next"]!,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold)),
+                              Text(
+                                bus["next"]!,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                               const SizedBox(width: 10),
                               Container(
                                 width: 10,
@@ -159,8 +163,10 @@ class _RoutState extends State<Rout> {
                                 ),
                               ),
                               const SizedBox(width: 5),
-                              const Text("Online",
-                                  style: TextStyle(color: Colors.green)),
+                              const Text(
+                                "Online",
+                                style: TextStyle(color: Colors.green),
+                              ),
                             ],
                           ),
                         ],
