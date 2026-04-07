@@ -1,12 +1,13 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:transit_track_flutter/apps/user_app/features/home/presentation/widgets/route_card.dart';
 import 'package:transit_track_flutter/apps/user_app/features/notification/presentation/view/notifications.dart';
 import 'package:transit_track_flutter/apps/user_app/features/profile/presentation/widget/route_card.dart';
 import 'package:transit_track_flutter/apps/user_app/features/route/presentation/widgets/action_item.dart';
-
 import 'package:transit_track_flutter/apps/user_app/features/save/presentation/view/save.dart';
+import 'package:transit_track_flutter/core/constants/text.dart';
 import 'package:transit_track_flutter/core/constants/theme.dart';
-import 'package:transit_track_flutter/apps/user_app/features/home/presentation/widgets/route_card.dart';
-
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -16,19 +17,24 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  bool isDark = false;
+  
   @override
   Widget build(BuildContext context) {
+    double h= MediaQuery.of(context).size.height;
+    double w= MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: isDark ? Colors.black : Colors.grey,
       appBar: AppBar(
         leading: Container(
-          height: 30,
-          width: 30,
-          color: AppTheme.color,
+          decoration: BoxDecoration(
+             color: AppTheme.color,
+            borderRadius: BorderRadius.circular(20)
+          ),
+          height: h*0.3,
+          width: w*0.3,
+         
           child: Icon(Icons.directions_bus_filled_outlined),
         ),
-        title: Text("TransitTrack"),
+        title: Text(ConstText.transitTrack),
         actions: [
           Row(
             children: [
@@ -36,7 +42,7 @@ class _HomeState extends State<Home> {
                 onPressed: () {
       
                 },
-                icon: Icon(isDark ? Icons.dark_mode : Icons.light_mode),
+                icon: Icon(Icons.light_mode),
               ),
               IconButton(
                 onPressed: () {
@@ -58,9 +64,9 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(w*0.03),
               child: Text(
-                "Recently Viewed",
+                ConstText.recentlyViewed,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
@@ -75,7 +81,7 @@ class _HomeState extends State<Home> {
                     "3 min ago",
                   ),
                 ),
-                const SizedBox(width: 10),
+                 SizedBox(width: w*0.03),
                 Expanded(
                   child: routeCard(
                     "KL40",
@@ -86,7 +92,7 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            SizedBox(height: h*0.003),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
               padding: const EdgeInsets.all(16),
@@ -120,10 +126,10 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            const SizedBox(height: 20),
+             SizedBox(height: h*0.002),
             Expanded(
               child: Container(
-                padding: const EdgeInsets.all(15),
+                padding:  EdgeInsets.all(w*0.012),
                 decoration: BoxDecoration(
                   color: const Color(0xFF3A3A3A),
                   borderRadius: BorderRadius.circular(15),
@@ -132,20 +138,20 @@ class _HomeState extends State<Home> {
                 child: Column(
                   children: [
                     const Text(
-                      "Popular routes",
+                      ConstText.popularRoutes,
                       style: TextStyle(
                         color: AppTheme.colors,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 15),
+                     SizedBox(height: h*0.02),
                     // Route Cards
                     const RouteCard(
                       title: "Vyttila Hub Stand → Guruvayoor",
                       tag: "M2",
                     ),
-                    const SizedBox(height: 10),
+                     SizedBox(height: h*0.02),
                     const RouteCard(
                       title: "Guruvayoor → Vyttila Hub Stand",
                       tag: "M1",

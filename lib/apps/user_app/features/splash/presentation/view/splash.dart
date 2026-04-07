@@ -1,8 +1,10 @@
+
+
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:transit_track_flutter/apps/user_app/features/landing/presentation/view/landing.dart';
 import 'package:transit_track_flutter/core/constants/theme.dart';
-
 
 class Splash extends StatefulWidget {
   const Splash({super.key});

@@ -1,7 +1,10 @@
 
+
+
 import 'package:flutter/material.dart';
 import 'package:transit_track_flutter/apps/user_app/features/route/presentation/view/details.dart';
-
+import 'package:transit_track_flutter/core/constants/colors.dart';
+import 'package:transit_track_flutter/core/constants/text.dart';
 import 'package:transit_track_flutter/core/constants/theme.dart';
 
 class Save extends StatefulWidget {
@@ -14,56 +17,23 @@ class Save extends StatefulWidget {
 class _SaveState extends State<Save> {
 
   TextEditingController searchController = TextEditingController();
-
-  List<Map<String, String>> busList = [
-    {
-      "name": "STRANGER",
-      "number": "KL07C0312",
-      "route": "Vytila Hub → Aluva",
-      "next": "Idappally"
-    },
-    {
-      "name": "CITY FAST",
-      "number": "KL08A1234",
-      "route": "Kakkanad → Kaloor",
-      "next": "Edappally"
-    },
-  ];
-
-  List<Map<String, String>> filteredList = [];
-
-  @override
-  void initState() {
-    super.initState();
-    filteredList = busList;
-  }
-
-  void searchBus(String value) {
-    setState(() {
-      filteredList = busList
-          .where((bus) =>
-              bus["name"]!.toLowerCase().contains(value.toLowerCase()) ||
-              bus["number"]!.toLowerCase().contains(value.toLowerCase()))
-          .toList();
-    });
-  }
-
+  
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Saved"),
+        title: const Text(ConstText.save),
       ),
 
       body: Column(
         children: [
 
-          // 🔍 SEARCH BAR
           Padding(
             padding: const EdgeInsets.all(10),
             child: TextField(
               controller: searchController,
-              onChanged: searchBus,
+              // onChanged: searchBus,
               decoration: InputDecoration(
                 hintText: "Search bus...",
                 prefixIcon: const Icon(Icons.search),
@@ -78,12 +48,11 @@ class _SaveState extends State<Save> {
             ),
           ),
 
-          // 📋 LIST
           Expanded(
             child: ListView.builder(
-              itemCount: filteredList.length,
+              itemCount: 1,
               itemBuilder: (context, index) {
-                final bus = filteredList[index];
+                // final bus = filteredList[index];
 
                 return Padding(
                   padding: const EdgeInsets.all(10),
@@ -103,7 +72,7 @@ class _SaveState extends State<Save> {
                       child: Column(
                         children: [
 
-                          // 🚍 TOP ROW
+                         
                           Row(
                             children: [
                               Container(
@@ -123,12 +92,12 @@ class _SaveState extends State<Save> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(bus["name"]!,
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.bold)),
-                                    Text(bus["number"]!),
-                                    Text(bus["route"]!,
-                                        style: const TextStyle(fontSize: 12)),
+                                    // Text(bus["name"]!,
+                                    //     style: const TextStyle(
+                                    //         fontWeight: FontWeight.bold)),
+                                    // Text(bus["number"]!),
+                                    // Text(bus["route"]!,
+                                        // style: const TextStyle(fontSize: 12)),
                                   ],
                                 ),
                               ),
@@ -136,20 +105,20 @@ class _SaveState extends State<Save> {
                               IconButton(
                                 onPressed: () {},
                                 icon: const Icon(Icons.bookmark,
-                                    color: Colors.blue),
+                                    color: AppColors.black),
                               ),
                             ],
                           ),
 
                           const SizedBox(height: 15),
 
-                          // 📍 NEXT STOP
+                          
                           Row(
                             children: [
-                              const Text("Next Stop : "),
-                              Text(bus["next"]!,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold)),
+                              const Text(ConstText.nextStop),
+                              // Text(bus["next"]!,
+                              //     style: const TextStyle(
+                              //         fontWeight: FontWeight.bold)),
                               const SizedBox(width: 10),
                               Container(
                                 width: 10,
@@ -160,7 +129,7 @@ class _SaveState extends State<Save> {
                                 ),
                               ),
                               const SizedBox(width: 5),
-                              const Text("Online",
+                              const Text(ConstText.oline,
                                   style: TextStyle(color: Colors.green)),
                             ],
                           ),

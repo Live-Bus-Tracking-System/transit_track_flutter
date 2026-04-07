@@ -1,9 +1,10 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:transit_track_flutter/apps/user_app/features/landing/presentation/widget/text.dart';
 import 'package:transit_track_flutter/core/constants/theme.dart';
-
 
 class Landing extends StatefulWidget {
   const Landing({super.key});

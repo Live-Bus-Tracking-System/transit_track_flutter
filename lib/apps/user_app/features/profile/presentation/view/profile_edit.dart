@@ -1,8 +1,9 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:transit_track_flutter/apps/user_app/features/auth/presentation/widget/textfeild.dart';
-import 'package:transit_track_flutter/core/constants/theme.dart';
-
 import 'package:transit_track_flutter/apps/user_app/features/profile/presentation/view/profile.dart';
+import 'package:transit_track_flutter/core/constants/theme.dart';
 
 class ProfileEdit extends StatefulWidget {
   const ProfileEdit({super.key});
@@ -24,6 +25,7 @@ class _ProfileEditState extends State<ProfileEdit> {
       body: ListView(
         children: [
           Column(
+            spacing: 20,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
                Center(

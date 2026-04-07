@@ -1,16 +1,15 @@
+
+
+
+
+
 import 'package:flutter/material.dart';
+import 'package:transit_track_flutter/apps/user_app/features/home/presentation/view/home.dart';
+import 'package:transit_track_flutter/apps/user_app/features/home/presentation/view/home.dart';
 import 'package:transit_track_flutter/apps/user_app/features/profile/presentation/view/profile.dart';
 import 'package:transit_track_flutter/apps/user_app/features/route/presentation/view/route.dart';
-
-
+import 'package:transit_track_flutter/core/constants/text.dart';
 import 'package:transit_track_flutter/core/constants/theme.dart';
-import 'package:transit_track_flutter/apps/user_app/features/home/presentation/view/home.dart';
-
-
-
-
-
-
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -22,6 +21,8 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   int selectedIndex = 0;
   List<Widget> pages = [Home(), BusRoute(), Profile()];
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,9 +38,10 @@ class _BottomBarState extends State<BottomBar> {
           });
         },
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.route), label: 'Rout'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ConstText.home),
+          BottomNavigationBarItem(icon: Icon(Icons.route), label: ConstText.rout),
+          BottomNavigationBarItem(icon: Icon(Icons.bookmark),label: ConstText.save),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: ConstText.profile),
         ],
       ),
       body: pages[selectedIndex],
