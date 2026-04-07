@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transit_track_flutter/features/profile/presentation/view/profile.dart';
+import 'package:transit_track_flutter/apps/user_app/features/profile/presentation/view/profile.dart';
 
 class ConstText{
   //bottom
@@ -27,5 +27,6 @@ class ConstText{
 
 
   static const dashboard="Dashboard";
+  static const operational="operational overview";
 
 }

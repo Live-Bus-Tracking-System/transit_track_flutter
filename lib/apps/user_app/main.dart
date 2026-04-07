@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:transit_track_flutter/features/auth/presentation/view/login.dart';
-import 'package:transit_track_flutter/features/bottom/view/bottom_bar.dart';
-import 'package:transit_track_flutter/features/intro/presentation/view/landing.dart';
-import 'package:transit_track_flutter/apps/user_app/presentation/save/view/save.dart';
+import 'package:transit_track_flutter/apps/user_app/features/auth/presentation/view/login.dart';
+import 'package:transit_track_flutter/apps/user_app/features/bottom/view/bottom_bar.dart';
+import 'package:transit_track_flutter/apps/user_app/features/landing/presentation/view/landing.dart';
+import 'package:transit_track_flutter/apps/user_app/features/save/view/save.dart';
 
 
 
