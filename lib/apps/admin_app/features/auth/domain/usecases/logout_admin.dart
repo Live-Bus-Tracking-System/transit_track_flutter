@@ -3,7 +3,7 @@ import 'package:transit_track_flutter/apps/admin_app/features/auth/domain/reposi
 class LogoutAdmin {
   final AuthRepo repo;
   LogoutAdmin(this.repo);
-  Future<String> call(bool isLogged)async{
+  Future<String> call(bool isLogged) async {
     return repo.logout(isLogged);
   }
 }
