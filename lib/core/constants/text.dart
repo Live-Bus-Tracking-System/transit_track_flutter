@@ -25,8 +25,10 @@ class ConstText{
   static const nextStop= "Next Stop";
   static const currentstop="Current Stop :";
 
-
+  
   static const dashboard="Dashboard";
-  static const operational="operational overview";
+  static const active="Active";
+  static const routes="Total Routes";
+
 
 }
