@@ -1,27 +1,9 @@
-// import 'package:flutter/material.dart';
-
-// class Map extends StatefulWidget {
-//   const Map({super.key});
-
-//   @override
-//   State<Map> createState() => _MapState();
-// }
-
-// class _MapState extends State<Map> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Live Map"),
-//       ),
-//     );
-//   }
-// }
-
-
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:transit_track_flutter/apps/user_app/features/map/widgets/info_box.dart';
+import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class LiveTrackingScreen extends StatefulWidget {
   const LiveTrackingScreen({super.key});
@@ -31,20 +13,26 @@ class LiveTrackingScreen extends StatefulWidget {
 }
 
 class _LiveTrackingScreenState extends State<LiveTrackingScreen> {
-
   late GoogleMapController mapController;
 
-  final LatLng busLocation = const LatLng(10.0159, 76.3419); // Kochi example
+  final LatLng busLocation = LatLng(9.9312, 76.2673); // Kochi example
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
+        title: Text(
+          "Live Tracking",
+          style: TextStyle(color: AppTheme.color, fontWeight: FontWeight(20)),
+        ),
       ),
       body: Stack(
         children: [
-
+          SizedBox(
+            height: double.infinity,
+            width: double.infinity,
+            child: FlutterMap(options: MapOptions(), children: []),
+          ),
           Positioned(
             bottom: 0,
             left: 0,
@@ -53,14 +41,11 @@ class _LiveTrackingScreenState extends State<LiveTrackingScreen> {
               padding: const EdgeInsets.all(16),
               decoration: const BoxDecoration(
                 color: Color(0xFF1E1E1E),
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(25),
-                ),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-
                   // 🚍 BUS INFO
                   Row(
                     children: [
@@ -70,8 +55,10 @@ class _LiveTrackingScreenState extends State<LiveTrackingScreen> {
                           color: Colors.orange,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Icon(Icons.directions_bus,
-                            color: Colors.white),
+                        child: const Icon(
+                          Icons.directions_bus,
+                          color: Colors.white,
+                        ),
                       ),
 
                       const SizedBox(width: 10),
@@ -80,12 +67,17 @@ class _LiveTrackingScreenState extends State<LiveTrackingScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("STRANGER",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold)),
-                            Text("KL07B0102",
-                                style: TextStyle(color: Colors.grey)),
+                            Text(
+                              "STRANGER",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              "KL07B0102",
+                              style: TextStyle(color: Colors.grey),
+                            ),
                           ],
                         ),
                       ),
@@ -126,14 +118,16 @@ class _LiveTrackingScreenState extends State<LiveTrackingScreen> {
                     ),
                     child: const Column(
                       children: [
-                        Text("Next Stop",
-                            style: TextStyle(color: Colors.grey)),
+                        Text("Next Stop", style: TextStyle(color: Colors.grey)),
                         SizedBox(height: 5),
-                        Text("Maliappally",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16)),
+                        Text(
+                          "Maliappally",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
                       ],
                     ),
                   ),

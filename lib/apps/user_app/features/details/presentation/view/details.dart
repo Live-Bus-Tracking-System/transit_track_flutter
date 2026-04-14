@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:transit_track_flutter/apps/user_app/features/map/view/map.dart';
 import 'package:transit_track_flutter/apps/user_app/features/root/presentation/widgets/action_item.dart';
 import 'package:transit_track_flutter/apps/user_app/features/root/presentation/widgets/time_line_tile.dart';
-import 'package:transit_track_flutter/apps/user_app/features/save/view/save.dart';
+import 'package:transit_track_flutter/apps/user_app/features/save/presentation/view/save.dart';
 import 'package:transit_track_flutter/core/constants/text.dart';
 
 class BusScreen extends StatelessWidget {

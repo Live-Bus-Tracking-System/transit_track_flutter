@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:transit_track_flutter/apps/user_app/features/notifications/presentation/view/notifications.dart';
 import 'package:transit_track_flutter/apps/user_app/features/root/presentation/widgets/action_item.dart';
-import 'package:transit_track_flutter/apps/user_app/features/save/view/save.dart';
+import 'package:transit_track_flutter/apps/user_app/features/save/presentation/view/save.dart';
 import 'package:transit_track_flutter/core/constants/text.dart';
 import 'package:transit_track_flutter/apps/user_app/features/home/presentation/widgets/route_card.dart';
 import 'package:transit_track_flutter/apps/user_app/features/profile/presentation/widget/route_card.dart';
@@ -101,26 +101,26 @@ class _HomeState extends State<Home> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ActionItem(
-                    icon: Icons.share,
-                    label: "Shave",
-                    function: () {},
-                  ),
-                  ActionItem(
-                    icon: Icons.bookmark,
-                    label: "Save Bus",
-                    function: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => Save()),
-                      );
-                    },
-                  ),
-                  ActionItem(
-                    icon: Icons.currency_rupee_sharp,
-                    label: "Pay Ticket",
-                    function: () {},
-                  ),
+                  // ActionItem(
+                  //   icon: Icons.share,
+                  //   label: "Shave",
+                  //   function: () {},
+                  // ),
+                  // ActionItem(
+                  //   icon: Icons.bookmark,
+                  //   label: "Save Bus",
+                  //   function: () {
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(builder: (_) => Save()),
+                  //     );
+                  //   },
+                  // ),
+                  // ActionItem(
+                  //   icon: Icons.currency_rupee_sharp,
+                  //   label: "Pay Ticket",
+                  //   function: () {},
+                  // ),
                 ],
               ),
             ),
