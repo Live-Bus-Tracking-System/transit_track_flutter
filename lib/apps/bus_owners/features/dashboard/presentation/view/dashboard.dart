@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/presentation/view/profile_screen.dart';
 import 'package:transit_track_flutter/apps/bus_owners/menu.dart';
 import 'package:transit_track_flutter/core/constants/colors.dart';
@@ -17,6 +21,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -66,7 +71,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        color: AppColors.bg,
+                        color: AppTheme.color,
                         height: 150,
                         width: 150,
                         child: Column(
@@ -87,7 +92,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        color: AppColors.bg,
+                        color: AppTheme.color,
                         height: 150,
                         width: 150,
                         child: Column(
@@ -120,7 +125,29 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     height: 500,
                     width: double.infinity,
                     color: AppColors.bg,
-                    // child: ,
+                    child: FlutterMap(
+                      options: MapOptions(
+                        initialCenter: LatLng(9.9312, 76.2673),
+                      ),
+                      children: [
+                        TileLayer(
+                          urlTemplate:
+                              "https://basemaps.cartocdn.com/light_all/{z}//{x}/{y}{r}.png",
+                        ),
+                        MarkerLayer(
+                          markers: [
+                            Marker(
+                              point: LatLng(9.9312, 76.2673),
+                              child: Icon(
+                                Icons.location_pin,
+                                color: AppTheme.color,
+                                size: (0.3),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
