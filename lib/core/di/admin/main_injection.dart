@@ -12,34 +12,22 @@ import 'package:transit_track_flutter/apps/admin_app/features/landing/data/repos
 import 'package:transit_track_flutter/apps/admin_app/features/landing/domain/repository/check_state.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/landing/domain/usecases/check_state.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/landing/presentation/bloc/checkstate_bloc.dart';
+import 'package:transit_track_flutter/core/di/admin/auth_di.dart';
+import 'package:transit_track_flutter/core/di/admin/check_di.dart';
 import 'package:transit_track_flutter/core/network/dio_client.dart';
 
 class Injection {
   late final DioClient dio;
   late final Box<bool> hive;
-  late final RemoteLocaldataSource localAuth;
-  late final AuthLocalDataSource auth;
-  late final AuthRepoImpl implAuth;
-  late final CheckStateImpl implCheck;
-  late final AuthBloc authBl;
-  late final CheckstateBloc checkBl;
-  late final LocalDataSource localCheck;
-
+  late final AuthDi auth;
+  late final CheckDi check;
   Future<void> initDi() async {
     await Hive.initFlutter();
     hive = await Hive.openBox<bool>('check_login');
     dio = DioClient();
-    localAuth = RemoteLocaldataSource(dio);
-
-    auth = AuthLocalDataSource(hive);
-    implAuth = AuthRepoImpl(localAuth, auth);
-    localCheck = LocalDataSource(hive);
-    implCheck = CheckStateImpl(localCheck);
-    authBl = AuthBloc(
-      LoginAdmin(implAuth),
-      LogoutAdmin(implAuth),
-      SetLoggedAdmin(implAuth),
-    );
-    checkBl = CheckstateBloc(CheckStateCase(implCheck));
+    auth = AuthDi();
+    await auth.init(dio: dio, hive: hive);
+    check = CheckDi();
+    await check.init(hive: hive);
   }
 }

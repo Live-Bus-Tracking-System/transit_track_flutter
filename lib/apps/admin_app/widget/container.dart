@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transit_track_flutter/core/constants/colors.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 
 Widget overContainer(
   double width,

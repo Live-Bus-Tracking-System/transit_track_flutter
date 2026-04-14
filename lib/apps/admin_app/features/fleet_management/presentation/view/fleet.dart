@@ -9,7 +9,7 @@ import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/p
 import 'package:transit_track_flutter/apps/admin_app/widget/sidebar.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/text.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/top_bar.dart';
-import 'package:transit_track_flutter/core/constants/colors.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/strings/fleet_strings.dart';
 
 class Fleet extends StatefulWidget {

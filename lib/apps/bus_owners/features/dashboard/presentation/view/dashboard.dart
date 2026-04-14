@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/presentation/view/profile_screen.dart';
 import 'package:transit_track_flutter/apps/bus_owners/menu.dart';
-import 'package:transit_track_flutter/core/constants/colors.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/text.dart';
-import 'package:transit_track_flutter/core/constants/theme.dart';
+import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});

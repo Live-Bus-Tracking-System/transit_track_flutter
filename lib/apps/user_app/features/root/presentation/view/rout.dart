@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transit_track_flutter/apps/user_app/features/root/presentation/view/details.dart';
-import 'package:transit_track_flutter/core/constants/theme.dart';
+import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class Rout extends StatefulWidget {
   const Rout({super.key});

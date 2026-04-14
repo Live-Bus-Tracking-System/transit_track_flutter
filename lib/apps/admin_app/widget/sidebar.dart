@@ -5,8 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/sidebar_item.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/snack_bar.dart';
-import 'package:transit_track_flutter/core/constants/colors.dart';
-import 'package:transit_track_flutter/core/constants/theme.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
+import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class Sidebar extends StatelessWidget {
   const Sidebar({super.key});
