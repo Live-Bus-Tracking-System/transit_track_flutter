@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/route/data/model/place_dtls_model.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/route/presentation/bloc/route_bloc.dart';
 import 'package:transit_track_flutter/apps/bus_owners/widget/containers.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
@@ -10,7 +12,7 @@ Widget detailsCard(
   double Function(double) w,
   double Function(double) h,
   PlaceDtlsModel model,
-  LatLng center,
+  BuildContext context,
 ) {
   return Positioned(
     bottom: 30,
@@ -41,7 +43,7 @@ Widget detailsCard(
             ),
           ),
           Text(
-            'LAT: ${center.latitude} N, LON: ${center.longitude} W',
+            'LAT: ${model.lat} N, LON: ${model.lon} W',
             style: GoogleFonts.poppins(
               fontWeight: FontWeight.w600,
               fontSize: w(0.04),
@@ -115,32 +117,38 @@ Widget detailsCard(
               ),
             ],
           ),
-          Container(
-            width: double.infinity,
-            height: h(0.07),
-            decoration: BoxDecoration(
-              color: AppTheme.color,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color.fromARGB(
-                    255,
-                    109,
-                    109,
-                    109,
-                  ).withOpacity(0.2),
-                  blurRadius: 8,
-                  offset: Offset(0, 4),
-                ),
-              ],
-            ),
-            child: Center(
-              child: Text(
-                'CONFIRM WAYPOINT',
-                style: GoogleFonts.poppins(
-                  fontSize: w(0.05),
-                  fontWeight: FontWeight.w800,
-                  color: AppColors.white,
+          GestureDetector(
+            onTap: () {
+              context.read<RouteBloc>().add(ConfirmLocationDtlsEvent());
+              Navigator.pop(context);
+            },
+            child: Container(
+              width: double.infinity,
+              height: h(0.07),
+              decoration: BoxDecoration(
+                color: AppTheme.color,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color.fromARGB(
+                      255,
+                      109,
+                      109,
+                      109,
+                    ).withOpacity(0.2),
+                    blurRadius: 8,
+                    offset: Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Center(
+                child: Text(
+                  'CONFIRM WAYPOINT',
+                  style: GoogleFonts.poppins(
+                    fontSize: w(0.05),
+                    fontWeight: FontWeight.w800,
+                    color: AppColors.white,
+                  ),
                 ),
               ),
             ),

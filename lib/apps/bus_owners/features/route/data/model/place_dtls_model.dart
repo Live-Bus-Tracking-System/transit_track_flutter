@@ -7,6 +7,8 @@ class PlaceDtlsModel extends PlaceDtls {
     required super.county,
     required super.district,
     required super.state,
+    required super.lat,
+    required super.lon,
   });
 
   factory PlaceDtlsModel.fromJson(Map<String, dynamic> json) {
@@ -16,6 +18,8 @@ class PlaceDtlsModel extends PlaceDtls {
       county: json['address']['county'],
       district: json['address']['state_district'],
       state: json['address']['state'],
+      lat: double.parse(json['lat']),
+      lon: double.parse(json['lon']),
     );
   }
 }

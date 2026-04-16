@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:transit_track_flutter/apps/admin_app/main.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/route/presentation/bloc/route_bloc.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/route/presentation/view/way_point.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/route/presentation/widget/stop_tile.dart';
 import 'package:transit_track_flutter/apps/bus_owners/widget/containers.dart';
 import 'package:transit_track_flutter/apps/bus_owners/widget/text_Field.dart';
+import 'package:transit_track_flutter/apps/user_app/features/root/presentation/view/bloc/rout_bloc_bloc.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
@@ -130,6 +133,7 @@ class _RoutesScreenState extends State<RoutesScreen> {
                 SizedBox(height: h(0.03)),
                 GestureDetector(
                   onDoubleTap: () {
+                    context.read<RouteBloc>().add(InitialMapEvent());
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => WayPoint()),
@@ -161,16 +165,44 @@ class _RoutesScreenState extends State<RoutesScreen> {
                 ),
                 SizedBox(height: h(0.02)),
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: 2,
-                    itemBuilder: (context, index) {
-                      return stopTile(
-                        h,
-                        w,
-                        index,
-                        'GRANT CENTRAL TERMINAL',
-                        'PRIMARY HUB',
-                      );
+                  child: BlocBuilder<RouteBloc, RouteState>(
+                    builder: (context, state) {
+                      if (state.cfrmStopSts == RouteStatus.initial) {
+                        return Center(
+                          child: Text(
+                            'No stops added',
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.black,
+                            ),
+                          ),
+                        );
+                      } else if (state.cfrmStopSts == RouteStatus.loading) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.black,
+                          ),
+                        );
+                      } else if (state.cfrmStopSts == RouteStatus.success) {
+                        final data = state.listOfStops;
+                        return ListView.builder(
+                          itemCount: data.length,
+                          itemBuilder: (context, index) {
+                            final stop = data[index];
+                            return stopTile(
+                              h,
+                              w,
+                              index,
+                              '${stop.village}',
+                              '${stop.county}',
+                              context,
+                            );
+                          },
+                        );
+                      } else if (state.cfrmStopSts == RouteStatus.error) {
+                        return Center(child: Text('${state.error}'));
+                      }
+                      return SizedBox();
                     },
                   ),
                 ),

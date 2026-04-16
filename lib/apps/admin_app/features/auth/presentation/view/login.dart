@@ -26,14 +26,14 @@ class Login extends StatelessWidget {
       listener: (context, state) {
         if (state is AuthLoading) {
           CircularProgressIndicator();
-        } else if (state is AuthError) {
-          showSnackbar(context, state.error, Colors.red);
         } else if (state is AuthSuccess) {
           showSnackbar(
             context,
             'Success',
             const Color.fromARGB(255, 28, 154, 0),
           );
+          context.go('/dashboard');
+        } else {
           context.go('/dashboard');
         }
       },

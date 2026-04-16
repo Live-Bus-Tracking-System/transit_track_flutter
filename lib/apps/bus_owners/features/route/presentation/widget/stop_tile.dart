@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/route/presentation/bloc/route_bloc.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 
 Widget stopTile(
@@ -8,11 +10,11 @@ Widget stopTile(
   int index,
   String title,
   String sub,
+  BuildContext context,
 ) {
   return Padding(
     padding: const EdgeInsets.only(bottom: 10),
     child: Container(
-   
       width: double.infinity,
       height: h(0.1),
       decoration: BoxDecoration(
@@ -52,7 +54,9 @@ Widget stopTile(
             ),
           ),
           trailing: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              context.read<RouteBloc>().add(CancelStopEVent(index: index));
+            },
             icon: Icon(
               Icons.close,
               size: w(0.04),

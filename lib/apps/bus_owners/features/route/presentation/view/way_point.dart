@@ -7,6 +7,7 @@ import 'package:transit_track_flutter/apps/bus_owners/features/route/data/model/
 import 'package:transit_track_flutter/apps/bus_owners/features/route/presentation/bloc/route_bloc.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/route/presentation/widget/details_card.dart';
 import 'package:transit_track_flutter/apps/bus_owners/widget/containers.dart';
+import 'package:transit_track_flutter/core/constants/strings/urls.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
@@ -18,14 +19,13 @@ class WayPoint extends StatefulWidget {
 }
 
 class _WayPointState extends State<WayPoint> {
-  PlaceDtlsModel? model;
+  final MapController controller = MapController();
   @override
   Widget build(BuildContext context) {
-    final MapController controller = MapController();
+    final state = context.read<RouteBloc>().state;
     LatLng center = LatLng(10.8505, 76.2711);
     final size = MediaQuery.of(context).size;
-    final dark =
-        'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+
     double h(double value) => size.height * value;
     double w(double value) => size.width * value;
     return Scaffold(
@@ -53,32 +53,59 @@ class _WayPointState extends State<WayPoint> {
           FlutterMap(
             mapController: controller,
             options: MapOptions(
-              initialCenter: center,
+              initialCenter: LatLng(state.location!.lat, state.location!.lon),
               initialZoom: 13,
               onLongPress: (p, l) {
                 context.read<RouteBloc>().add(
-                  GetPlaceDetailsEvent(ltn: l.latitude, lng: l.longitude),
+                  SelectLocationDtlsEvent(ltn: l.latitude, lng: l.longitude),
                 );
               },
             ),
             children: [
               TileLayer(
-                urlTemplate: dark,
+                urlTemplate: Urls.flutterMapUrl,
+                retinaMode: RetinaMode.isHighDensity(context),
                 subdomains: const ['a', 'b', 'c', 'd'],
               ),
-              MarkerLayer(
-                markers: [
-                  Marker(
-                    point: center,
-                    width: 60,
-                    height: 60,
-                    child: Icon(
-                      Icons.location_on,
-                      color: AppTheme.color,
-                      size: w(0.12),
-                    ),
-                  ),
-                ],
+              BlocBuilder<RouteBloc, RouteState>(
+                builder: (context, state) {
+                  if (state.sltStopSts == RouteStatus.success) {
+                    return MarkerLayer(
+                      markers: state.listOfStops.map((stop) {
+                        return Marker(
+                          point: LatLng(stop.lat!, stop.lon!),
+                          width: 60,
+                          height: 60,
+                          child: Icon(
+                            Icons.directions_bus,
+                            color: AppTheme.color,
+                            size: w(0.12),
+                          ),
+                        );
+                      }).toList(),
+                    );
+                  }
+                  return SizedBox();
+                },
+              ),
+              BlocBuilder<RouteBloc, RouteState>(
+                builder: (context, state) {
+                  if (state.sltStopSts == RouteStatus.success) {
+                    final points = state.coordinates
+                        ?.map((m) => LatLng(m.lat, m.lon))
+                        .toList();
+                    return PolylineLayer(
+                      polylines: [
+                        Polyline(
+                          points: points!,
+                          strokeWidth: 4,
+                          color: AppTheme.color,
+                        ),
+                      ],
+                    );
+                  }
+                  return SizedBox();
+                },
               ),
             ],
           ),
@@ -93,7 +120,10 @@ class _WayPointState extends State<WayPoint> {
                   mini: true,
                   onPressed: () {
                     final zoom = controller.camera.zoom + 1;
-                    controller.move(center, zoom);
+                    controller.move(
+                      LatLng(state.location!.lat, state.location!.lon),
+                      zoom,
+                    );
                   },
                   child: const Icon(Icons.add, color: AppColors.black),
                 ),
@@ -104,7 +134,10 @@ class _WayPointState extends State<WayPoint> {
                   mini: true,
                   onPressed: () {
                     final zoom = controller.camera.zoom - 1;
-                    controller.move(center, zoom);
+                    controller.move(
+                      LatLng(state.location!.lat, state.location!.lon),
+                      zoom,
+                    );
                   },
                   child: const Icon(Icons.remove, color: AppColors.black),
                 ),
@@ -118,7 +151,10 @@ class _WayPointState extends State<WayPoint> {
               backgroundColor: AppTheme.color,
               heroTag: 'location',
               onPressed: () {
-                controller.move(center, 15);
+                controller.move(
+                  LatLng(state.location!.lat, state.location!.lon),
+                  15,
+                );
               },
               child: Icon(Icons.my_location, color: AppColors.white),
             ),
@@ -126,8 +162,8 @@ class _WayPointState extends State<WayPoint> {
 
           BlocBuilder<RouteBloc, RouteState>(
             builder: (context, state) {
-              if (state is RouteSuccess) {
-                return detailsCard(w, h, state.model, center);
+              if (state.sltStopSts == RouteStatus.success) {
+                return detailsCard(w, h, state.stopData!, context);
               }
               return SizedBox();
             },
