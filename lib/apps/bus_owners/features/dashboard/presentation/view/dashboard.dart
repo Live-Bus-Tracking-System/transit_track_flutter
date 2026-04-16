@@ -19,17 +19,12 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
+    final size = MediaQuery.of(context).size;
+    double h(double value) => size.height * value;
+    double w(double value) => size.width * value;
 
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_) => Menu()));
-          },
-          icon: Icon(Icons.menu),
-        ),
         title: Text(
           ConstText.transitTrack,
           style: TextStyle(color: AppTheme.color, fontWeight: FontWeight(20)),
@@ -46,6 +41,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ],
       ),
+      drawer: Menu(h: h, w: w),
       body: SafeArea(
         child: ListView(
           children: [

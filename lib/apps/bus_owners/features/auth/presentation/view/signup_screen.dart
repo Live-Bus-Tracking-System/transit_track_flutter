@@ -20,6 +20,9 @@ class _SignupScreenState extends State<SignupScreen> {
   final confirmController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    double h(double value) => size.height * value;
+    double w(double value) => size.width * value;
     return Scaffold(
       body: ListView(
         children: [
@@ -30,7 +33,7 @@ class _SignupScreenState extends State<SignupScreen> {
               SizedBox(height: 20),
               Center(
                 child: CircleAvatar(
-                  backgroundColor:AppTheme.color,
+                  backgroundColor: AppTheme.color,
                   radius: 30,
                   child: Icon(
                     Icons.directions_bus,
