@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:transit_track_flutter/apps/bus_owners/features/fleet/presentation/widget/text_Field.dart';
-import 'package:transit_track_flutter/core/constants/colors.dart';
-import 'package:transit_track_flutter/core/constants/theme.dart';
+import 'package:transit_track_flutter/apps/bus_owners/widget/containers.dart';
+import 'package:transit_track_flutter/apps/bus_owners/widget/text_Field.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
+import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class Fleet extends StatefulWidget {
   const Fleet({super.key});
@@ -63,15 +64,11 @@ class _FleetState extends State<Fleet> {
             ),
           ),
           SizedBox(height: h(0.04)),
-          Container(
-            padding: EdgeInsets.all(w(0.06)),
-            width: double.infinity,
-            height: h(0.43),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: AppColors.white,
-            ),
-            child: Column(
+          mainContain(
+            w,
+            double.infinity,
+            h(0.43),
+            Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -91,15 +88,15 @@ class _FleetState extends State<Fleet> {
                     ),
                   ],
                 ),
-                addBusField(
+                commonField(
                   'Bus Name',
                   'eg: kinetic alpha-0',
                   w,
                   h,
                   busNameController,
                 ),
-                addBusField('Vehicle Code', 'KN-9909', w, h, busNameController),
-                addBusField(
+                commonField('Vehicle Code', 'KN-9909', w, h, busNameController),
+                commonField(
                   'Number Plate',
                   'KL-98-09-87',
                   w,
@@ -110,15 +107,11 @@ class _FleetState extends State<Fleet> {
             ),
           ),
           SizedBox(height: h(0.04)),
-          Container(
-            padding: EdgeInsets.all(w(0.06)),
-            width: double.infinity,
-            height: h(0.43),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: AppColors.white,
-            ),
-            child: Column(
+          mainContain(
+            w,
+            double.infinity,
+            h(0.43),
+            Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:transit_track_flutter/core/constants/colors.dart';
-import 'package:transit_track_flutter/core/constants/theme.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
+import 'package:transit_track_flutter/core/constants/theme/theme.dart';
+
 
 Widget publicRow(double Function(double) w, double Function(double) h) {
   return Row(

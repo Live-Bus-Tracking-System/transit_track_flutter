@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:transit_track_flutter/apps/user_app/features/details/presentation/view/details.dart';
-import 'package:transit_track_flutter/core/constants/colors.dart';
 import 'package:transit_track_flutter/core/constants/text.dart';
-import 'package:transit_track_flutter/core/constants/theme.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
+import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class Save extends StatefulWidget {
   const Save({super.key});

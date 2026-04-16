@@ -3,9 +3,9 @@ import 'package:transit_track_flutter/apps/user_app/features/notifications/prese
 import 'package:transit_track_flutter/apps/user_app/features/root/presentation/widgets/action_item.dart';
 import 'package:transit_track_flutter/apps/user_app/features/save/presentation/view/save.dart';
 import 'package:transit_track_flutter/core/constants/text.dart';
-import 'package:transit_track_flutter/core/constants/theme.dart';
 import 'package:transit_track_flutter/apps/user_app/features/home/presentation/widgets/route_card.dart';
 import 'package:transit_track_flutter/apps/user_app/features/profile/presentation/widget/route_card.dart';
+import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

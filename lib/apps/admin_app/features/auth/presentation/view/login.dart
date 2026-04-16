@@ -7,10 +7,10 @@ import 'package:transit_track_flutter/apps/admin_app/features/auth/presentation/
 import 'package:transit_track_flutter/apps/admin_app/features/auth/presentation/widget/text_field.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/route/presentation/widget/row.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/snack_bar.dart';
-import 'package:transit_track_flutter/core/constants/colors.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/strings/auth_string.dart';
 import 'package:transit_track_flutter/core/constants/strings/system_strings.dart';
-import 'package:transit_track_flutter/core/constants/theme.dart';
+import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -26,14 +26,14 @@ class Login extends StatelessWidget {
       listener: (context, state) {
         if (state is AuthLoading) {
           CircularProgressIndicator();
-        } else if (state is AuthError) {
-          showSnackbar(context, state.error, Colors.red);
         } else if (state is AuthSuccess) {
           showSnackbar(
             context,
             'Success',
             const Color.fromARGB(255, 28, 154, 0),
           );
+          context.go('/dashboard');
+        } else {
           context.go('/dashboard');
         }
       },

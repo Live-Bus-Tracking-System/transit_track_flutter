@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:transit_track_flutter/core/constants/theme.dart';
+import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 Widget userRow(double Function(double) w, double Function(double) h) {
   return Row(
@@ -82,120 +82,6 @@ Widget userRow(double Function(double) w, double Function(double) h) {
         ),
       ),
 
-      // SizedBox(
-      //   width: w(0.06),
-      //   child: Column(
-      //     crossAxisAlignment: CrossAxisAlignment.start,
-      //     children: [
-      //       Row(
-      //         children: [
-      //           Icon(Icons.location_on, size: w(0.013)),
-      //           SizedBox(width: w(0.005)),
-      //           Column(
-      //             crossAxisAlignment: CrossAxisAlignment.start,
-      //             children: [
-      //               Text(
-      //                 '24',
-      //                 style: GoogleFonts.poppins(
-      //                   fontSize: w(0.009),
-      //                   fontWeight: FontWeight.w500,
-      //                   color: const Color.fromARGB(255, 118, 118, 118),
-      //                 ),
-      //               ),
-      //               Text(
-      //                 'stops',
-      //                 style: GoogleFonts.poppins(
-      //                   fontSize: w(0.009),
-      //                   fontWeight: FontWeight.w500,
-      //                   color: const Color.fromARGB(255, 118, 118, 118),
-      //                 ),
-      //               ),
-      //             ],
-      //           ),
-      //         ],
-      //       ),
-
-      //       Row(
-      //         children: [
-      //           Icon(Icons.timer, size: w(0.013)),
-      //           SizedBox(width: w(0.005)),
-      //           Column(
-      //             crossAxisAlignment: CrossAxisAlignment.start,
-      //             children: [
-      //               Text(
-      //                 'Every 8',
-      //                 style: GoogleFonts.poppins(
-      //                   fontSize: w(0.009),
-      //                   fontWeight: FontWeight.w500,
-      //                   color: const Color.fromARGB(255, 118, 118, 118),
-      //                 ),
-      //               ),
-      //               Text(
-      //                 'mins',
-      //                 style: GoogleFonts.poppins(
-      //                   fontSize: w(0.009),
-      //                   fontWeight: FontWeight.w500,
-      //                   color: const Color.fromARGB(255, 118, 118, 118),
-      //                 ),
-      //               ),
-      //             ],
-      //           ),
-      //         ],
-      //       ),
-      //     ],
-      //   ),
-      // ),
-      // SizedBox(
-      //   width: w(0.065),
-      //   child: Column(
-      //     crossAxisAlignment: CrossAxisAlignment.start,
-      //     children: [
-      //       Column(
-      //         crossAxisAlignment: CrossAxisAlignment.start,
-      //         children: [
-      //           Text(
-      //             '06:00 -',
-      //             style: GoogleFonts.poppins(
-      //               fontSize: w(0.009),
-      //               fontWeight: FontWeight.w500,
-      //               color: const Color.fromARGB(255, 118, 118, 118),
-      //             ),
-      //           ),
-      //           Text(
-      //             '22:00',
-      //             style: GoogleFonts.poppins(
-      //               fontSize: w(0.009),
-      //               fontWeight: FontWeight.w500,
-      //               color: const Color.fromARGB(255, 118, 118, 118),
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-
-      //       Column(
-      //         crossAxisAlignment: CrossAxisAlignment.start,
-      //         children: [
-      //           Text(
-      //             'Peak 07:30 -',
-      //             style: GoogleFonts.poppins(
-      //               fontSize: w(0.009),
-      //               fontWeight: FontWeight.w500,
-      //               color: const Color.fromARGB(255, 0, 25, 125),
-      //             ),
-      //           ),
-      //           Text(
-      //             '09:00',
-      //             style: GoogleFonts.poppins(
-      //               fontSize: w(0.009),
-      //               fontWeight: FontWeight.w500,
-      //               color: const Color.fromARGB(255, 0, 25, 125),
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     ],
-      //   ),
-      // ),
       SizedBox(
         width: w(0.15),
         child: Align(
