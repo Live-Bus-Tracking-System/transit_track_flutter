@@ -48,127 +48,129 @@ class _WayPointState extends State<WayPoint> {
         ),
         centerTitle: true,
       ),
-      body: Stack(
-        children: [
-          FlutterMap(
-            mapController: controller,
-            options: MapOptions(
-              initialCenter: LatLng(state.location!.lat, state.location!.lon),
-              initialZoom: 13,
-              onLongPress: (p, l) {
-                context.read<RouteBloc>().add(
-                  SelectLocationDtlsEvent(ltn: l.latitude, lng: l.longitude),
-                );
-              },
-            ),
-            children: [
-              TileLayer(
-                urlTemplate: Urls.flutterMapUrl,
-                retinaMode: RetinaMode.isHighDensity(context),
-                subdomains: const ['a', 'b', 'c', 'd'],
-              ),
-              BlocBuilder<RouteBloc, RouteState>(
-                builder: (context, state) {
-                  if (state.sltStopSts == RouteStatus.success) {
-                    return MarkerLayer(
-                      markers: state.listOfStops.map((stop) {
-                        return Marker(
-                          point: LatLng(stop.lat!, stop.lon!),
-                          width: 60,
-                          height: 60,
-                          child: Icon(
-                            Icons.directions_bus,
-                            color: AppTheme.color,
-                            size: w(0.12),
-                          ),
-                        );
-                      }).toList(),
-                    );
-                  }
-                  return SizedBox();
+      body: SafeArea(
+        child: Stack(
+          children: [
+            FlutterMap(
+              mapController: controller,
+              options: MapOptions(
+                initialCenter: LatLng(state.location!.lat, state.location!.lon),
+                initialZoom: 13,
+                onLongPress: (p, l) {
+                  context.read<RouteBloc>().add(
+                    SelectLocationDtlsEvent(ltn: l.latitude, lng: l.longitude),
+                  );
                 },
               ),
-              BlocBuilder<RouteBloc, RouteState>(
-                builder: (context, state) {
-                  if (state.sltStopSts == RouteStatus.success) {
-                    final points = state.coordinates
-                        ?.map((m) => LatLng(m.lat, m.lon))
-                        .toList();
-                    return PolylineLayer(
-                      polylines: [
-                        Polyline(
-                          points: points!,
-                          strokeWidth: 4,
-                          color: AppTheme.color,
-                        ),
-                      ],
-                    );
-                  }
-                  return SizedBox();
-                },
-              ),
-            ],
-          ),
-          Positioned(
-            top: 20,
-            right: 20,
-            child: Column(
               children: [
-                FloatingActionButton(
-                  backgroundColor: AppColors.white,
-                  heroTag: "zoomIn",
-                  mini: true,
-                  onPressed: () {
-                    final zoom = controller.camera.zoom + 1;
-                    controller.move(
-                      LatLng(state.location!.lat, state.location!.lon),
-                      zoom,
-                    );
-                  },
-                  child: const Icon(Icons.add, color: AppColors.black),
+                TileLayer(
+                  urlTemplate: Urls.flutterMapUrl,
+                  retinaMode: RetinaMode.isHighDensity(context),
+                  subdomains: const ['a', 'b', 'c', 'd'],
                 ),
-                const SizedBox(height: 10),
-                FloatingActionButton(
-                  backgroundColor: AppColors.white,
-                  heroTag: "zoomOut",
-                  mini: true,
-                  onPressed: () {
-                    final zoom = controller.camera.zoom - 1;
-                    controller.move(
-                      LatLng(state.location!.lat, state.location!.lon),
-                      zoom,
-                    );
+                BlocBuilder<RouteBloc, RouteState>(
+                  builder: (context, state) {
+                    if (state.sltStopSts == RouteStatus.success) {
+                      return MarkerLayer(
+                        markers: state.listOfStops.map((stop) {
+                          return Marker(
+                            point: LatLng(stop.lat!, stop.lon!),
+                            width: 60,
+                            height: 60,
+                            child: Icon(
+                              Icons.directions_bus,
+                              color: AppTheme.color,
+                              size: w(0.12),
+                            ),
+                          );
+                        }).toList(),
+                      );
+                    }
+                    return SizedBox();
                   },
-                  child: const Icon(Icons.remove, color: AppColors.black),
+                ),
+                BlocBuilder<RouteBloc, RouteState>(
+                  builder: (context, state) {
+                    if (state.sltStopSts == RouteStatus.success) {
+                      final points = state.coordinates
+                          ?.map((m) => LatLng(m.lat, m.lon))
+                          .toList();
+                      return PolylineLayer(
+                        polylines: [
+                          Polyline(
+                            points: points!,
+                            strokeWidth: 4,
+                            color: AppTheme.color,
+                          ),
+                        ],
+                      );
+                    }
+                    return SizedBox();
+                  },
                 ),
               ],
             ),
-          ),
-          Positioned(
-            top: 150,
-            right: 20,
-            child: FloatingActionButton(
-              backgroundColor: AppTheme.color,
-              heroTag: 'location',
-              onPressed: () {
-                controller.move(
-                  LatLng(state.location!.lat, state.location!.lon),
-                  15,
-                );
-              },
-              child: Icon(Icons.my_location, color: AppColors.white),
+            Positioned(
+              top: 20,
+              right: 20,
+              child: Column(
+                children: [
+                  FloatingActionButton(
+                    backgroundColor: AppColors.white,
+                    heroTag: "zoomIn",
+                    mini: true,
+                    onPressed: () {
+                      final zoom = controller.camera.zoom + 1;
+                      controller.move(
+                        LatLng(state.location!.lat, state.location!.lon),
+                        zoom,
+                      );
+                    },
+                    child: const Icon(Icons.add, color: AppColors.black),
+                  ),
+                  const SizedBox(height: 10),
+                  FloatingActionButton(
+                    backgroundColor: AppColors.white,
+                    heroTag: "zoomOut",
+                    mini: true,
+                    onPressed: () {
+                      final zoom = controller.camera.zoom - 1;
+                      controller.move(
+                        LatLng(state.location!.lat, state.location!.lon),
+                        zoom,
+                      );
+                    },
+                    child: const Icon(Icons.remove, color: AppColors.black),
+                  ),
+                ],
+              ),
             ),
-          ),
-
-          BlocBuilder<RouteBloc, RouteState>(
-            builder: (context, state) {
-              if (state.sltStopSts == RouteStatus.success) {
-                return detailsCard(w, h, state.stopData!, context);
-              }
-              return SizedBox();
-            },
-          ),
-        ],
+            Positioned(
+              top: 150,
+              right: 20,
+              child: FloatingActionButton(
+                backgroundColor: AppTheme.color,
+                heroTag: 'location',
+                onPressed: () {
+                  controller.move(
+                    LatLng(state.location!.lat, state.location!.lon),
+                    15,
+                  );
+                },
+                child: Icon(Icons.my_location, color: AppColors.white),
+              ),
+            ),
+        
+            BlocBuilder<RouteBloc, RouteState>(
+              builder: (context, state) {
+                if (state.sltStopSts == RouteStatus.success) {
+                  return detailsCard(w, h, state.stopData!, context);
+                }
+                return SizedBox();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
