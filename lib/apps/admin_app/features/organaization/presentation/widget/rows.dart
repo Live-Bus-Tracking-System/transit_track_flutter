@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/organaization/data/model/organaization_model.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/text.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/presentation/widget/text.dart';
 
-Widget orgRow(double Function(double) w, double Function(double) h) {
+Widget orgRow(
+  OrganaizationModel data,
+  double Function(double) w,
+  double Function(double) h,
+) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -22,24 +27,12 @@ Widget orgRow(double Function(double) w, double Function(double) h) {
             SizedBox(width: w(0.01)),
             SizedBox(
               width: w(0.09),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Transit Track Authority',
-                    style: GoogleFonts.poppins(
-                      fontSize: w(0.012),
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-
-                  Text(
-                    'ID: MT-342-123',
-                    style: GoogleFonts.poppins(
-                      color: const Color.fromARGB(255, 103, 103, 103),
-                    ),
-                  ),
-                ],
+              child: Text(
+                data.name!,
+                style: GoogleFonts.poppins(
+                  fontSize: w(0.012),
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ],
@@ -59,7 +52,7 @@ Widget orgRow(double Function(double) w, double Function(double) h) {
               ),
             ),
             Text(
-              'faisins16@gmail.com',
+              data.email!,
               style: GoogleFonts.poppins(
                 color: const Color.fromARGB(255, 103, 103, 103),
               ),

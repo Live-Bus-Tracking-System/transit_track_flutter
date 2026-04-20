@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:transit_track_flutter/apps/admin_app/features/auth/presentation/view/login.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/dashboard/presentation/view/dashboard.dart';
+import 'package:transit_track_flutter/apps/user_app/features/auth/presentation/view/login.dart';
 import 'package:transit_track_flutter/apps/user_app/features/auth/presentation/widget/textfeild.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
@@ -110,62 +110,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                child: Text("How Many Bus"),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                child: CustomTextField(
-                  controller: busesController,
-                  hint: "How Many Bus",
-                  icon: Icons.person,
-                  validator: (v) {
-                    if (v == null || v.isEmpty) {
-                      return "Enter a Bus";
-                    }
-                  },
-                ),
-              ),
 
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                child: Text("Password"),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                child: CustomTextField(
-                  controller: passwordController,
-                  hint: "Enter a Password",
-                  obscure: true,
-                  icon: Icons.lock,
-                  validator: (v) {
-                    if (v == null || v.isEmpty) {
-                      return "Enter a Password";
-                    }
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                child: Text("Confirm Password"),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                child: CustomTextField(
-                  controller: confirmController,
-                  hint: "Enter a Confirm Password",
-                  obscure: true,
-                  icon: Icons.lock,
-                  validator: (v) {
-                    if (v == null || v.isEmpty) {
-                      return "Enter a Confirm Password";
-                    }
-                  },
-                ),
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

@@ -1,11 +1,14 @@
+import 'package:flutter/widgets.dart';
 import 'package:hive/hive.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:transit_track_flutter/core/constants/strings/auth_string.dart';
 
 class LocalDataSource {
-  final Box<bool> hive;
-  LocalDataSource(this.hive);
+  final SharedPreferences prefs;
+  LocalDataSource(this.prefs);
 
   Future<bool> get() async {
-    return hive.get(AuthString.isLogged) ?? false;
+    debugPrint('this is check getted ${prefs.getBool('isL')}');
+    return prefs.getBool('isL') ?? false;
   }
 }

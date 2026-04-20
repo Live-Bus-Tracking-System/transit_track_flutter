@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:transit_track_flutter/apps/admin_app/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/auth/presentation/bloc/auth_admin_bloc.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/sidebar_item.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/snack_bar.dart';
+import 'package:transit_track_flutter/core/constants/strings/auth_string.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class Sidebar extends StatelessWidget {
   const Sidebar({super.key});
+  Future<void> setB() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(AuthString.isLogged, false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +24,13 @@ class Sidebar extends StatelessWidget {
     double w(double value) => size.width * value;
 
     final local = GoRouterState.of(context).matchedLocation;
-    return BlocListener<AuthBloc, AuthState>(
+    return BlocListener<AuthAdminBloc, AuthAdminState>(
       listener: (context, state) {
-        if (state is AuthLoading) {
+        if (state.status == AuthAdminStatus.loading) {
           CircularProgressIndicator();
-        } else if (state is AuthError) {
-          showSnackbar(context, state.error, Colors.red);
-        } else if (state is AuthSuccess) {
+        } else if (state.status == AuthAdminStatus.error) {
+          showSnackbar(context, state.error!, Colors.red);
+        } else if (state.status == AuthAdminStatus.success) {
           showSnackbar(
             context,
             'Success',
@@ -156,8 +162,9 @@ class Sidebar extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ListTile(
-                      onTap: () {
-                        context.read<AuthBloc>().add(LogoutAuthEvent());
+                      onTap: () async {
+                        await setB();
+                        context.read<AuthAdminBloc>().add(LogoutAuthAdminEvent());
                       },
                       leading: Icon(Icons.logout, color: Colors.red, weight: 2),
                       title: Text(
