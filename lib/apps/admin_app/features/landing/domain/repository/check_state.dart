@@ -1,3 +1,3 @@
 abstract class CheckStateRepo {
-  Future<bool> getState();
+ Future<bool> getState();
 }

@@ -4,11 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 Widget commonField(
   String label,
   String hint,
-
   double Function(double) w,
   double Function(double) h,
-  TextEditingController controller,
-) {
+  TextEditingController controller, {
+  double? b,
+  int? lines,
+  double? hi,
+}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -22,14 +24,15 @@ Widget commonField(
       ),
       SizedBox(height: h(0.008)),
       Container(
-        padding: EdgeInsets.all(w(0.005)),
-        width:double.infinity,
-        height: h(0.06),
+        // padding: EdgeInsets.all(w(0.00)),
+        width: b ?? double.infinity,
+        height: hi ?? h(0.05),
         decoration: BoxDecoration(
           color: const Color.fromARGB(255, 235, 235, 235),
           borderRadius: BorderRadius.circular(10),
         ),
         child: TextFormField(
+          maxLines: lines ?? 1,
           controller: controller,
           decoration: InputDecoration(
             hintText: hint,

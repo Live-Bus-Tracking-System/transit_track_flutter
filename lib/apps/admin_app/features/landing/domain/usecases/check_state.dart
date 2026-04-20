@@ -4,7 +4,7 @@ class CheckStateCase {
   final CheckStateRepo repo;
   CheckStateCase(this.repo);
 
-  Future<bool> call() async {
-    return repo.getState();
+ Future<bool> call()async {
+    return await repo.getState();
   }
 }

@@ -3,7 +3,7 @@ import 'package:transit_track_flutter/apps/user_app/features/auth/data/repositor
 class LogoutUser {
   final AuthRepos res;
   LogoutUser(this.res);
-  Future<void>call(bool isLogged)async{
-    return await res.logout(isLogged);
+  Future<void>call()async{
+    return await res.logout();
   }
 }

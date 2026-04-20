@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:transit_track_flutter/apps/admin_app/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/auth/presentation/bloc/auth_admin_bloc.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/auth/presentation/widget/text.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/auth/presentation/widget/text_field.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/route/presentation/widget/row.dart';
@@ -15,6 +16,13 @@ import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 class Login extends StatelessWidget {
   const Login({super.key});
 
+  Future<void> setB() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(AuthString.isLogged, true);
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -22,19 +30,21 @@ class Login extends StatelessWidget {
     double w(double value) => size.width * value;
     final TextEditingController _email = TextEditingController();
     final TextEditingController _password = TextEditingController();
-    return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
-        if (state is AuthLoading) {
+    return BlocListener<AuthAdminBloc, AuthAdminState>(
+      listener: (context, state) async {
+        if (state.status == AuthAdminStatus.loading) {
           CircularProgressIndicator();
-        } else if (state is AuthSuccess) {
+        } else if (state.status == AuthAdminStatus.success) {
+          await setB();
+       
           showSnackbar(
             context,
             'Success',
             const Color.fromARGB(255, 28, 154, 0),
           );
           context.go('/dashboard');
-        } else {
-          context.go('/dashboard');
+        } else if (state.status == AuthAdminStatus.error) {
+          showSnackbar(context, state.error!, Colors.red);
         }
       },
       child: Scaffold(
@@ -193,8 +203,8 @@ class Login extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          context.read<AuthBloc>().add(
-                            LoginAuthEvent(
+                          context.read<AuthAdminBloc>().add(
+                            LoginAuthAdminEvent(
                               email: _email.text.trim(),
                               password: _password.text.trim(),
                             ),

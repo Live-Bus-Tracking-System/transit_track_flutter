@@ -1,27 +1,40 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/auth/data/models/auth_model.dart';
-import 'package:transit_track_flutter/core/error/exception.dart';
+import 'package:transit_track_flutter/core/error/api_excetion.dart';
+import 'package:transit_track_flutter/core/error/auth_error_handler.dart';
+import 'package:transit_track_flutter/core/error/error_handler.dart';
 import 'package:transit_track_flutter/core/network/dio_client.dart';
 
-class RemoteLocaldataSource {
+class AuthAdminRemoteLocaldataSource {
   final DioClient client;
-  RemoteLocaldataSource(this.client);
-  Future<String> login(AuthModel model) async {
+  AuthAdminRemoteLocaldataSource(this.client);
+  Future<AdminModel> login(AdminModel model) async {
     try {
-      Response data = await client.dio.post('/auth/login', data: model.toJson());
+      Response response = await client.dio.post(
+        '/auth/login',
+        data: model.toJson(),
+      );
 
-      return exception(data.statusCode);
+      return AdminModel.fromJson(response.data);
     } on DioException catch (e) {
-        return exception(e.response?.statusCode);
+      throw ApiExcetion(
+        message: AuthErrorHandler.handler(e),
+        statuCode: e.response?.statusCode,
+      );
     }
   }
-   Future<String> logout() async {
-    try {
-      Response data = await client.dio.post('/auth/logout');
 
-      return exception(data.statusCode);
-    } catch (e) {
-      return 'Logout failed';
+  Future<String> logout() async {
+    try {
+      await client.dio.post('/auth/logout');
+
+      return 'Success';
+    } on DioException catch (e) {
+      throw ApiExcetion(
+        message: AuthErrorHandler.handler(e),
+        statuCode: e.response?.statusCode,
+      );
     }
   }
 }

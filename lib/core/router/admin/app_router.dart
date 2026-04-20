@@ -7,8 +7,9 @@ import 'package:transit_track_flutter/apps/admin_app/features/permit/presentatio
 import 'package:transit_track_flutter/apps/admin_app/features/route/presentation/view/route.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/users/presentation/view/users.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/animation.dart';
-import 'package:transit_track_flutter/apps/user_app/features/auth/presentation/view/login.dart';
 import 'package:transit_track_flutter/core/router/admin/route_names.dart';
+
+import '../../../apps/admin_app/features/auth/presentation/view/login.dart';
 
 class AppRouter {
   final GoRouter route = GoRouter(

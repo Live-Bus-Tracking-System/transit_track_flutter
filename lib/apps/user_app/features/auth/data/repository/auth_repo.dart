@@ -2,6 +2,5 @@ import 'package:transit_track_flutter/apps/user_app/features/auth/data/model/aut
 
 abstract class AuthRepos {
   Future<String>login(UserAuthModel model);
-  Future<void>logout(bool isLogged);
-  Future<String>setLogged(bool isLogged);
+  Future<void>logout();
 }
