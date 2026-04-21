@@ -114,17 +114,17 @@ class Sidebar extends StatelessWidget {
                     h,
                     w,
                   ),
-                  sideBarItem(
-                    Icons.directions_bus,
-                    'Fleet',
-                    local == '/fleet',
+                  // sideBarItem(
+                  //   Icons.directions_bus,
+                  //   'Fleet',
+                  //   local == '/fleet',
 
-                    () {
-                      context.go('/fleet');
-                    },
-                    h,
-                    w,
-                  ),
+                  //   () {
+                  //     context.go('/fleet');
+                  //   },
+                  //   h,
+                  //   w,
+                  // ),
                   sideBarItem(
                     Icons.route,
                     'Routes',

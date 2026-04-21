@@ -10,11 +10,6 @@ class OrganaizationImpl implements OrganaizationRepo {
   final OrgRemoteLocalDataSource source;
   OrganaizationImpl(this.source);
 
-  @override
-  Future<Either<Failure, OrganaizationModel>> editOrgStatus() {
-    // TODO: implement editOrgStatus
-    throw UnimplementedError();
-  }
 
   @override
   Future<Either<Failure, List<OrganaizationModel>>> getAllOrg() async {
@@ -44,6 +39,30 @@ class OrganaizationImpl implements OrganaizationRepo {
   Future<Either<Failure, OrganaizationModel>> suspendOrg(String id) async {
     try {
       final data = await source.suspent(id);
+      return Right(data);
+    } on ApiExcetion catch (e) {
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
+    } catch (_) {
+      return Left(NetworkFailure('no internet'));
+    }
+  }
+
+  @override
+  Future<Either<Failure,String>> deleteOrg(String id) async {
+    try {
+      final data = await source.delete(id);
+      return Right(data);
+    } on ApiExcetion catch (e) {
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
+    } catch (_) {
+      return Left(NetworkFailure('no internet'));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, int>> totalFleeCount(String id)async {
+       try {
+      final data = await source.fleetCount(id);
       return Right(data);
     } on ApiExcetion catch (e) {
       return Left(ServerFailure(e.message, statusCode: e.statuCode));

@@ -13,3 +13,18 @@ class SuspendOrgEvent extends OrganaizationEvent {
   String id;
   SuspendOrgEvent(this.id);
 }
+
+class DeleteOrgEvent extends OrganaizationEvent {
+  String id;
+  DeleteOrgEvent(this.id);
+}
+
+class GetFleetCountById extends OrganaizationEvent{
+ String id;
+ GetFleetCountById(this.id);
+}
+
+class GetOrgByStatusEvent extends OrganaizationEvent{
+  int status;
+  GetOrgByStatusEvent(this.status);
+}

@@ -31,10 +31,10 @@ class AppRouter {
         path: RouteNames.organaizations,
         pageBuilder: (context, state) => slideNav(Organaization()),
       ),
-      GoRoute(
-        path: RouteNames.fleet,
-        pageBuilder: (context, state) => slideNav(Fleet()),
-      ),
+      // GoRoute(
+      //   path: RouteNames.fleet,
+      //   pageBuilder: (context, state) => slideNav(Fleet()),
+      // ),
       GoRoute(
         path: RouteNames.routes,
         pageBuilder: (context, state) => slideNav(Routes()),

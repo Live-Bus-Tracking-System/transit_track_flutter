@@ -7,5 +7,6 @@ abstract class OrganaizationRepo {
   Future<Either<Failure, List<OrganaizationModel>>> getAllOrg();
   Future<Either<Failure, OrganaizationModel>> activateOrg(String id);
   Future<Either<Failure, OrganaizationModel>> suspendOrg(String id);
-  Future<Either<Failure, OrganaizationModel>> editOrgStatus();
+  Future<Either<Failure,String>> deleteOrg(String id);
+  Future<Either<Failure,int>> totalFleeCount(String id);
 }
