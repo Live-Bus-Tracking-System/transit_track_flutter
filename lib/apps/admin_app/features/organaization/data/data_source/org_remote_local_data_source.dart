@@ -36,11 +36,43 @@ class OrgRemoteLocalDataSource {
       );
     }
   }
-  
+
+  Future<String> delete(String id) async {
+    try {
+      await client.dio.get('/Organisations/$id');
+      return 'success';
+    } on DioException catch (e) {
+      throw ApiExcetion(
+        message: ErrorHandler.handle(e),
+        statuCode: e.response?.statusCode,
+      );
+    }
+  }
+
   Future<OrganaizationModel> suspent(String id) async {
     try {
       final response = await client.dio.get('/Organisations/$id/suspend');
       return OrganaizationModel.fromJson(response.data);
+    } on DioException catch (e) {
+      throw ApiExcetion(
+        message: ErrorHandler.handle(e),
+        statuCode: e.response?.statusCode,
+      );
+    }
+  }
+
+  Future<int> fleetCount(String id) async {
+    try {
+      final response = await client.dio.get(
+        '/Vehicles',
+        queryParameters: {
+          'OrganisationId': id,
+          'IncludeInactive': false,
+          'Page': 1,
+          'PageSize': 1,
+        },
+      );
+      return response.data['data']['totalCount'] as int;
     } on DioException catch (e) {
       throw ApiExcetion(
         message: ErrorHandler.handle(e),

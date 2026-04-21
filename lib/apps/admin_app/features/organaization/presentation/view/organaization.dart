@@ -6,6 +6,7 @@ import 'package:transit_track_flutter/apps/admin_app/features/organaization/pres
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/presentation/widget/text.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/container.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/sidebar.dart';
+import 'package:transit_track_flutter/apps/admin_app/widget/snack_bar.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/text.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/top_bar.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
@@ -31,228 +32,253 @@ class _OrganaizationState extends State<Organaization> {
     final size = MediaQuery.of(context).size;
     double h(double value) => size.height * value;
     double w(double value) => size.width * value;
+    final totalPartner = context.read<OrganaizationBloc>().state.data?.length;
+    return BlocListener<OrganaizationBloc, OrganaizationState>(
+      listener: (context, state) {
+        debugPrint('${state.getStatus}');
+        if (state.dlStatus == OrgStatus.success) {
+          showSnackbar(
+            context,
+            'Success',
+            const Color.fromARGB(255, 0, 148, 5),
+          );
+        } else if (state.actStatus == OrgStatus.error ||
+            state.supStatus == OrgStatus.error ||
+            state.dlStatus == OrgStatus.error) {
+          showSnackbar(
+            context,
+            '${state.error}',
+            const Color.fromARGB(255, 187, 25, 0),
+          );
+        }
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.bg,
+        body: Row(
+          children: [
+            Sidebar(),
+            Expanded(
+              child: Column(
+                children: [
+                  TopBar(),
+                  Expanded(
+                    child: ListView(
+                      padding: EdgeInsets.all(25),
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-    return Scaffold(
-      backgroundColor: AppColors.bg,
-      body: Row(
-        children: [
-          Sidebar(),
-          Expanded(
-            child: Column(
-              children: [
-                TopBar(),
-                Expanded(
-                  child: ListView(
-                    padding: EdgeInsets.all(25),
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                head1(
-                                  OrganaizationStrings.organaizationHead,
-                                  w(0.034),
-                                ),
-                                head3(OrganaizationStrings.content, w(0.014)),
-                              ],
-                            ),
-                          ),
-                          SizedBox(width: w(0.05)),
-                          Container(
-                            width: w(0.19),
-                            height: h(0.08),
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  AppTheme.color,
-                                  const Color.fromARGB(255, 255, 98, 50),
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  head1(
+                                    OrganaizationStrings.organaizationHead,
+                                    w(0.034),
+                                  ),
+                                  head3(OrganaizationStrings.content, w(0.014)),
                                 ],
-                                begin: AlignmentGeometry.topLeft,
-                                end: AlignmentGeometry.bottomRight,
                               ),
-                              borderRadius: BorderRadius.circular(5),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Icon(
-                                  Icons.add,
-                                  size: 17,
-                                  weight: 7,
-                                  color: AppColors.white,
-                                ),
-                                Text(
-                                  OrganaizationStrings.add,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: w(0.012),
-                                    color: AppColors.white,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: h(0.06)),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(w(0.02)),
-                            width: w(0.4),
-                            height: h(0.28),
-                            decoration: BoxDecoration(
-                              color: AppColors.ltOrange,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color.fromARGB(
-                                    255,
-                                    102,
-                                    102,
-                                    102,
-                                  ).withOpacity(0.2),
-                                  blurRadius: 8,
-                                  offset: Offset(0, 4),
-                                ),
-                              ],
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Expanded(
-                                      child: orgHead2(
-                                        OrganaizationStrings.partners,
-                                        w(0.012),
-                                        const Color.fromARGB(255, 87, 87, 87),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      child: orgHead1(
-                                        '42',
-                                        w(0.035),
-                                        AppTheme.color,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: orgHead2(
-                                        '12% growth this quater',
-                                        w(0.012),
-                                        const Color.fromARGB(255, 0, 65, 3),
-                                      ),
-                                    ),
+                            SizedBox(width: w(0.05)),
+                            Container(
+                              width: w(0.19),
+                              height: h(0.08),
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    AppTheme.color,
+                                    const Color.fromARGB(255, 255, 98, 50),
                                   ],
+                                  begin: AlignmentGeometry.topLeft,
+                                  end: AlignmentGeometry.bottomRight,
                                 ),
-                                Expanded(child: SizedBox()),
-                                Icon(
-                                  Icons.business,
-                                  size: w(0.07),
-                                  color: const Color.fromARGB(
-                                    255,
-                                    255,
-                                    157,
-                                    128,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Icon(
+                                    Icons.add,
+                                    size: 17,
+                                    weight: 7,
+                                    color: AppColors.white,
                                   ),
-                                ),
-                              ],
+                                  Text(
+                                    OrganaizationStrings.add,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: w(0.012),
+                                      color: AppColors.white,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          overContainer(
-                            w(0.16),
-                            h(0.28),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: orgHead2(
-                                    OrganaizationStrings.fleet,
-                                    w(0.012),
-                                    const Color.fromARGB(255, 87, 87, 87),
+                          ],
+                        ),
+                        SizedBox(height: h(0.06)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(w(0.02)),
+                              width: w(0.4),
+                              height: h(0.28),
+                              decoration: BoxDecoration(
+                                color: AppColors.ltOrange,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: const Color.fromARGB(
+                                      255,
+                                      102,
+                                      102,
+                                      102,
+                                    ).withOpacity(0.2),
+                                    blurRadius: 8,
+                                    offset: Offset(0, 4),
                                   ),
-                                ),
-                                SizedBox(
-                                  child: orgHead1(
-                                    '1,284',
-                                    w(0.035),
-                                    Colors.black,
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: orgHead2(
+                                          OrganaizationStrings.partners,
+                                          w(0.012),
+                                          const Color.fromARGB(255, 87, 87, 87),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        child: orgHead1(
+                                          '${totalPartner ?? 0}',
+                                          w(0.035),
+                                          AppTheme.color,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: orgHead2(
+                                          '12% growth this quater',
+                                          w(0.012),
+                                          const Color.fromARGB(255, 0, 65, 3),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
+                                  Expanded(child: SizedBox()),
+                                  Icon(
+                                    Icons.business,
+                                    size: w(0.07),
+                                    color: const Color.fromARGB(
+                                      255,
+                                      255,
+                                      157,
+                                      128,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            overContainer(
+                              w(0.16),
+                              h(0.28),
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: orgHead2(
+                                      OrganaizationStrings.fleet,
+                                      w(0.012),
+                                      const Color.fromARGB(255, 87, 87, 87),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    child: orgHead1(
+                                      '1,284',
+                                      w(0.035),
+                                      Colors.black,
+                                    ),
+                                  ),
 
-                                Expanded(
-                                  child: orgHead2(
-                                    '12% ',
-                                    w(0.012),
-                                    const Color.fromARGB(255, 82, 82, 82),
+                                  Expanded(
+                                    child: orgHead2(
+                                      '12% ',
+                                      w(0.012),
+                                      const Color.fromARGB(255, 82, 82, 82),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
+                              w(0.02),
                             ),
-                            w(0.02),
-                          ),
-                          overContainer(
-                            w(0.16),
-                            h(0.28),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: orgHead2(
-                                    OrganaizationStrings.avg,
-                                    w(0.012),
-                                    const Color.fromARGB(255, 82, 82, 82),
+                            overContainer(
+                              w(0.16),
+                              h(0.28),
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: orgHead2(
+                                      OrganaizationStrings.avg,
+                                      w(0.012),
+                                      const Color.fromARGB(255, 82, 82, 82),
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  child: orgHead1(
-                                    '94.4%',
-                                    w(0.035),
-                                    Color.fromARGB(255, 0, 11, 106),
+                                  SizedBox(
+                                    child: orgHead1(
+                                      '94.4%',
+                                      w(0.035),
+                                      Color.fromARGB(255, 0, 11, 106),
+                                    ),
                                   ),
-                                ),
-                                Expanded(
-                                  child: orgHead2(
-                                    'Target: 90%',
-                                    w(0.012),
-                                    const Color.fromARGB(255, 82, 82, 82),
+                                  Expanded(
+                                    child: orgHead2(
+                                      'Target: 90%',
+                                      w(0.012),
+                                      const Color.fromARGB(255, 82, 82, 82),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
+                              w(0.02),
                             ),
-                            w(0.02),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: h(0.04)),
-                      orgTable(h, w, context),
-                      SizedBox(height: h(0.05)),
+                          ],
+                        ),
+                        SizedBox(height: h(0.04)),
+                        orgTable(h, w, context),
+                        SizedBox(height: h(0.05)),
 
-                      overContainer(
-                        double.infinity,
-                        h(0.55),
-                        SizedBox(),
-                        w(0.12),
-                        const Color.fromARGB(255, 92, 92, 93),
-                      ),
-                    ],
+                        overContainer(
+                          double.infinity,
+                          h(0.55),
+                          SizedBox(),
+                          w(0.12),
+                          const Color.fromARGB(255, 92, 92, 93),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

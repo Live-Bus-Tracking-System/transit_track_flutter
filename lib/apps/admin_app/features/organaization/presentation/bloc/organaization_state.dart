@@ -3,27 +3,49 @@ part of 'organaization_bloc.dart';
 enum OrgStatus { initial, loading, success, error }
 
 class OrganaizationState {
-  final OrgStatus status;
+  final OrgStatus getStatus;
+  final OrgStatus dlStatus;
+  final OrgStatus supStatus;
+  final OrgStatus actStatus;
+  final OrgStatus fltStatus;
+  final OrgStatus tlfStatus;
+  final int? totalFleet;
   final List<OrganaizationModel>? data;
   final OrganaizationModel? orgData;
   final String? error;
   OrganaizationState({
-    this.status = OrgStatus.initial,
+    this.getStatus = OrgStatus.initial,
+    this.dlStatus = OrgStatus.initial,
+    this.supStatus = OrgStatus.initial,
+    this.actStatus = OrgStatus.initial,
+    this.fltStatus = OrgStatus.initial,
+    this.tlfStatus = OrgStatus.initial,
+    this.totalFleet,
     this.data = const [],
     this.orgData,
     this.error,
   });
 
   OrganaizationState copyWithin({
-    OrgStatus? status,
+    OrgStatus? getStatus,
+    OrgStatus? dlStatus,
+    OrgStatus? supStatus,
+    OrgStatus? actStatus,
+    OrgStatus? tlfStatus,
+    int? totalFleet,
     List<OrganaizationModel>? data,
     OrganaizationModel? orgData,
     String? error,
   }) {
     return OrganaizationState(
-      status: status ?? this.status,
+      getStatus: getStatus ?? this.getStatus,
+      dlStatus: dlStatus ?? this.dlStatus,
+      supStatus: supStatus ?? this.supStatus,
+      actStatus: actStatus ?? this.actStatus,
+      tlfStatus: tlfStatus ?? this.tlfStatus,
+      totalFleet: totalFleet ?? this.totalFleet,
       data: data ?? this.data,
-      orgData: orgData??this.orgData,
+      orgData: orgData ?? this.orgData,
       error: error ?? this.error,
     );
   }

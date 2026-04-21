@@ -22,7 +22,7 @@ Widget orgTable(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             orgTextField(w, h),
-            orgDropDown(w, h),
+            orgDropDown(w, h, context),
             GestureDetector(
               onTap: () {
                 context.read<OrganaizationBloc>().add(GetAllOrgEvent());
@@ -92,11 +92,11 @@ Widget orgTable(
           child: BlocBuilder<OrganaizationBloc, OrganaizationState>(
             builder: (context, state) {
               debugPrint('${state.data}');
-              if (state.status == OrgStatus.loading) {
+              if (state.getStatus == OrgStatus.loading) {
                 return Center(child: CircularProgressIndicator());
-              } else if (state.status == OrgStatus.error) {
+              } else if (state.getStatus == OrgStatus.error) {
                 return Center(child: Text('${state.error}'));
-              } else if (state.status == OrgStatus.success) {
+              } else if (state.getStatus == OrgStatus.success) {
                 if (state.data!.isEmpty) {
                   return Center(child: Text(' no data'));
                 }
@@ -105,24 +105,13 @@ Widget orgTable(
                   itemCount: state.data?.length,
                   itemBuilder: (context, index) {
                     final data = state.data![index];
-                    return orgRow(data, w, h);
+                    debugPrint('${data.status}');
+                    return orgRow(data, w, h, context);
                   },
                 );
               } else {
                 return SizedBox();
               }
-
-              // return ListView(
-              //   children: [
-              //     orgRow(w, h),
-              //     SizedBox(height: h(0.05)),
-              //     orgRow(w, h),
-              //     SizedBox(height: h(0.05)),
-              //     orgRow(w, h),
-              //     SizedBox(height: h(0.05)),
-              //     orgRow(w, h),
-              //   ],
-              // );
             },
           ),
         ),

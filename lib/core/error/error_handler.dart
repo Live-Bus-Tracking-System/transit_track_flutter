@@ -16,7 +16,8 @@ class ErrorHandler {
     switch (error.response?.statusCode) {
       case 400:
         return 'Invalid request. Please check your input';
-
+      case 410:
+        return 'Session expired. please login';
       case 401:
         return 'Unauthorized';
       case 403:
