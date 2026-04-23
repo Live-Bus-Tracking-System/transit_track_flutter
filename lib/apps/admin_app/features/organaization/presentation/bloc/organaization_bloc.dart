@@ -11,13 +11,13 @@ part 'organaization_event.dart';
 part 'organaization_state.dart';
 
 class OrganaizationBloc extends Bloc<OrganaizationEvent, OrganaizationState> {
-  final GetAllUseCase orggAll;
+  final GetAllUseCase orgGetAll;
   final ActivateOrgUseCase orgActivate;
   final SuspendOrgUseCase orgSuspend;
   final DeleteOrgUseCase orgDelete;
   final FleetCountIdUseCase orgFleetCount;
   OrganaizationBloc(
-    this.orggAll,
+    this.orgGetAll,
     this.orgActivate,
     this.orgSuspend,
     this.orgDelete,
@@ -25,7 +25,7 @@ class OrganaizationBloc extends Bloc<OrganaizationEvent, OrganaizationState> {
   ) : super(OrganaizationState()) {
     on<GetAllOrgEvent>((event, emit) async {
       emit(state.copyWithin(getStatus: OrgStatus.loading));
-      final result = await orggAll.call();
+      final result = await orgGetAll.call();
       result.fold(
         (error) => emit(
           state.copyWithin(getStatus: OrgStatus.error, error: error.message),
@@ -89,7 +89,7 @@ class OrganaizationBloc extends Bloc<OrganaizationEvent, OrganaizationState> {
     on<GetOrgByStatusEvent>((event, emit) async {
       emit(state.copyWithin(getStatus: OrgStatus.loading));
 
-      final result = await orggAll.call();
+      final result = await orgGetAll.call();
       List<OrganaizationModel> data = [];
       result.fold(
         (error) {

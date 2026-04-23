@@ -20,7 +20,9 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+
 import 'package:transit_track_flutter/apps/user_app/features/map/widgets/info_box.dart';
 
 class LiveTrackingScreen extends StatefulWidget {
@@ -32,7 +34,7 @@ class LiveTrackingScreen extends StatefulWidget {
 
 class _LiveTrackingScreenState extends State<LiveTrackingScreen> {
 
-  late GoogleMapController mapController;
+  late MapController mapController;
 
   final LatLng busLocation = const LatLng(10.0159, 76.3419); // Kochi example
 

@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:meta/meta.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/route/data/model/lat_lon_model.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/route/data/model/place_dtls_model.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 
 void showSnackbar(BuildContext context, String text, Color color) {
   ScaffoldMessenger.of(context).showSnackBar(
@@ -24,7 +25,7 @@ void showSnackbar(BuildContext context, String text, Color color) {
         ),
         child: Row(
           children: [
-            color == Colors.red
+            color == AppColors.red
                 ? Icon(Icons.error, color: color)
                 : Icon(Icons.check_circle, color: Colors.green),
             SizedBox(width: 10),

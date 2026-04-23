@@ -35,8 +35,7 @@ class Login extends StatelessWidget {
         if (state.status == AuthAdminStatus.loading) {
           CircularProgressIndicator();
         } else if (state.status == AuthAdminStatus.success) {
-          await setB();
-       
+     
           showSnackbar(
             context,
             'Success',
@@ -44,7 +43,7 @@ class Login extends StatelessWidget {
           );
           context.go('/dashboard');
         } else if (state.status == AuthAdminStatus.error) {
-          showSnackbar(context, state.error!, Colors.red);
+          showSnackbar(context, state.error!, AppColors.red);
         }
       },
       child: Scaffold(

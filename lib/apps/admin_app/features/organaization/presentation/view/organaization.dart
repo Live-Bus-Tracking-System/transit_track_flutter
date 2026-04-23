@@ -20,11 +20,23 @@ class Organaization extends StatefulWidget {
   State<Organaization> createState() => _OrganaizationState();
 }
 
-class _OrganaizationState extends State<Organaization> {
+class _OrganaizationState extends State<Organaization>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
   @override
   void initState() {
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 700),
+    );
     context.read<OrganaizationBloc>().add(GetAllOrgEvent());
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -36,7 +48,9 @@ class _OrganaizationState extends State<Organaization> {
     return BlocListener<OrganaizationBloc, OrganaizationState>(
       listener: (context, state) {
         debugPrint('${state.getStatus}');
-        if (state.dlStatus == OrgStatus.success) {
+        if (state.actStatus == OrgStatus.success ||
+            state.supStatus == OrgStatus.success ||
+            state.dlStatus == OrgStatus.success) {
           showSnackbar(
             context,
             'Success',
@@ -45,11 +59,7 @@ class _OrganaizationState extends State<Organaization> {
         } else if (state.actStatus == OrgStatus.error ||
             state.supStatus == OrgStatus.error ||
             state.dlStatus == OrgStatus.error) {
-          showSnackbar(
-            context,
-            '${state.error}',
-            const Color.fromARGB(255, 187, 25, 0),
-          );
+          showSnackbar(context, '${state.error}', AppColors.red);
         }
       },
       child: Scaffold(
@@ -261,7 +271,7 @@ class _OrganaizationState extends State<Organaization> {
                           ],
                         ),
                         SizedBox(height: h(0.04)),
-                        orgTable(h, w, context),
+                        orgTable(h, w, context, controller),
                         SizedBox(height: h(0.05)),
 
                         overContainer(

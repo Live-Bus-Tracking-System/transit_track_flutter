@@ -5,4 +5,5 @@ class AppColors {
   static const white = Colors.white;
   static const black = Colors.black;
   static const ltOrange = Color.fromARGB(255, 255, 240, 235);
+  static const red=Colors.red;
 }
