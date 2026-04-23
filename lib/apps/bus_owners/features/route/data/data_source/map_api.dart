@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/route/data/model/place_dtls_model.dart';
 import 'package:transit_track_flutter/core/error/api_constants.dart';
 import 'package:transit_track_flutter/core/error/error_handler.dart';

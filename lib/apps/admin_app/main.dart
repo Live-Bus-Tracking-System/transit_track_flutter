@@ -17,6 +17,7 @@ void main() async {
         BlocProvider(create: (context) => inject.check.create()),
         BlocProvider(create: (context) => inject.org.create()),
         BlocProvider(create: (context) => inject.dsh.create()),
+        BlocProvider(create: (context) => inject.fltDi.create()),
       ],
       child: AdminApp(router: route),
     ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/presentation/view/fleet.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/data/model/organaization_model.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/presentation/bloc/organaization_bloc.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/presentation/widget/staus_card.dart';
@@ -70,24 +72,29 @@ Widget orgRow(
         width: w(0.08),
         child: Align(
           alignment: AlignmentGeometry.centerLeft,
-          child: Container(
-            width: w(0.031),
-            height: h(0.070),
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 229, 229, 229),
-              borderRadius: BorderRadius.circular(6),
-            ),
-            child: Center(
-              child: BlocBuilder<OrganaizationBloc, OrganaizationState>(
-                builder: (context, state) {
-                  return Text(
-                    '${state.totalFleet ?? 1}',
-                    style: GoogleFonts.poppins(
-                      fontSize: w(0.012),
-                      fontWeight: FontWeight.w600,
-                    ),
-                  );
-                },
+          child: GestureDetector(
+            onTap: () {
+              context.push('/fleet', extra: data);
+            },
+            child: Container(
+              width: w(0.031),
+              height: h(0.070),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 229, 229, 229),
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: Center(
+                child: BlocBuilder<OrganaizationBloc, OrganaizationState>(
+                  builder: (context, state) {
+                    return Text(
+                      '${state.totalFleet ?? 1}',
+                      style: GoogleFonts.poppins(
+                        fontSize: w(0.012),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ),

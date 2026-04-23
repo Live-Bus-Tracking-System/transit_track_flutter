@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/presentation/view/fleet.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/dashboard/presentation/view/dashboard.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/presentation/widget/card.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/route/presentation/view/routes_screen.dart';
 import 'package:transit_track_flutter/apps/bus_owners/menu.dart';
@@ -17,6 +19,12 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  @override
+  void initState() {
+    // context.read<ProfileBloc>().add(FetchDetailsEvent());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;

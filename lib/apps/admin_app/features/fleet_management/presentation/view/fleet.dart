@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:transit_track_flutter/apps/admin_app/features/dashboard/presentation/widget/container.dart';
-import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/presentation/widget/private.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/presentation/bloc/fleet_bloc.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/presentation/widget/public.dart';
 
 import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/presentation/widget/switch.dart';
@@ -25,6 +24,12 @@ class Fleet extends StatefulWidget {
 
 class _FleetState extends State<Fleet> {
   bool check = true;
+  @override
+  void initState() {
+    context.read<FleetBloc>().add(GetAllFLeetEvent(widget.data.id!));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;

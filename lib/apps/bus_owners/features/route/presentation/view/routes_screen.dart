@@ -12,6 +12,7 @@ import 'package:transit_track_flutter/apps/bus_owners/widget/text_Field.dart';
 import 'package:transit_track_flutter/apps/user_app/features/root/presentation/view/bloc/rout_bloc_bloc.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
+import 'package:transit_track_flutter/core/validators/vehicle_validator.dart';
 
 class RoutesScreen extends StatefulWidget {
   const RoutesScreen({super.key});
@@ -96,14 +97,14 @@ class _RoutesScreenState extends State<RoutesScreen> {
                     'ROUTE NAME',
                     'eg: north express',
                     w,
-                    h,
+                    h, (value) => VehicleValidator.name(value!),
                     controller,
                   ),
                   commonField(
                     'ROUTE NAME',
                     'eg: north express',
                     w,
-                    h,
+                    h, (value) => VehicleValidator.name(value!),
                     controller,
                   ),
                 ],

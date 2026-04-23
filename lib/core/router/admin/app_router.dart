@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/dashboard/presentation/view/dashboard.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/presentation/view/fleet.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/landing/presentation/view/splash.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/organaization/data/model/organaization_model.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/presentation/view/organaization.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/permit/presentation/view/permit.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/route/presentation/view/route.dart';
@@ -31,10 +32,13 @@ class AppRouter {
         path: RouteNames.organaizations,
         pageBuilder: (context, state) => slideNav(Organaization()),
       ),
-      // GoRoute(
-      //   path: RouteNames.fleet,
-      //   pageBuilder: (context, state) => slideNav(Fleet()),
-      // ),
+      GoRoute(
+        path: RouteNames.fleet,
+        pageBuilder: (context, state) {
+          final data = state.extra as OrganaizationModel;
+          return slideNav(Fleet(data: data));
+        },
+      ),
       GoRoute(
         path: RouteNames.routes,
         pageBuilder: (context, state) => slideNav(Routes()),

@@ -6,6 +6,7 @@ Widget commonField(
   String hint,
   double Function(double) w,
   double Function(double) h,
+  String? Function(String?) validator,
   TextEditingController controller, {
   double? b,
   int? lines,
@@ -34,6 +35,7 @@ Widget commonField(
         child: TextFormField(
           maxLines: lines ?? 1,
           controller: controller,
+          validator: validator,
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: GoogleFonts.poppins(
