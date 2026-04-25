@@ -12,6 +12,8 @@ String exception(int? statusCode) {
       return 'Invalid request. Please check your input';
     case 401:
       return 'Invalid email or password';
+    case 403:
+      return 'Access denied';
     case 404:
       return 'Data not found';
     case 500:
