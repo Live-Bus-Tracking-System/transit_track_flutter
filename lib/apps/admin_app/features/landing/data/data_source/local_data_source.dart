@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:transit_track_flutter/core/constants/strings/auth_string.dart';
+import 'package:transit_track_flutter/core/constants/strings/admin/auth_string.dart';
 
 class LocalDataSource {
   final SharedPreferences prefs;

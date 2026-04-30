@@ -55,8 +55,8 @@ class _RoutesScreenState extends State<RoutesScreen> {
                 child: Text(
                   'Add New Routes',
                   style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w800,
-                    fontSize: w(0.08),
+                    fontWeight: FontWeight.w700,
+                    fontSize: w(0.07),
                     color: AppTheme.color,
                   ),
                 ),
@@ -74,7 +74,7 @@ class _RoutesScreenState extends State<RoutesScreen> {
                     alignment: AlignmentGeometry.centerLeft,
                     child: Text(
                       'NEW COFIGURATION',
-                      style: GoogleFonts.poppins(
+                      style: GoogleFonts.inter(
                         color: AppTheme.color,
                         fontWeight: FontWeight.w600,
                         fontSize: w(0.05),
@@ -87,8 +87,8 @@ class _RoutesScreenState extends State<RoutesScreen> {
                       'Create Route',
                       style: GoogleFonts.poppins(
                         color: AppColors.black,
-                        fontWeight: FontWeight.w800,
-                        fontSize: w(0.07),
+                        fontWeight: FontWeight.w700,
+                        fontSize: w(0.06),
                       ),
                     ),
                   ),
@@ -119,16 +119,16 @@ class _RoutesScreenState extends State<RoutesScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Waypoints',
+                    'Way-points',
                     style: GoogleFonts.poppins(
                       fontSize: w(0.06),
-                      fontWeight: FontWeight.w800,
+                      fontWeight: FontWeight.w700,
                       color: AppColors.black,
                     ),
                   ),
                   Text(
                     'Add stop along the path',
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.inter(
                       fontSize: w(0.04),
                       fontWeight: FontWeight.w600,
                       color: AppTheme.color,

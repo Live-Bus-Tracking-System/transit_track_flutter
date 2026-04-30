@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/presentation/view/fleet.dart';
-import 'package:transit_track_flutter/apps/bus_owners/features/dashboard/presentation/view/dashboard.dart';
-import 'package:transit_track_flutter/apps/bus_owners/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/profile/presentation/view/delete_account.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/presentation/widget/card.dart';
-import 'package:transit_track_flutter/apps/bus_owners/features/route/presentation/view/routes_screen.dart';
 import 'package:transit_track_flutter/apps/bus_owners/menu.dart';
 import 'package:transit_track_flutter/apps/bus_owners/widget/containers.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
@@ -148,8 +144,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Text(
                   'Profile Details',
                   style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w800,
-                    fontSize: w(0.1),
+                    fontWeight: FontWeight.w700,
+                    fontSize: w(0.08),
                   ),
                 ),
               ),
@@ -236,6 +232,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                 ],
+              ),
+            ),
+            SizedBox(height: h(0.02)),
+            ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DeleteAccount()),
+                );
+              },
+              leading: Icon(Icons.delete, color: AppColors.red),
+              title: Text(
+                'Delete Account',
+                style: GoogleFonts.inter(
+                  fontSize: w(0.04),
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.red,
+                ),
+              ),
+              trailing: Icon(
+                Icons.arrow_forward,
+                color: AppColors.red,
+                size: w(0.06),
               ),
             ),
           ],

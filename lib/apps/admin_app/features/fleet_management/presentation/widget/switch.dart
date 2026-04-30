@@ -88,3 +88,47 @@ class SwitchFleet extends StatelessWidget {
     );
   }
 }
+
+Widget statusCardFlt(
+  double Function(double) h,
+  double Function(double) w,
+  bool s,
+) {
+  String text = '';
+  Color color = Colors.white;
+  Color bgColor = Colors.white;
+  switch (s) {
+    case true:
+      text = 'Active';
+      color = const Color.fromARGB(255, 196, 255, 199);
+
+      bgColor = const Color.fromARGB(255, 0, 85, 3);
+
+    case false:
+      text = 'InActive';
+      color = const Color.fromARGB(255, 255, 222, 222);
+
+      bgColor = const Color.fromARGB(255, 147, 0, 0);
+  }
+  return Align(
+    alignment: AlignmentGeometry.centerLeft,
+    child: Container(
+      width: w(0.065),
+      height: h(0.04),
+      decoration: BoxDecoration(
+        color: bgColor,
+        borderRadius: BorderRadius.circular(50),
+      ),
+      child: Center(
+        child: Text(
+          text,
+          style: GoogleFonts.poppins(
+            color: color,
+            fontSize: w(0.009),
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    ),
+  );
+}

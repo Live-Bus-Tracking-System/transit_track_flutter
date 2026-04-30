@@ -1,8 +1,15 @@
 class VehicleEntity {
+  String? id;
+  String? orgId;
   String? name;
   String? trackerId;
   String? licensePlt;
   int? capacity;
+  bool? isACtive;
+  String? createdAt;
+  String? createdBy;
+  String? lastModAt;
+  String? lastModBy;
   String? registrationCertificateUrl;
   String? permitCertificateUrl;
   String? registrationCertificateNo;
@@ -19,6 +26,13 @@ class VehicleEntity {
   String? additionalNotes;
 
   VehicleEntity({
+    this.id,
+    this.orgId,
+    this.isACtive,
+    this.createdAt,
+    this.createdBy,
+    this.lastModAt,
+    this.lastModBy,
     this.name,
     this.trackerId,
     this.licensePlt,

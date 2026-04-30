@@ -10,7 +10,7 @@ import 'package:transit_track_flutter/apps/admin_app/features/permit/presentatio
 import 'package:transit_track_flutter/apps/admin_app/widget/sidebar.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/top_bar.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
-import 'package:transit_track_flutter/core/constants/strings/permit_strings.dart';
+import 'package:transit_track_flutter/core/constants/strings/admin/permit_strings.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class Permit extends StatelessWidget {

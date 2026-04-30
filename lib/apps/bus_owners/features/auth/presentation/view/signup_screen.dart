@@ -5,6 +5,7 @@ import 'package:transit_track_flutter/apps/admin_app/features/dashboard/presenta
 import 'package:transit_track_flutter/apps/bus_owners/features/auth/presentation/bloc/bus_owner_auth_bloc.dart';
 import 'package:transit_track_flutter/apps/user_app/features/auth/presentation/view/login.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/auth/presentation/widget/textfeild.dart';
+import 'package:transit_track_flutter/core/constants/strings/bus_owner/auth_strings.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 import 'package:transit_track_flutter/core/validators/org_signup.dart';
 
@@ -51,7 +52,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 Center(
                   child: Text(
-                    "Create Organaization",
+                    AuthStrings.head1,
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.bold,
                       fontSize: w(0.06),
@@ -61,22 +62,19 @@ class _SignupScreenState extends State<SignupScreen> {
                 Center(
                   child: SizedBox(
                     width: w(0.7),
-                    child: Text(
-                      'Join thousands of commuters tracking their city in real-time.',
-                      style: GoogleFonts.inter(),
-                    ),
+                    child: Text(AuthStrings.head2, style: GoogleFonts.inter()),
                   ),
                 ),
 
                 Padding(
                   padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                  child: Text("Full Name", style: GoogleFonts.inter()),
+                  child: Text(AuthStrings.head3, style: GoogleFonts.inter()),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                   child: CustomTextField(
                     controller: nameController,
-                    hint: "Full Name",
+                    hint: AuthStrings.head4,
                     icon: Icons.person,
                     validator: (v) => OrgSignupValidator.name(v ?? ''),
                   ),
@@ -84,14 +82,14 @@ class _SignupScreenState extends State<SignupScreen> {
 
                 Padding(
                   padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                  child: Text("Phone Number", style: GoogleFonts.inter()),
+                  child: Text(AuthStrings.head5, style: GoogleFonts.inter()),
                 ),
 
                 Padding(
                   padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                   child: CustomTextField(
                     controller: phoneController,
-                    hint: "Enter a Phone",
+                    hint: AuthStrings.head6,
                     obscure: true,
                     icon: Icons.lock,
                     validator: (v) => OrgSignupValidator.phone(v ?? ''),
@@ -100,13 +98,13 @@ class _SignupScreenState extends State<SignupScreen> {
 
                 Padding(
                   padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                  child: Text("Email", style: GoogleFonts.inter()),
+                  child: Text(AuthStrings.head7, style: GoogleFonts.inter()),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                   child: CustomTextField(
                     controller: emailController,
-                    hint: "E-mail",
+                    hint: AuthStrings.head8,
                     icon: Icons.person,
                     validator: (v) => OrgSignupValidator.email(v ?? ''),
                   ),
@@ -116,7 +114,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   children: [
                     Checkbox(value: false, onChanged: (v) {}),
                     Text(
-                      "I agree to the Terms of Service and Privacy Policy.",
+                      AuthStrings.head9,
                       style: GoogleFonts.inter(fontSize: w(0.03)),
                     ),
                   ],
@@ -137,7 +135,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       );
                     },
                     child: Text(
-                      "Create Account →",
+                      AuthStrings.head10,
                       style: GoogleFonts.inter(
                         fontSize: w(0.04),
                         fontWeight: FontWeight.w600,
@@ -148,7 +146,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 SizedBox(height: 10),
 
-                Center(child: Text("OR")),
+                Center(child: Text(AuthStrings.head11)),
 
                 SizedBox(height: 10),
 
@@ -163,7 +161,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     children: [
                       Icon(Icons.g_mobiledata, size: 30),
                       SizedBox(width: 10),
-                      Text("Continue with Google"),
+                      Text(AuthStrings.head12),
                     ],
                   ),
                 ),
@@ -171,10 +169,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Don't have an account? "),
+                    Text(AuthStrings.head13),
                     TextButton(
                       child: Text(
-                        "Sign In",
+                        AuthStrings.head14,
                         style: TextStyle(color: AppTheme.color),
                       ),
                       onPressed: () {

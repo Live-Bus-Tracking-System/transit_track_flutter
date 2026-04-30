@@ -4,7 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/presentation/bloc/organaization_bloc.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 
-Widget orgTextField(double Function(double) w, double Function(double) h) {
+Widget orgTextField(
+  double Function(double) w,
+  double Function(double) h,
+  BuildContext context,
+) {
+  TextEditingController cotroller = TextEditingController();
   return Container(
     height: h(0.07),
     width: w(0.54),
@@ -16,13 +21,22 @@ Widget orgTextField(double Function(double) w, double Function(double) h) {
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 1),
       child: TextField(
+        controller: cotroller,
+        onChanged: (value) {
+          if (value == '') {
+            context.read<OrganaizationBloc>().add(GetAllOrgEvent());
+            return;
+          }
+          context.read<OrganaizationBloc>().add(SearchOrgByIdEvent(value));
+          debugPrint(value);
+        },
         decoration: InputDecoration(
-          hintText: 'Filter by name, ID, or contact',
+          hintText: 'Search by name, ID, or contact',
           hintStyle: GoogleFonts.poppins(
             color: const Color.fromARGB(255, 122, 122, 122),
-            fontSize: w(0.014),
+            fontSize: w(0.012),
           ),
-          prefixIcon: Icon(Icons.filter_1, size: w(0.02)),
+          prefixIcon: Icon(Icons.search, size: w(0.02)),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               width: 0,

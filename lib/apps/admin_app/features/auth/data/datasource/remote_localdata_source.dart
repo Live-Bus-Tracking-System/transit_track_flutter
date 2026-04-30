@@ -4,10 +4,10 @@ import 'package:transit_track_flutter/apps/admin_app/features/auth/data/models/a
 import 'package:transit_track_flutter/core/error/api_excetion.dart';
 import 'package:transit_track_flutter/core/error/auth_error_handler.dart';
 import 'package:transit_track_flutter/core/error/error_handler.dart';
-import 'package:transit_track_flutter/core/network/dio_client.dart';
+import 'package:transit_track_flutter/core/network/dio_client_admin.dart';
 
 class AuthAdminRemoteLocaldataSource {
-  final DioClient client;
+  final DioClientAdmin client;
   AuthAdminRemoteLocaldataSource(this.client);
   Future<AdminModel> login(AdminModel model) async {
     try {
@@ -18,6 +18,7 @@ class AuthAdminRemoteLocaldataSource {
 
       return AdminModel.fromJson(response.data);
     } on DioException catch (e) {
+      print('${e.message}');
       throw ApiExcetion(
         message: AuthErrorHandler.handler(e),
         statuCode: e.response?.statusCode,

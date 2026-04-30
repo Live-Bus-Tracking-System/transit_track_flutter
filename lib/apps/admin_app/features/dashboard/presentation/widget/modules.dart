@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/dashboard/presentation/bloc/admin_dsh_bloc.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/dashboard/presentation/widget/container.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/hover.dart';
-import 'package:transit_track_flutter/core/constants/strings/dashboard_strings.dart';
+import 'package:transit_track_flutter/core/constants/strings/admin/dashboard_strings.dart';
 
 Widget modulesCard(double Function(double) h, double Function(double) w,BuildContext context) {
   final state=context.read<AdminDshBloc>().state;

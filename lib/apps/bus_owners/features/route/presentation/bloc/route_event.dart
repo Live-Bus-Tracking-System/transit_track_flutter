@@ -18,3 +18,10 @@ class CancelStopEVent extends RouteEvent {
   int index;
   CancelStopEVent({required this.index});
 }
+
+class AddStopEvent extends RouteEvent{
+  String name;
+  String lat;
+  String lon;
+  AddStopEvent({required this.name,required this.lat,required this.lon});
+}

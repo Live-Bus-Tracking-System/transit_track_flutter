@@ -9,7 +9,7 @@ import 'package:transit_track_flutter/apps/admin_app/widget/sidebar.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/text.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/top_bar.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
-import 'package:transit_track_flutter/core/constants/strings/users_strings.dart';
+import 'package:transit_track_flutter/core/constants/strings/admin/users_strings.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class Users extends StatelessWidget {

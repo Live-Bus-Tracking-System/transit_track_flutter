@@ -11,7 +11,7 @@ import 'package:transit_track_flutter/apps/admin_app/widget/sidebar.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/text.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/top_bar.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
-import 'package:transit_track_flutter/core/constants/strings/fleet_strings.dart';
+import 'package:transit_track_flutter/core/constants/strings/admin/fleet_strings.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class Fleet extends StatefulWidget {
@@ -105,7 +105,7 @@ class _FleetState extends State<Fleet> {
                       ),
                       SizedBox(height: h(0.06)),
 
-                      Public(),
+                      Public(id: widget.data.id!,),
                     ],
                   ),
                 ),

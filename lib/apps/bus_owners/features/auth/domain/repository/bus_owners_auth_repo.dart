@@ -4,4 +4,5 @@ import 'package:transit_track_flutter/core/error/failure.dart';
 
 abstract class BusOwnersAuthRepo {
   Future<Either<Failure,BusOwnersModel>> create(BusOwnersModel model);
+  Future<Either<Failure,String>> logOut();
 }

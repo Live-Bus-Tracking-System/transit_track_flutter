@@ -9,6 +9,7 @@ class OrganaizationState {
   final OrgStatus actStatus;
   final OrgStatus fltStatus;
   final OrgStatus tlfStatus;
+  final OrgStatus searchStatus;
   final int? totalFleet;
   final List<OrganaizationModel>? data;
   final OrganaizationModel? orgData;
@@ -20,6 +21,7 @@ class OrganaizationState {
     this.actStatus = OrgStatus.initial,
     this.fltStatus = OrgStatus.initial,
     this.tlfStatus = OrgStatus.initial,
+    this.searchStatus = OrgStatus.initial,
     this.totalFleet,
     this.data = const [],
     this.orgData,
@@ -32,6 +34,7 @@ class OrganaizationState {
     OrgStatus? supStatus,
     OrgStatus? actStatus,
     OrgStatus? tlfStatus,
+    OrgStatus? searchStatus,
     int? totalFleet,
     List<OrganaizationModel>? data,
     OrganaizationModel? orgData,
@@ -44,6 +47,7 @@ class OrganaizationState {
       actStatus: actStatus ?? this.actStatus,
       tlfStatus: tlfStatus ?? this.tlfStatus,
       totalFleet: totalFleet ?? this.totalFleet,
+      searchStatus: searchStatus ?? this.searchStatus,
       data: data ?? this.data,
       orgData: orgData ?? this.orgData,
       error: error ?? this.error,

@@ -9,8 +9,8 @@ import 'package:transit_track_flutter/apps/admin_app/features/auth/presentation/
 import 'package:transit_track_flutter/apps/admin_app/features/route/presentation/widget/row.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/snack_bar.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
-import 'package:transit_track_flutter/core/constants/strings/auth_string.dart';
-import 'package:transit_track_flutter/core/constants/strings/system_strings.dart';
+import 'package:transit_track_flutter/core/constants/strings/admin/auth_string.dart';
+import 'package:transit_track_flutter/core/constants/strings/admin/system_strings.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class Login extends StatelessWidget {
