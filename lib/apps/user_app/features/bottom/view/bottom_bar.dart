@@ -6,9 +6,6 @@ import 'package:transit_track_flutter/apps/user_app/features/root/presentation/v
 import 'package:transit_track_flutter/apps/user_app/features/profile/presentation/view/profile.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
-
-
-
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
 
@@ -18,7 +15,7 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   int selectedIndex = 0;
-  List<Widget> pages = [Home(), Rout(), Save(), Profile()];
+  List<Widget> pages = [HomePage(), Rout(), Profile()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,10 +31,22 @@ class _BottomBarState extends State<BottomBar> {
           });
         },
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ConstText.home),
-          BottomNavigationBarItem(icon: Icon(Icons.route), label: ConstText.rout),
-          BottomNavigationBarItem(icon: Icon(Icons.bookmark),label: ConstText.save),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: ConstText.profile),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: ConstText.home,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.route),
+            label: ConstText.rout,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bookmark),
+            label: ConstText.save,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: ConstText.profile,
+          ),
         ],
       ),
       body: pages[selectedIndex],

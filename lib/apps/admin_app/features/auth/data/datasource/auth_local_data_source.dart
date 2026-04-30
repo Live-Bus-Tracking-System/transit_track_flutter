@@ -7,9 +7,7 @@ class AuthAdminLocalDataSource {
   AuthAdminLocalDataSource(this.prefs);
 
   Future<void> set(bool isLogged) async {
-
     await prefs.setBool(AuthString.isLogged, isLogged);
     debugPrint(' this is login setted${prefs.getBool(AuthString.isLogged)}');
   }
-
 }

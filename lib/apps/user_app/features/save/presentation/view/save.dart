@@ -1,146 +1,105 @@
+// // lib/features/profile/presentation/pages/saved_buses_page.dart
+// import 'package:flutter/material.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:go_router/go_router.dart';
+// import 'package:transit_track_flutter/apps/user_app/features/home/presentation/widgets/error_handling.dart';
+// import 'package:transit_track_flutter/apps/user_app/features/save/presentation/view/bloc/saved_bloc_bloc.dart';
+// import 'package:transit_track_flutter/apps/user_app/features/save/presentation/widgets/build_error.dart';
+// import 'package:transit_track_flutter/apps/user_app/features/save/presentation/widgets/router_cards.dart';
+// import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
-import 'package:flutter/material.dart';
-import 'package:transit_track_flutter/apps/user_app/features/details/presentation/view/details.dart';
-import 'package:transit_track_flutter/core/constants/text.dart';
-import 'package:transit_track_flutter/core/constants/theme/colors.dart';
-import 'package:transit_track_flutter/core/constants/theme/theme.dart';
+// class SavedBusesPage extends StatefulWidget {
+//   const SavedBusesPage({super.key});
 
-class Save extends StatefulWidget {
-  const Save({super.key});
+//   @override
+//   State<SavedBusesPage> createState() => _SavedBusesPageState();
+// }
 
-  @override
-  State<Save> createState() => _SaveState();
-}
+// class _SavedBusesPageState extends State<SavedBusesPage> {
+//   @override
+//   void initState() {
+//     super.initState();
+//     context.read<SavedBusesBloc>().add(SavedBusesLoadRequested());
+//   }
 
-class _SaveState extends State<Save> {
-
-  TextEditingController searchController = TextEditingController();
-  
- 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(ConstText.save),
-      ),
-
-      body: Column(
-        children: [
-
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: TextField(
-              controller: searchController,
-              // onChanged: searchBus,
-              decoration: InputDecoration(
-                hintText: "Search bus...",
-                prefixIcon: const Icon(Icons.search),
-                filled: true,
-                fillColor: Colors.grey[200],
-                contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
-          ),
-
-          Expanded(
-            child: ListView.builder(
-              itemCount: 1,
-              itemBuilder: (context, index) {
-                // final bus = filteredList[index];
-
-                return Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const BusScreen()),
-                      );
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(15),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[100],
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Column(
-                        children: [
-
-                         
-                          Row(
-                            children: [
-                              Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                  color: AppTheme.color,
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: const Icon(Icons.directions_bus,
-                                    color: Colors.white),
-                              ),
-
-                              const SizedBox(width: 10),
-
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    // Text(bus["name"]!,
-                                    //     style: const TextStyle(
-                                    //         fontWeight: FontWeight.bold)),
-                                    // Text(bus["number"]!),
-                                    // Text(bus["route"]!,
-                                        // style: const TextStyle(fontSize: 12)),
-                                  ],
-                                ),
-                              ),
-
-                              IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.bookmark,
-                                    color: AppColors.black),
-                              ),
-                            ],
-                          ),
-
-                          const SizedBox(height: 15),
-
-                          
-                          Row(
-                            children: [
-                              const Text(ConstText.nextStop),
-                              // Text(bus["next"]!,
-                              //     style: const TextStyle(
-                              //         fontWeight: FontWeight.bold)),
-                              const SizedBox(width: 10),
-                              Container(
-                                width: 10,
-                                height: 10,
-                                decoration: const BoxDecoration(
-                                  color: Colors.green,
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                              const SizedBox(width: 5),
-                              const Text(ConstText.oline,
-                                  style: TextStyle(color: Colors.green)),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: AppTheme.colors,
+//       body: SafeArea(
+//         child: BlocBuilder<SavedBusesBloc, SavedBusesState>(
+//           builder: (context, state) {
+//             if (state is SavedBusesLoading) return buildShimmer();
+//             if (state is SavedBusesError)
+//               return buildError(context, state.message);
+//             if (state is SavedBusesLoaded) {
+//               final savedRoutes = state.savedRoutes;
+//               return Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   // Header
+//                   Padding(
+//                     padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
+//                     child: Row(
+//                       children: [
+//                         Text(
+//                           "saved Buses",
+//                           style: Theme.of(context).textTheme.headlineLarge,
+//                         ),
+//                         const Spacer(),
+//                         if (savedRoutes.isNotEmpty)
+//                           Container(
+//                             padding: const EdgeInsets.symmetric(
+//                               horizontal: 12,
+//                               vertical: 6,
+//                             ),
+//                             decoration: BoxDecoration(
+//                               color: AppTheme.colors,
+//                               borderRadius: BorderRadius.circular(20),
+//                             ),
+//                             child: Text(
+//                               '${savedRoutes.length} buses',
+//                               style: Theme.of(context).textTheme.bodySmall
+//                                   ?.copyWith(
+//                                     color: AppTheme.color,
+//                                     fontWeight: FontWeight.w700,
+//                                   ),
+//                             ),
+//                           ),
+//                       ],
+//                     ),
+//                   ),
+//                   // List
+//                   Expanded(
+//                     child: savedRoutes.isEmpty
+//                         ? buildEmpty(context)
+//                         : ListView.separated(
+//                             padding: const EdgeInsets.symmetric(horizontal: 20),
+//                             itemCount: savedRoutes.length,
+//                             separatorBuilder: (_, __) =>
+//                                 const SizedBox(height: 12),
+//                             itemBuilder: (context, index) => RouterCards(
+//                               route: savedRoutes[index],
+//                               onTap: () => context.push(
+//                                 '/route/${savedRoutes[index].id}',
+//                               ),
+//                               onFavoriteTap: () {
+//                                 context.read<SavedBusesBloc>().add(
+//                                   SavedBusesToggleRequested(
+//                                     savedRoutes[index].id,
+//                                   ),
+//                                 );
+//                               },
+//                             ),
+//                           ),
+//                   ),
+//                 ],
+//               );
+//             }
+//             return SizedBox.shrink();
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }

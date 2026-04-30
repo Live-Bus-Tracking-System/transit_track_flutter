@@ -1,3 +1,4 @@
+import 'package:dio/src/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -15,6 +16,8 @@ void main() async {
   final InjectionBusOwner injectionBusOwner = InjectionBusOwner();
   await injectionBusOwner.init();
   await injectionUser.init();
+  SharedPreferences? prefe;
+  Dio? dio;
   runApp(
     MultiBlocProvider(
       providers: [
@@ -22,7 +25,6 @@ void main() async {
         BlocProvider(create: (context) => injectionBusOwner.auth.create()),
         BlocProvider(create: (context) => injectionBusOwner.fleet.create()),
         BlocProvider(create: (context) => injectionBusOwner.profile.create()),
-      
       ],
       child: UserApp(),
     ),
@@ -36,7 +38,7 @@ class UserApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:  DashboardScreen()
+      home: DashboardScreen(),
     );
   }
 }

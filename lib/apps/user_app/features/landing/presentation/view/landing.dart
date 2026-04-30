@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:transit_track_flutter/apps/user_app/features/auth/presentation/view/login.dart';
 import 'package:transit_track_flutter/apps/user_app/features/splash/presentation/widget/text.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
-
 
 class Landing extends StatefulWidget {
   const Landing({super.key});
@@ -73,36 +73,46 @@ class _LandingState extends State<Landing> {
                       ),
                     ),
 
-                    Container(
-                      width: w(0.7),
-                      height: h(0.07),
-                      decoration: BoxDecoration(
-                        color: AppTheme.color,
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SizedBox(width: w(0.04)),
-                            Text(
-                              'Get Started',
-                              style: GoogleFonts.poppins(
-                                color: Colors.white,
-                                fontSize: w(0.06),
-                                fontWeight: FontWeight.w700,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (_) => Login()),
+                        );
+                      },
+                      child: Container(
+                        width: w(0.7),
+                        height: h(0.07),
+                        decoration: BoxDecoration(
+                          color: AppTheme.color,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              SizedBox(width: w(0.04)),
+                              Text(
+                                'Get Started',
+                                style: GoogleFonts.poppins(
+                                  color: Colors.white,
+                                  fontSize: w(0.06),
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
-                            ),
-                            SizedBox(width: w(0.05)),
-                            CircleAvatar(
-                              radius: w(0.06),
-                              backgroundColor: Colors.white,
-                              child: Center(
-                                child: SvgPicture.asset('assets/svg/circlesvg.svg',width: w(0.08),),
-                        
+                              SizedBox(width: w(0.05)),
+                              CircleAvatar(
+                                radius: w(0.06),
+                                backgroundColor: Colors.white,
+                                child: Center(
+                                  child: SvgPicture.asset(
+                                    'assets/svg/circlesvg.svg',
+                                    width: w(0.08),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
