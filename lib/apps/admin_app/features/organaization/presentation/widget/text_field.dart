@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/organaization/presentation/bloc/organaization_bloc.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 
-Widget orgTextField(double Function(double) w, double Function(double)h) {
+Widget orgTextField(double Function(double) w, double Function(double) h) {
   return Container(
     height: h(0.07),
-    width: w(0.57),
+    width: w(0.54),
     decoration: BoxDecoration(
       color: const Color.fromARGB(255, 255, 255, 255),
       borderRadius: BorderRadius.circular(3),
@@ -17,9 +20,9 @@ Widget orgTextField(double Function(double) w, double Function(double)h) {
           hintText: 'Filter by name, ID, or contact',
           hintStyle: GoogleFonts.poppins(
             color: const Color.fromARGB(255, 122, 122, 122),
-            fontSize: w(0.014)
+            fontSize: w(0.014),
           ),
-          prefixIcon: Icon(Icons.filter_1,size: w(0.02),),
+          prefixIcon: Icon(Icons.filter_1, size: w(0.02)),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               width: 0,
@@ -47,15 +50,20 @@ Widget orgTextField(double Function(double) w, double Function(double)h) {
   );
 }
 
-Widget orgDropDown(double Function(double) w, double Function(double)h) {
+Widget orgDropDown(
+  double Function(double) w,
+  double Function(double) h,
+  BuildContext context,
+) {
   return Container(
-    width: w(0.11),
+    width: w(0.13),
     height: h(0.07),
     decoration: BoxDecoration(
       color: const Color.fromARGB(255, 255, 255, 255),
       borderRadius: BorderRadius.circular(3),
     ),
     child: DropdownButtonFormField(
+      dropdownColor: AppColors.white,
       validator: (value) {
         if (value == null) {
           return 'role is required';
@@ -63,9 +71,9 @@ Widget orgDropDown(double Function(double) w, double Function(double)h) {
         return null;
       },
       decoration: InputDecoration(
-        hintText: 'All STates',
+        hintText: 'Filter Status',
 
-        hintStyle: GoogleFonts.poppins(color: Colors.white,fontSize: w(0.014)),
+        hintStyle: GoogleFonts.poppins(color: Colors.white, fontSize: w(0.014)),
         // labelText: 'All STates',
         labelStyle: TextStyle(color: Colors.white),
 
@@ -91,10 +99,23 @@ Widget orgDropDown(double Function(double) w, double Function(double)h) {
           borderRadius: BorderRadius.circular(5),
         ),
       ),
-      items: ['admin', 'user'].map((role) {
-        return DropdownMenuItem(value: role, child: Text(role));
+      items: ['Actived', 'Suspended', 'Pending', 'Rejected'].map((state) {
+        return DropdownMenuItem(
+          value: state,
+          child: Text(state, style: GoogleFonts.poppins()),
+        );
       }).toList(),
-      onChanged: (String? newvalue) {},
+      onChanged: (String? newvalue) {
+        if (newvalue == 'Actived') {
+          context.read<OrganaizationBloc>().add(GetOrgByStatusEvent(2));
+        } else if (newvalue == 'Pending') {
+          context.read<OrganaizationBloc>().add(GetOrgByStatusEvent(1));
+        } else if (newvalue == 'Suspended') {
+          context.read<OrganaizationBloc>().add(GetOrgByStatusEvent(3));
+        } else {
+          context.read<OrganaizationBloc>().add(GetOrgByStatusEvent(4));
+        }
+      },
     ),
   );
 }

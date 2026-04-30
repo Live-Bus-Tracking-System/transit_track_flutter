@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:transit_track_flutter/apps/bus_owners/features/fleet/presentation/widget/text_Field.dart';
-import 'package:transit_track_flutter/core/constants/colors.dart';
-import 'package:transit_track_flutter/core/constants/theme.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/fleet/presentation/widget/containers.dart';
+import 'package:transit_track_flutter/apps/bus_owners/menu.dart';
+import 'package:transit_track_flutter/apps/bus_owners/widget/containers.dart';
+import 'package:transit_track_flutter/apps/bus_owners/widget/text_Field.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
+import 'package:transit_track_flutter/core/constants/theme/theme.dart';
+import 'package:transit_track_flutter/core/validators/vehicle_validator.dart';
 
 class Fleet extends StatefulWidget {
   const Fleet({super.key});
@@ -14,7 +18,16 @@ class Fleet extends StatefulWidget {
 class _FleetState extends State<Fleet> {
   @override
   Widget build(BuildContext context) {
+    final TextEditingController nameC = TextEditingController();
+    final TextEditingController licenseC = TextEditingController();
+    final TextEditingController trackerIdC = TextEditingController();
+    final TextEditingController capacityC = TextEditingController();
+    final TextEditingController routeNameC = TextEditingController();
+    final TextEditingController startStopC = TextEditingController();
+    final TextEditingController endStopC = TextEditingController();
+    final TextEditingController additionalNotesC = TextEditingController();
     final TextEditingController busNameController = TextEditingController();
+  
     final size = MediaQuery.of(context).size;
     double h(double value) => size.height * value;
     double w(double value) => size.width * value;
@@ -32,198 +45,198 @@ class _FleetState extends State<Fleet> {
         ),
         centerTitle: true,
       ),
-      drawer: Drawer(),
-      body: ListView(
-        padding: EdgeInsets.all(w(0.052)),
-        children: [
-          SizedBox(height: h(0.01)),
-          Text(
-            'Registreation',
-            style: GoogleFonts.poppins(
-              fontWeight: FontWeight.w500,
-              fontSize: w(0.05),
-              color: AppTheme.color,
-            ),
-          ),
-          Text(
-            'ADD NEW VEHICLE',
-            style: GoogleFonts.poppins(
-              fontWeight: FontWeight.w700,
-              fontSize: w(0.08),
-            ),
-          ),
-          SizedBox(
-            child: Text(
-              'Initialize technical elementary and fleet documentation',
+      drawer: Menu(h: h, w: w),
+      body: SafeArea(
+        child: ListView(
+          padding: EdgeInsets.all(w(0.052)),
+          children: [
+            SizedBox(height: h(0.01)),
+            Text(
+              'Registreation',
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w500,
-                fontSize: w(0.04),
-                color: const Color.fromARGB(255, 110, 110, 110),
+                fontSize: w(0.05),
+                color: AppTheme.color,
               ),
             ),
-          ),
-          SizedBox(height: h(0.04)),
-          Container(
-            padding: EdgeInsets.all(w(0.06)),
-            width: double.infinity,
-            height: h(0.43),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: AppColors.white,
+            Text(
+              'ADD NEW VEHICLE',
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w700,
+                fontSize: w(0.07),
+              ),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                      radius: w(0.02),
-                      backgroundColor: AppTheme.color,
-                    ),
-                    SizedBox(width: w(0.014)),
-                    Text(
-                      'Vehicle Data',
-                      style: GoogleFonts.poppins(
-                        fontSize: w(0.07),
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
+            SizedBox(
+              child: Text(
+                'Initialize technical elementary and fleet documentation',
+                style: GoogleFonts.inter(
+                  fontWeight: FontWeight.w500,
+                  fontSize: w(0.04),
+                  color: const Color.fromARGB(255, 110, 110, 110),
                 ),
-                addBusField(
-                  'Bus Name',
-                  'eg: kinetic alpha-0',
-                  w,
-                  h,
-                  busNameController,
-                ),
-                addBusField('Vehicle Code', 'KN-9909', w, h, busNameController),
-                addBusField(
-                  'Number Plate',
-                  'KL-98-09-87',
-                  w,
-                  h,
-                  busNameController,
-                ),
-              ],
+              ),
             ),
-          ),
-          SizedBox(height: h(0.04)),
-          Container(
-            padding: EdgeInsets.all(w(0.06)),
-            width: double.infinity,
-            height: h(0.43),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: AppColors.white,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                      radius: w(0.02),
-                      backgroundColor: AppTheme.color,
-                    ),
-                    SizedBox(width: w(0.014)),
-                    Text(
-                      'Documentation',
-                      style: GoogleFonts.poppins(
-                        fontSize: w(0.07),
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(),
-                    Text(
-                      'PERMIT DOCUMENT',
-                      style: GoogleFonts.poppins(
-                        fontSize: w(0.032),
-                        fontWeight: FontWeight.w600,
-                        color: const Color.fromARGB(255, 135, 135, 135),
-                      ),
-                    ),
-                    SizedBox(height: h(0.008)),
-                    Container(
-                      // padding: EdgeInsets.all(w(0.005)),
-                      width: double.infinity,
-                      height: h(0.17),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 1,
-                          color: const Color.fromARGB(255, 213, 168, 138),
+            SizedBox(height: h(0.04)),
+            mainContain(
+              w,
+              double.infinity,
+              h(0.46),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.info, size: w(0.05), color: AppTheme.color),
+                      SizedBox(width: w(0.014)),
+                      Text(
+                        'Vehicle Data',
+                        style: GoogleFonts.inter(
+                          fontSize: w(0.05),
+                          fontWeight: FontWeight.w700,
                         ),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Icon(
-                            Icons.file_upload,
-                            color: const Color.fromARGB(255, 123, 123, 123),
-                            size: w(0.09),
-                          ),
-                          Text(
-                            'Upload Permit',
-                            style: GoogleFonts.poppins(
-                              fontSize: w(0.04),
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          Text(
-                            'PDF, JPG, UP TO 10MB',
-                            style: GoogleFonts.poppins(
-                              fontSize: w(0.03),
-                              fontWeight: FontWeight.w500,
-                              color: const Color.fromARGB(255, 123, 123, 123),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  width: double.infinity,
-                  height: h(0.07),
-                  decoration: BoxDecoration(
-                    color: AppTheme.color,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color.fromARGB(
-                          255,
-                          109,
-                          109,
-                          109,
-                        ).withOpacity(0.2),
-                        blurRadius: 8,
-                        offset: Offset(0, 4),
                       ),
                     ],
                   ),
-                  child: Center(
-                    child: Text(
-                      'REGISTER VEHICLE',
-                      style: GoogleFonts.poppins(
-                        fontSize: w(0.05),
-                        fontWeight: FontWeight.w800,
-                        color: AppColors.white,
-                      ),
-                    ),
+                  commonField(
+                    'NAME',
+                    'eg: kinetic alpha-0',
+                    w,
+                    h,
+                    (value) => VehicleValidator.name(value!),
+                    nameC,
                   ),
-                ),
-              ],
+                  commonField(
+                    'LISCENCE PLATE',
+                    'KL-98-09-87',
+                    w,
+                    h,
+                    (value) => VehicleValidator.licensePlt(value!),
+                    licenseC,
+                  ),
+                  commonField(
+                    'TRACKER ID',
+                    'KFT-DGT-111',
+                    w,
+                    h,
+                    (value) => VehicleValidator.trackerId(value!),
+                    trackerIdC,
+                  ),
+                  commonField(
+                    'SEATING CAPACITY',
+                    '56',
+                    w,
+                    h,
+                    (value) => VehicleValidator.capacity(value!),
+                    capacityC,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+            SizedBox(height: h(0.04)),
+            mainContain(
+              w,
+              double.infinity,
+              h(0.37),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.route, size: w(0.05), color: AppTheme.color),
+                      SizedBox(width: w(0.014)),
+                      Text(
+                        'Intended Route',
+                        style: GoogleFonts.inter(
+                          fontSize: w(0.05),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                  commonField(
+                    'ROUTE NAME',
+                    'DOWN-TOWN EXPRESS',
+                    w,
+                    h,
+                    (value) => VehicleValidator.required(value!, 'Route'),
+                    routeNameC,
+                  ),
+                  commonField(
+                    'START STOP NAME',
+                    'CENTRAL',
+                    w,
+                    h,
+                    (value) => VehicleValidator.required(value!, 'Start stop'),
+                    startStopC,
+                  ),
+                  commonField(
+                    'END STOP NAME',
+                    'KOTTA',
+                    w,
+                    h,
+                    (value) => VehicleValidator.required(value!, 'End stop'),
+                    endStopC,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: h(0.04)),
+            mainContain(
+              w,
+              double.infinity,
+              h(0.25),
+              Column(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.note_add,
+                        size: w(0.05),
+                        color: AppTheme.color,
+                      ),
+                      SizedBox(width: w(0.014)),
+                      Text(
+                        'Additional Notes',
+                        style: GoogleFonts.inter(
+                          fontSize: w(0.05),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                  commonField(
+                    '',
+                    'eg: this has new experience...',
+                    w,
+                    h,
+                    (value) => VehicleValidator.notes(value!),
+                    additionalNotesC,
+                    hi: h(0.13),
+                    lines: 10,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: h(0.04)),
+            certificateCont(
+              w,
+              h,
+              context,
+              nameC: nameC,
+              licenseC: licenseC,
+              trackerIdC: trackerIdC,
+              capacityC: capacityC,
+              routeNameC: routeNameC,
+              startStopC: startStopC,
+              endStopC: endStopC,
+              additionalNotesC: additionalNotesC,
+            ),
+          ],
+        ),
       ),
     );
   }

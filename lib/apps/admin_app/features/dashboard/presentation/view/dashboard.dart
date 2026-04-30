@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/dashboard/presentation/widget/modules.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/chart.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/dashboard/presentation/widget/container.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/container.dart';
@@ -7,9 +8,9 @@ import 'package:transit_track_flutter/apps/admin_app/widget/hover.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/sidebar.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/text.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/top_bar.dart';
-import 'package:transit_track_flutter/core/constants/colors.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/strings/dashboard_strings.dart';
-import 'package:transit_track_flutter/core/constants/theme.dart';
+import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
@@ -69,81 +70,7 @@ class Dashboard extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: h(0.06)),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          HoverWidget(
-                            child: dshContainer(
-                              w,
-                              h,
-                              Icon(
-                                Icons.directions_bus,
-                                color: const Color.fromARGB(255, 255, 17, 0),
-                                size: w(0.025),
-                              ),
-                              const Color.fromARGB(255, 255, 224, 223),
-                              DashboardStrings.buses,
-                              1992,
-                            ),
-                          ),
-                          HoverWidget(
-                            child: dshContainer(
-                              w,
-                              h,
-                              Icon(
-                                Icons.route,
-                                color: const Color.fromARGB(255, 0, 34, 255),
-                                size: w(0.025),
-                              ),
-                              const Color.fromARGB(255, 222, 228, 255),
-                              DashboardStrings.routes,
-                              234,
-                            ),
-                          ),
-                          HoverWidget(
-                            child: dshContainer(
-                              w,
-                              h,
-                              Icon(
-                                Icons.business,
-                                color: const Color.fromARGB(255, 204, 0, 255),
-                                size: w(0.025),
-                              ),
-                              const Color.fromARGB(255, 247, 221, 255),
-                              'Active Buses',
-                              1992,
-                            ),
-                          ),
-                          HoverWidget(
-                            child: dshContainer(
-                              w,
-                              h,
-                              Icon(
-                                Icons.verified_user,
-                                color: Colors.red,
-                                size: w(0.025),
-                              ),
-                              const Color.fromARGB(255, 255, 223, 221),
-                              'Active Buses',
-                              1992,
-                            ),
-                          ),
-                          HoverWidget(
-                            child: dshContainer(
-                              w,
-                              h,
-                              Icon(
-                                Icons.verified_user,
-                                color: Colors.red,
-                                size: w(0.025),
-                              ),
-                              const Color.fromARGB(255, 255, 223, 221),
-                              'Active Buses',
-                              1992,
-                            ),
-                          ),
-                        ],
-                      ),
+                      modulesCard(h, w,context),
                       SizedBox(height: h(0.04)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

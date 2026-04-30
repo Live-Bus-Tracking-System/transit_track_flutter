@@ -4,5 +4,4 @@ abstract class AuthRepos {
   Future<UserAuthModel>register(UserAuthModel model);
   Future<UserAuthModel>userLogin(String email,String password);
   Future<void>logout(bool isLogged);
-  
 }

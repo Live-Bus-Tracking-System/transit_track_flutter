@@ -5,9 +5,9 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/presentation/view/profile_screen.dart';
 import 'package:transit_track_flutter/apps/bus_owners/menu.dart';
-import 'package:transit_track_flutter/core/constants/colors.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/text.dart';
-import 'package:transit_track_flutter/core/constants/theme.dart';
+import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -19,17 +19,12 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
+    final size = MediaQuery.of(context).size;
+    double h(double value) => size.height * value;
+    double w(double value) => size.width * value;
 
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_) => Menu()));
-          },
-          icon: Icon(Icons.menu),
-        ),
         title: Text(
           ConstText.transitTrack,
           style: TextStyle(color: AppTheme.color, fontWeight: FontWeight(20)),
@@ -46,6 +41,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ],
       ),
+      drawer: Menu(h: h, w: w),
       body: SafeArea(
         child: ListView(
           children: [

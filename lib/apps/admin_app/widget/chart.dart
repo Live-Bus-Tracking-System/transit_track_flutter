@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:transit_track_flutter/core/constants/theme.dart';
+import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class OverviewChart extends StatelessWidget {
   const OverviewChart({super.key});

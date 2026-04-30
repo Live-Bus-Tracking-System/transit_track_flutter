@@ -1,10 +1,15 @@
-import 'package:transit_track_flutter/apps/admin_app/features/auth/domain/entities/auth.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/auth/domain/entities/admin_entity.dart';
 
-class AuthModel extends Auth {
-  AuthModel({required super.email, required super.password});
+class AdminModel extends AdminEntity {
+  AdminModel({super.id, super.name, super.phone, super.email, super.password});
 
-  factory AuthModel.fromJson(Map<String, dynamic> json) {
-    return AuthModel(email: json['emailOrPhone'], password: json['password']);
+  factory AdminModel.fromJson(Map<String, dynamic> json) {
+    return AdminModel(
+      id: json['data']['id'],
+      name: json['data']['fullName'],
+      phone: json['data']['phone'],
+      email: json['data']['email'],
+    );
   }
 
   Map<String, dynamic> toJson() {

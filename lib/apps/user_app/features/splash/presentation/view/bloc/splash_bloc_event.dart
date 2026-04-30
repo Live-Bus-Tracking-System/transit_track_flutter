@@ -1,4 +1,7 @@
 part of 'splash_bloc_bloc.dart';
 
-@immutable
-sealed class SplashBlocEvent {}
+abstract class SplashBlocEvent {}
+
+class SplashLoading extends SplashBlocEvent {}
+
+class CheckAuthEvent extends SplashBlocEvent {}

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/dashboard/presentation/widget/container.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/presentation/bloc/fleet_bloc.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/presentation/widget/public_row.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/presentation/widget/text_field.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/presentation/widget/text.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/container.dart';
-import 'package:transit_track_flutter/core/constants/colors.dart';
+import 'package:transit_track_flutter/apps/admin_app/widget/loading.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/strings/fleet_strings.dart';
-import 'package:transit_track_flutter/core/constants/theme.dart';
+import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class Public extends StatefulWidget {
   const Public({super.key});
@@ -264,17 +267,49 @@ class _PublicState extends State<Public> {
                 ],
               ),
               Expanded(
-                child: ListView(
-                  children: [
-                    SizedBox(height: h(0.06)),
-                    publicRow(w, h),
-                    SizedBox(height: h(0.06)),
-                    publicRow(w, h),
-                    SizedBox(height: h(0.06)),
-                    publicRow(w, h),
-                    SizedBox(height: h(0.06)),
-                    publicRow(w, h),
-                  ],
+                child: BlocBuilder<FleetBloc, FleetState>(
+                  builder: (context, state) {
+                    debugPrint('${state.data}');
+                    if (state.getAllStatus == FleetStatus.loading) {
+                      return ListView.builder(
+                        itemCount: 5,
+                        itemBuilder: (context, index) {
+                          return CardShimmer();
+                        },
+                      );
+                    } else if (state.getAllStatus == FleetStatus.error) {
+                      return Center(
+                        child: Text(
+                          '${state.error}',
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      );
+                    } else if (state.getAllStatus == FleetStatus.success) {
+                      if (state.data.isEmpty) {
+                        return Center(
+                          child: Text(
+                            ' No vehicles available',
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        );
+                      }
+
+                      return ListView.builder(
+                        itemCount: state.data.length,
+                        itemBuilder: (context, index) {
+                          final data = state.data[index];
+                          debugPrint('${data.isActive}');
+                          return publicRow(w, h);
+                        },
+                      );
+                    } else {
+                      return SizedBox();
+                    }
+                  },
                 ),
               ),
             ],

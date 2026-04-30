@@ -99,7 +99,7 @@ class BusScreen extends StatelessWidget {
                       const Text("Next Stop : "),
                       const Text(
                         "Idappally",
-                       style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(width: 10),
                       Container(
@@ -140,10 +140,10 @@ class BusScreen extends StatelessWidget {
                     icon: Icons.bookmark,
                     label: "Save Bus",
                     function: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => Save()),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (_) => SavedBusesPage()),
+                      // );
                     },
                   ),
                   ActionItem(

@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:transit_track_flutter/apps/admin_app/features/dashboard/presentation/widget/container.dart';
-import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/presentation/widget/private.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/presentation/bloc/fleet_bloc.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/presentation/widget/public.dart';
 
 import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/presentation/widget/switch.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/organaization/data/model/organaization_model.dart';
 
 import 'package:transit_track_flutter/apps/admin_app/widget/sidebar.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/text.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/top_bar.dart';
-import 'package:transit_track_flutter/core/constants/colors.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/strings/fleet_strings.dart';
+import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class Fleet extends StatefulWidget {
-  const Fleet({super.key});
+  final OrganaizationModel data;
+  const Fleet({super.key, required this.data});
 
   @override
   State<Fleet> createState() => _FleetState();
@@ -21,6 +24,12 @@ class Fleet extends StatefulWidget {
 
 class _FleetState extends State<Fleet> {
   bool check = true;
+  @override
+  void initState() {
+    context.read<FleetBloc>().add(GetAllFLeetEvent(widget.data.id!));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -47,7 +56,37 @@ class _FleetState extends State<Fleet> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                head1(FleetStrings.fleet, w(0.034)),
+                                Row(
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {
+                                        context.pop();
+                                      },
+                                      icon: Icon(Icons.arrow_back),
+                                    ),
+                                    SizedBox(width: w(0.02)),
+                                    head3(
+                                      FleetStrings.orgBack,
+                                      w(0.014),
+                                      AppTheme.color,
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: h(0.02)),
+                                Row(
+                                  children: [
+                                    head3('ORGANAIZATIONS', w(0.014)),
+                                    SizedBox(width: w(0.02)),
+                                    Icon(Icons.arrow_forward),
+                                    SizedBox(width: w(0.02)),
+                                    head3(
+                                      '${widget.data.name?.toUpperCase()}',
+                                      w(0.014),
+                                      AppTheme.color,
+                                    ),
+                                  ],
+                                ),
+                                head1('${widget.data.name}', w(0.034)),
                                 head3(FleetStrings.content, w(0.014)),
                               ],
                             ),
@@ -66,7 +105,7 @@ class _FleetState extends State<Fleet> {
                       ),
                       SizedBox(height: h(0.06)),
 
-                      check ? Private() : Public(),
+                      Public(),
                     ],
                   ),
                 ),

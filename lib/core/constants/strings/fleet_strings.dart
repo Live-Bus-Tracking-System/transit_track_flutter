@@ -21,4 +21,5 @@ class FleetStrings {
   static const stop = 'NEXT STOP';
   static const alert = 'System Alerts';
   static const live = 'Live';
+  static const orgBack='Back to Organaizations';
 }

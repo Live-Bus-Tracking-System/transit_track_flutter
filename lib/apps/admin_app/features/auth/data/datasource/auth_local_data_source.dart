@@ -1,12 +1,13 @@
-
-import 'package:hive/hive.dart';
+import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:transit_track_flutter/core/constants/strings/auth_string.dart';
 
-class AuthLocalDataSource {
-  final Box<bool> hive;
-  AuthLocalDataSource(this.hive);
+class AuthAdminLocalDataSource {
+  final SharedPreferences prefs;
+  AuthAdminLocalDataSource(this.prefs);
 
   Future<void> set(bool isLogged) async {
-    await hive.put(AuthString.isLogged, isLogged);
+    await prefs.setBool(AuthString.isLogged, isLogged);
+    debugPrint(' this is login setted${prefs.getBool(AuthString.isLogged)}');
   }
 }

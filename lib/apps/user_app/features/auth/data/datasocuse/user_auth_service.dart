@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:transit_track_flutter/apps/user_app/features/auth/data/model/auth_model.dart';
 import 'package:transit_track_flutter/apps/user_app/features/map/data/repository/serve_exception.dart';
-import 'package:transit_track_flutter/core/error/exception.dart';
 import 'package:transit_track_flutter/core/network/dio_client.dart';
 
 class UserAuthService {
@@ -15,7 +14,7 @@ class UserAuthService {
       Response respo = await client.post("UserAuth/ signup",data:useer.toMap());
       return UserAuthModel.fromJson(respo.data['data']);
     } catch (e) {
-      throw ServeException(message: exception(400));
+      throw ServeException(message: "");
     }
   }
 
