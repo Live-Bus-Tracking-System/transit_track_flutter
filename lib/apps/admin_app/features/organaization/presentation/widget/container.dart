@@ -8,7 +8,7 @@ import 'package:transit_track_flutter/apps/admin_app/features/organaization/pres
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/presentation/widget/text_field.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/container.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/loading.dart';
-import 'package:transit_track_flutter/core/constants/strings/organaization_strings.dart';
+import 'package:transit_track_flutter/core/constants/strings/admin/organaization_strings.dart';
 
 Widget orgTable(
   double Function(double) h,
@@ -24,7 +24,7 @@ Widget orgTable(
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            orgTextField(w, h),
+            orgTextField(w, h,context),
             orgDropDown(w, h, context),
             GestureDetector(
               onTap: () {

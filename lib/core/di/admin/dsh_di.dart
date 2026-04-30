@@ -2,10 +2,10 @@ import 'package:transit_track_flutter/apps/admin_app/features/dashboard/data/dat
 import 'package:transit_track_flutter/apps/admin_app/features/dashboard/data/repository/admin_dashboard_impl.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/dashboard/domain/usecases/get_all_service_counts.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/dashboard/presentation/bloc/admin_dsh_bloc.dart';
-import 'package:transit_track_flutter/core/network/dio_client.dart';
+import 'package:transit_track_flutter/core/network/dio_client_admin.dart';
 
 class DshDi {
-  final DioClient client;
+  final DioClientAdmin client;
   DshDi(this.client);
 
   AdminDshBloc create() {

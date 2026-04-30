@@ -1,4 +1,4 @@
-import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
+
 
 import 'package:dartz/dartz.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/data/model/profile_model.dart';

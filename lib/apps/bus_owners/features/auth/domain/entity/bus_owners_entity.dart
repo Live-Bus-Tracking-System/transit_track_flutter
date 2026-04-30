@@ -8,5 +8,14 @@ class BusOwnersEntity {
   String? createdAt;
   String? createdById;
 
-  BusOwnersEntity({this.id, this.name, this.email, this.phone, this.type,this.status, this.createdAt,this.createdById});
+  BusOwnersEntity({
+    this.id,
+    this.name,
+    this.email,
+    this.phone,
+    this.type,
+    this.status,
+    this.createdAt,
+    this.createdById,
+  });
 }

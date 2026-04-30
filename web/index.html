@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -27,11 +28,12 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <title>transit_track_flutter</title>
   <link rel="manifest" href="manifest.json">
 </head>
+
 <body>
   <!--
     You can customize the "flutter_bootstrap.js" script.
@@ -43,27 +45,22 @@
   -->
   <script src="flutter_bootstrap.js" async></script>
   <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyBod2unFUYvDQJ1Q7O6CiR6i8-hWsN0Pwo",
-    authDomain: "transit-track-admin-web.firebaseapp.com",
-    projectId: "transit-track-admin-web",
-    storageBucket: "transit-track-admin-web.firebasestorage.app",
-    messagingSenderId: "7391214806",
-    appId: "1:7391214806:web:07c7d0023f2afd0ad99d77",
-    measurementId: "G-6N1WN8PGDP"
-  };
+    const firebaseConfig = {
+      apiKey: "YOUR_KEY",
+      authDomain: "transittrack-admin.firebaseapp.com",
+      projectId: "transittrack-admin",
+      storageBucket: "transittrack-admin.appspot.com", // FIXED
+      messagingSenderId: "610530748082",
+      appId: "1:610530748082:web:16961faa7184d1f8becbab",
+      measurementId: "G-GFY1X719BQ"
+    };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
+    const app = initializeApp(firebaseConfig);
+    getAnalytics(app);
+  </script>
 </body>
+
 </html>

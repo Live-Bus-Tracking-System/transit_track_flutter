@@ -5,10 +5,10 @@ import 'package:transit_track_flutter/core/di/admin/check_di.dart';
 import 'package:transit_track_flutter/core/di/admin/dsh_di.dart';
 import 'package:transit_track_flutter/core/di/admin/fleet_di.dart';
 import 'package:transit_track_flutter/core/di/admin/org_di.dart';
-import 'package:transit_track_flutter/core/network/dio_client.dart';
+import 'package:transit_track_flutter/core/network/dio_client_admin.dart';
 
 class Injection {
-  late final DioClient dio;
+  late final DioClientAdmin dio;
   late final SharedPreferences prefs;
   late final AuthDi auth;
   late final CheckDi check;
@@ -17,7 +17,7 @@ class Injection {
   late final FleetDi fltDi;
   Future<void> initDi() async {
     prefs = await SharedPreferences.getInstance();
-    dio = DioClient();
+    dio = DioClientAdmin();
     org = OrgDi(dio);
     auth = AuthDi(dio, prefs);
     check = CheckDi(prefs);

@@ -35,7 +35,7 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/apps/user_app/main.dart",
-            "deviceId": "chrome"
+            // "deviceId": "chrome"
         },
         {
             "name": "Admin App (Web)",

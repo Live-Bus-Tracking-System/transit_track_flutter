@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/dashboard/presentation/view/dashboard.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/fleet/presentation/view/add_bus.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/fleet/presentation/view/vehicles.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/presentation/view/profile_screen.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/route/presentation/view/routes_screen.dart';
 import 'package:transit_track_flutter/apps/user_app/features/auth/presentation/view/login.dart';
@@ -97,7 +98,27 @@ class Menu extends StatelessWidget {
                 color: AppTheme.color,
               ),
               title: Text(
-                "Fleet",
+                "Add Fleet",
+                style: GoogleFonts.poppins(
+                  fontSize: w(0.05),
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+              ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const VehiclesPage()),
+                );
+              },
+              leading: Icon(
+                Icons.directions_bus,
+                size: w(0.06),
+                color: AppTheme.color,
+              ),
+              title: Text(
+                "Fleets",
                 style: GoogleFonts.poppins(
                   fontSize: w(0.05),
                   fontWeight: FontWeight.w600,

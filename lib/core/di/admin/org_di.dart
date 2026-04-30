@@ -4,12 +4,13 @@ import 'package:transit_track_flutter/apps/admin_app/features/organaization/doma
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/domain/usecases/delete_org_use_case.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/domain/usecases/fleet_count_id_use_case.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/domain/usecases/get_all_use_case.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/organaization/domain/usecases/get_org_by_id_use_case.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/domain/usecases/suspend_org_use_case.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/presentation/bloc/organaization_bloc.dart';
-import 'package:transit_track_flutter/core/network/dio_client.dart';
+import 'package:transit_track_flutter/core/network/dio_client_admin.dart';
 
 class OrgDi {
-  final DioClient dio;
+  final DioClientAdmin dio;
   OrgDi(this.dio);
   OrganaizationBloc create() {
     final orgLocal = OrgRemoteLocalDataSource(dio);
@@ -19,7 +20,8 @@ class OrgDi {
       ActivateOrgUseCase(orgRepo),
       SuspendOrgUseCase(orgRepo),
       DeleteOrgUseCase(orgRepo),
-      FleetCountIdUseCase(orgRepo)
+      FleetCountIdUseCase(orgRepo),
+      GetOrgByIdUseCase(orgRepo)
     );
   }
 }

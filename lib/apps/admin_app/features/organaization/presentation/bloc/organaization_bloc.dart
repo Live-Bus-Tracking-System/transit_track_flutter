@@ -5,6 +5,7 @@ import 'package:transit_track_flutter/apps/admin_app/features/organaization/doma
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/domain/usecases/delete_org_use_case.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/domain/usecases/fleet_count_id_use_case.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/domain/usecases/get_all_use_case.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/organaization/domain/usecases/get_org_by_id_use_case.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/domain/usecases/suspend_org_use_case.dart';
 
 part 'organaization_event.dart';
@@ -15,6 +16,7 @@ class OrganaizationBloc extends Bloc<OrganaizationEvent, OrganaizationState> {
   final ActivateOrgUseCase orgActivate;
   final SuspendOrgUseCase orgSuspend;
   final DeleteOrgUseCase orgDelete;
+  final GetOrgByIdUseCase getId;
   final FleetCountIdUseCase orgFleetCount;
   OrganaizationBloc(
     this.orgGetAll,
@@ -22,6 +24,7 @@ class OrganaizationBloc extends Bloc<OrganaizationEvent, OrganaizationState> {
     this.orgSuspend,
     this.orgDelete,
     this.orgFleetCount,
+    this.getId,
   ) : super(OrganaizationState()) {
     on<GetAllOrgEvent>((event, emit) async {
       emit(state.copyWithin(getStatus: OrgStatus.loading));
@@ -109,6 +112,18 @@ class OrganaizationBloc extends Bloc<OrganaizationEvent, OrganaizationState> {
           }
           emit(state.copyWithin(getStatus: OrgStatus.success, data: data));
         },
+      );
+    });
+
+    on<SearchOrgByIdEvent>((event, emit) async {
+      emit(state.copyWithin(getStatus: OrgStatus.loading));
+      final result = await getId.call(event.id);
+      result.fold(
+        (error) => emit(
+          state.copyWithin(getStatus: OrgStatus.error, error: error.message),
+        ),
+        (data) =>
+            emit(state.copyWithin(getStatus: OrgStatus.success, data: [data])),
       );
     });
   }

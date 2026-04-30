@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:transit_track_flutter/core/error/api_excetion.dart';
 import 'package:transit_track_flutter/core/error/error_handler.dart';
-import 'package:transit_track_flutter/core/network/dio_client.dart';
+import 'package:transit_track_flutter/core/network/dio_client_admin.dart';
 
 class AdminDshRemoteDataSource {
-  final DioClient client;
+  final DioClientAdmin client;
   AdminDshRemoteDataSource(this.client);
 
   Future<int> getAllOrg() async {
