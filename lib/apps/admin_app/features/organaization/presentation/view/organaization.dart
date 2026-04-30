@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/presentation/bloc/organaization_bloc.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/organaization/presentation/view/create_organaization_dialog.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/presentation/widget/container.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/presentation/widget/text.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/container.dart';
@@ -10,7 +13,7 @@ import 'package:transit_track_flutter/apps/admin_app/widget/snack_bar.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/text.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/top_bar.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
-import 'package:transit_track_flutter/core/constants/strings/organaization_strings.dart';
+import 'package:transit_track_flutter/core/constants/strings/admin/organaization_strings.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class Organaization extends StatefulWidget {
@@ -92,39 +95,56 @@ class _OrganaizationState extends State<Organaization>
                               ),
                             ),
                             SizedBox(width: w(0.05)),
-                            Container(
-                              width: w(0.19),
-                              height: h(0.08),
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    AppTheme.color,
-                                    const Color.fromARGB(255, 255, 98, 50),
-                                  ],
-                                  begin: AlignmentGeometry.topLeft,
-                                  end: AlignmentGeometry.bottomRight,
+                            GestureDetector(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  // barrierDismissible: false,
+                                  builder: (context) {
+                                    return BackdropFilter(
+                                      filter: ImageFilter.blur(
+                                        sigmaX: 5,
+                                        sigmaY: 5,
+                                      ),
+                                      child: CreateOrganaizationDialog(),
+                                    );
+                                  },
+                                );
+                              },
+                              child: Container(
+                                width: w(0.19),
+                                height: h(0.08),
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      AppTheme.color,
+                                      const Color.fromARGB(255, 255, 98, 50),
+                                    ],
+                                    begin: AlignmentGeometry.topLeft,
+                                    end: AlignmentGeometry.bottomRight,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Icon(
-                                    Icons.add,
-                                    size: 17,
-                                    weight: 7,
-                                    color: AppColors.white,
-                                  ),
-                                  Text(
-                                    OrganaizationStrings.add,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: w(0.012),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Icon(
+                                      Icons.add,
+                                      size: 17,
+                                      weight: 7,
                                       color: AppColors.white,
-                                      fontWeight: FontWeight.w600,
                                     ),
-                                  ),
-                                ],
+                                    Text(
+                                      OrganaizationStrings.add,
+                                      style: GoogleFonts.poppins(
+                                        fontSize: w(0.012),
+                                        color: AppColors.white,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],

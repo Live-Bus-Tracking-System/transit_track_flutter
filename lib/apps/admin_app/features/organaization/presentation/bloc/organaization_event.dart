@@ -28,3 +28,8 @@ class GetOrgByStatusEvent extends OrganaizationEvent{
   int status;
   GetOrgByStatusEvent(this.status);
 }
+
+class SearchOrgByIdEvent extends OrganaizationEvent{
+  String id;
+  SearchOrgByIdEvent(this.id);
+}

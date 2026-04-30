@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/route/data/model/lat_lon_model.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/route/data/model/place_dtls_model.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/route/data/model/stop_model.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/route/domain/usecases/add_stop_use_case.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/route/domain/usecases/get_credts_use_case.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/route/domain/usecases/get_deatils_use_case.dart';
 import 'package:transit_track_flutter/core/services/route_calculation.dart';
@@ -16,7 +18,9 @@ class RouteBloc extends Bloc<RouteEvent, RouteState> {
   final GetDeatilsUseCase details;
   final GetCredtsUseCase crdt;
   final RouteCalculation calc;
-  RouteBloc(this.details, this.crdt, this.calc) : super(RouteState()) {
+  final AddStopUseCase stop;
+  RouteBloc(this.details, this.crdt, this.calc, this.stop)
+    : super(RouteState()) {
     on<InitialMapEvent>((event, emit) {
       if (state.location == null) {
         emit(
@@ -98,6 +102,27 @@ class RouteBloc extends Bloc<RouteEvent, RouteState> {
           state.copyWithin(cfrmStopSts: RouteStatus.error, error: e.toString()),
         );
       }
+    });
+
+    on<AddStopEvent>((event, emit) async {
+      emit(state.copyWithin(stopStatus: RouteStatus.loading));
+
+      final result = await stop.call(
+        StopModel(
+          name: event.name,
+          lat: event.lat,
+          lon: event.lon,
+          isGlobal: true,
+        ),
+      );
+      result.fold(
+        (error) => emit(
+          state.copyWithin(stopStatus: RouteStatus.error, error: error.message),
+        ),
+        (data) => emit(
+          state.copyWithin(stopStatus: RouteStatus.success, message: data),
+        ),
+      );
     });
   }
 }

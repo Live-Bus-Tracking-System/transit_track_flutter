@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/auth/presentation/bloc/auth_admin_bloc.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/sidebar_item.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/snack_bar.dart';
-import 'package:transit_track_flutter/core/constants/strings/auth_string.dart';
+import 'package:transit_track_flutter/core/constants/strings/admin/auth_string.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 

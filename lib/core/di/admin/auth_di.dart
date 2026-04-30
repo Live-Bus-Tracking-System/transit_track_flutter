@@ -7,10 +7,10 @@ import 'package:transit_track_flutter/apps/admin_app/features/auth/domain/usecas
 import 'package:transit_track_flutter/apps/admin_app/features/auth/domain/usecases/logout_admin.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/auth/presentation/bloc/auth_admin_bloc.dart';
 
-import 'package:transit_track_flutter/core/network/dio_client.dart';
+import 'package:transit_track_flutter/core/network/dio_client_admin.dart';
 
 class AuthDi {
-  final DioClient client;
+  final DioClientAdmin client;
   final SharedPreferences prefs;
   AuthDi(this.client, this.prefs);
   AuthAdminBloc create() {

@@ -3,10 +3,10 @@ import 'package:dio/dio.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/data/model/organaization_model.dart';
 import 'package:transit_track_flutter/core/error/api_excetion.dart';
 import 'package:transit_track_flutter/core/error/error_handler.dart';
-import 'package:transit_track_flutter/core/network/dio_client.dart';
+import 'package:transit_track_flutter/core/network/dio_client_admin.dart';
 
 class OrgRemoteLocalDataSource {
-  final DioClient client;
+  final DioClientAdmin client;
   OrgRemoteLocalDataSource(this.client);
 
   Future<List<OrganaizationModel>> getAll() async {
@@ -73,6 +73,19 @@ class OrgRemoteLocalDataSource {
         },
       );
       return response.data['data']['totalCount'] as int;
+    } on DioException catch (e) {
+      throw ApiExcetion(
+        message: ErrorHandler.handle(e),
+        statuCode: e.response?.statusCode,
+      );
+    }
+  }
+
+  Future<OrganaizationModel> getOrgById(String id) async {
+    try {
+      final response = await client.dio.get('/Organisations/$id');
+      final raw = response.data['data'];
+      return OrganaizationModel.fromJson(raw);
     } on DioException catch (e) {
       throw ApiExcetion(
         message: ErrorHandler.handle(e),

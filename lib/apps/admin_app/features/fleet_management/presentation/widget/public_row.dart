@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/data/model/fleet_cover_model.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/fleet_management/presentation/widget/switch.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
-
-Widget publicRow(double Function(double) w, double Function(double) h) {
+Widget publicRow(
+  double Function(double) w,
+  double Function(double) h,
+  FleetCoverModel model,
+) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -19,7 +24,9 @@ Widget publicRow(double Function(double) w, double Function(double) h) {
                 color: const Color.fromARGB(255, 255, 221, 221),
                 borderRadius: BorderRadius.circular(5),
               ),
-              child: Center(child: Icon(Icons.directions_bus, color: Colors.red)),
+              child: Center(
+                child: Icon(Icons.directions_bus, color: Colors.red),
+              ),
             ),
             SizedBox(width: w(0.01)),
             SizedBox(
@@ -28,7 +35,7 @@ Widget publicRow(double Function(double) w, double Function(double) h) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'BT-4022',
+                    model.id!,
                     style: GoogleFonts.poppins(
                       fontSize: w(0.012),
                       fontWeight: FontWeight.w600,
@@ -36,19 +43,19 @@ Widget publicRow(double Function(double) w, double Function(double) h) {
                   ),
 
                   Text(
-                    'Route 42:',
+                    model.name!,
                     style: GoogleFonts.poppins(
                       color: const Color.fromARGB(255, 103, 103, 103),
                       fontSize: w(0.008),
                     ),
                   ),
-                  Text(
-                    'Downtown Express',
-                    style: GoogleFonts.poppins(
-                      color: const Color.fromARGB(255, 103, 103, 103),
-                      fontSize: w(0.008),
-                    ),
-                  ),
+                  // Text(
+                  //   'Downtown Express',
+                  //   style: GoogleFonts.poppins(
+                  //     color: const Color.fromARGB(255, 103, 103, 103),
+                  //     fontSize: w(0.008),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -58,26 +65,13 @@ Widget publicRow(double Function(double) w, double Function(double) h) {
 
       SizedBox(
         width: w(0.115),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Marcous',
-              style: GoogleFonts.poppins(
-                color: AppColors.black,
-                fontWeight: FontWeight.w600,
-                fontSize: w(0.01),
-              ),
-            ),
-            Text(
-              'Thorn',
-              style: GoogleFonts.poppins(
-                color: AppColors.black,
-                fontWeight: FontWeight.w600,
-                fontSize: w(0.01),
-              ),
-            ),
-          ],
+        child: Text(
+          model.licensePlt!,
+          style: GoogleFonts.poppins(
+            color: AppColors.black,
+            fontWeight: FontWeight.w600,
+            fontSize: w(0.01),
+          ),
         ),
       ),
       SizedBox(
@@ -96,7 +90,7 @@ Widget publicRow(double Function(double) w, double Function(double) h) {
                 ),
                 SizedBox(width: w(0.056)),
                 Text(
-                  '22/100',
+                  '${model.capacity}/100',
                   style: GoogleFonts.poppins(
                     color: const Color.fromARGB(255, 103, 103, 103),
                     fontSize: w(0.008),
@@ -130,62 +124,74 @@ Widget publicRow(double Function(double) w, double Function(double) h) {
       ),
       SizedBox(
         width: w(0.073),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Central',
-              style: GoogleFonts.poppins(
-                color: const Color.fromARGB(255, 81, 81, 81),
-                fontWeight: FontWeight.w600,
-                fontSize: w(0.01),
-              ),
-            ),
-            Text(
-              'Station',
-              style: GoogleFonts.poppins(
-                color: const Color.fromARGB(255, 90, 90, 90),
-                fontWeight: FontWeight.w600,
-                fontSize: w(0.01),
-              ),
-            ),
-          ],
-        ),
-      ),
-      SizedBox(
-        width: w(0.08),
-        child: Align(
-          alignment: AlignmentGeometry.centerLeft,
-          child: Container(
-            width: w(0.07),
-            height: h(0.035),
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 1, 116, 47),
-              borderRadius: BorderRadius.circular(50),
-            ),
-            child: Center(
-              child: Text(
-                'On Sheduled',
-                style: GoogleFonts.poppins(
-                  color: const Color.fromARGB(255, 187, 255, 214),
-                  fontSize: w(0.009),
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-           SizedBox(width: w(0.00)),
-      SizedBox(
-        width: w(0.043),
         child: Text(
-          'Central',
+          model.createdAt!,
           style: GoogleFonts.poppins(
-            color: AppTheme.color,
+            color: const Color.fromARGB(255, 81, 81, 81),
             fontWeight: FontWeight.w600,
             fontSize: w(0.01),
           ),
+        ),
+      ),
+      SizedBox(width: w(0.08), child: statusCardFlt(h, w, model.isActive!)),
+      SizedBox(width: w(0.00)),
+      SizedBox(
+        width: w(0.043),
+        child: PopupMenuButton<String>(
+          color: AppColors.white,
+          elevation: 4,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadiusGeometry.circular(10),
+          ),
+          onSelected: (value) {
+            // if (value == 'activate') {
+            //   context.read<OrganaizationBloc>().add(ActivateOrgEvent(data.id!));
+            //   context.read<OrganaizationBloc>().add(GetAllOrgEvent());
+            // } else if (value == 'suspend') {
+            //   context.read<OrganaizationBloc>().add(SuspendOrgEvent(data.id!));
+            //   context.read<OrganaizationBloc>().add(GetAllOrgEvent());
+            // } else {
+            //   context.read<OrganaizationBloc>().add(DeleteOrgEvent(data.id!));
+            //   context.read<OrganaizationBloc>().add(GetAllOrgEvent());
+            // }
+          },
+          itemBuilder: (context) => [
+            PopupMenuItem(
+              value: 'activate',
+              child: Row(
+                children: [
+                  Icon(Icons.check_circle_outline_outlined, size: w(0.015)),
+                  SizedBox(width: w(0.01)),
+                  Text(
+                    'Activate',
+                    style: GoogleFonts.poppins(fontSize: w(0.012)),
+                  ),
+                ],
+              ),
+            ),
+
+            PopupMenuItem(
+              value: 'delete',
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.delete_outline_outlined,
+                    size: w(0.015),
+                    color: const Color.fromARGB(255, 216, 14, 0),
+                  ),
+                  SizedBox(width: w(0.01)),
+                  Text(
+                    'Delete',
+                    style: GoogleFonts.poppins(
+                      fontSize: w(0.012),
+                      color: const Color.fromARGB(255, 205, 14, 0),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+          icon: Icon(Icons.more_vert),
         ),
       ),
     ],

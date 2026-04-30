@@ -6,7 +6,7 @@ import 'package:transit_track_flutter/apps/admin_app/features/auth/presentation/
 import 'package:transit_track_flutter/apps/admin_app/features/dashboard/presentation/view/dashboard.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/landing/presentation/bloc/checkstate_bloc.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/presentation/bloc/organaization_bloc.dart';
-import 'package:transit_track_flutter/core/constants/strings/auth_string.dart';
+import 'package:transit_track_flutter/core/constants/strings/admin/auth_string.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class Splash extends StatefulWidget {

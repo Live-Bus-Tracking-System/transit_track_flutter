@@ -7,7 +7,15 @@ class UploadFileUseCase {
   final VehicleRepo repo;
   UploadFileUseCase(this.repo);
 
-  Future<Either<Failure, String>> call(PlatformFile file) async {
-    return repo.uploadFile(file);
+  Future<Either<Failure, String>> call({
+    required PlatformFile file,
+    required Function(double, String) progress,
+    required Function(String) onLong,
+  }) async {
+    return repo.uploadFile(
+      file: file,
+      progress: progress,
+      onLong: onLong,
+    );
   }
 }

@@ -10,7 +10,6 @@ class OrganaizationImpl implements OrganaizationRepo {
   final OrgRemoteLocalDataSource source;
   OrganaizationImpl(this.source);
 
-
   @override
   Future<Either<Failure, List<OrganaizationModel>>> getAllOrg() async {
     try {
@@ -48,7 +47,7 @@ class OrganaizationImpl implements OrganaizationRepo {
   }
 
   @override
-  Future<Either<Failure,String>> deleteOrg(String id) async {
+  Future<Either<Failure, String>> deleteOrg(String id) async {
     try {
       final data = await source.delete(id);
       return Right(data);
@@ -58,13 +57,29 @@ class OrganaizationImpl implements OrganaizationRepo {
       return Left(NetworkFailure('no internet'));
     }
   }
-  
+
   @override
-  Future<Either<Failure, int>> totalFleeCount(String id)async {
-       try {
+  Future<Either<Failure, int>> totalFleeCount(String id) async {
+    try {
       final data = await source.fleetCount(id);
       return Right(data);
     } on ApiExcetion catch (e) {
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
+    } catch (_) {
+      return Left(NetworkFailure('no internet'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, OrganaizationModel>> getOrgById(String id) async {
+    try {
+      final data = await source.getOrgById(id);
+      return Right(data);
+    } on ApiExcetion catch (e) {
+      if (e.statuCode == 400) {
+        return Left(ServerFailure('Invalid Id', statusCode: e.statuCode));
+      }
+
       return Left(ServerFailure(e.message, statusCode: e.statuCode));
     } catch (_) {
       return Left(NetworkFailure('no internet'));

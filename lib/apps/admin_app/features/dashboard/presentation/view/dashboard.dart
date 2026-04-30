@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/dashboard/presentation/widget/modules.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/chart.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/dashboard/presentation/widget/container.dart';
@@ -9,18 +10,20 @@ import 'package:transit_track_flutter/apps/admin_app/widget/sidebar.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/text.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/top_bar.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
-import 'package:transit_track_flutter/core/constants/strings/dashboard_strings.dart';
+import 'package:transit_track_flutter/core/constants/strings/admin/dashboard_strings.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
+
+ 
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     double h(double value) => size.height * value;
     double w(double value) => size.width * value;
-
+     final date=DateFormat('dd MMM yyyy').format(DateTime.now());
     return Scaffold(
       backgroundColor: AppColors.bg,
       body: Row(
@@ -46,7 +49,7 @@ class Dashboard extends StatelessWidget {
                             ],
                           ),
                           Container(
-                            width: w(0.092),
+                            width: w(0.12),
                             height: h(0.06),
                             decoration: BoxDecoration(
                               color: const Color.fromARGB(255, 255, 225, 217),
@@ -57,7 +60,7 @@ class Dashboard extends StatelessWidget {
                               children: [
                                 Icon(Icons.calendar_month, size: 15),
                                 Text(
-                                  'Today: OCT 24',
+                                  'Today: $date',
                                   style: TextStyle(
                                     fontSize: w(0.01),
                                     color: AppColors.black,

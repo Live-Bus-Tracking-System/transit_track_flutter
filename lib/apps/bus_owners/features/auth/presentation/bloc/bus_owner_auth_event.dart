@@ -15,3 +15,5 @@ class CreateBusOwnerEvent extends BusOwnerAuthEvent {
     required this.type,
   });
 }
+
+class LogoutBusOwnerEvent extends BusOwnerAuthEvent{}

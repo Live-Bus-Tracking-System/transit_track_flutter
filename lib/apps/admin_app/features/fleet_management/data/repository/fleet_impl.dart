@@ -21,4 +21,52 @@ class FleetImpl implements FleetRepo {
       return Left(NetworkFailure('no internet'));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> activateFleet(String id) async {
+    try {
+      final data = await source.activate(id);
+      return right(data);
+    } on ApiExcetion catch (e) {
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
+    } catch (_) {
+      return Left(NetworkFailure('no internet'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> deActivateFleet(String id) async {
+    try {
+      final data = await source.deActivate(id);
+      return right(data);
+    } on ApiExcetion catch (e) {
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
+    } catch (_) {
+      return Left(NetworkFailure('no internet'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> deleteFleet(String id) async {
+    try {
+      final data = await source.delete(id);
+      return right(data);
+    } on ApiExcetion catch (e) {
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
+    } catch (_) {
+      return Left(NetworkFailure('no internet'));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, FleetCoverModel>> getFLeetById(String id)async {
+  try {
+      final data = await source.getVehiclesById(id);
+      return right(data);
+    } on ApiExcetion catch (e) {
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
+    } catch (_) {
+      return Left(NetworkFailure('no internet'));
+    }
+  }
 }
