@@ -7,7 +7,11 @@ part 'details_bloc_state.dart';
 class DetailsBlocBloc extends Bloc<DetailsBlocEvent, DetailsBlocState> {
   DetailsBlocBloc() : super(DetailsBlocInitial()) {
     on<DetailsBlocEvent>((event, emit) {
-      // TODO: implement event handler
+      if (event is DetailsLoadRequested) {
+        emit(DetailsBlocLoading());
+        
+
+      }
     });
   }
 }

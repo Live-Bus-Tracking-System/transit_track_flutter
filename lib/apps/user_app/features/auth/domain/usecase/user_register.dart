@@ -1,5 +1,5 @@
 import 'package:transit_track_flutter/apps/user_app/features/auth/data/model/auth_model.dart';
-import 'package:transit_track_flutter/apps/user_app/features/auth/domain/entites/repository/auth_repo.dart';
+import 'package:transit_track_flutter/apps/user_app/features/auth/domain/repository/auth_repo.dart';
 
 class UserRegister {
   final AuthRepos repository;

@@ -15,14 +15,14 @@ class RouterCards extends StatelessWidget {
     required this.onFavoriteTap,
   });
 
-  Color get _statusColor {
-    switch (route.status) {
-      case BusStatus.onTime:
-        return AppColors.onTrak;
-      case BusStatus.delayed:
-        return AppColors.red;
-    }
-  }
+  // Color get _statusColor {
+  //   switch (route.status) {
+  //     case BusStatus.onTime:
+  //       return AppColors.onTrak;
+  //     case BusStatus.delayed:
+  //       return AppColors.red;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -91,16 +91,17 @@ class RouterCards extends StatelessWidget {
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: _statusColor.withOpacity(0.12),
+                    // color: _statusColor.withOpacity(0.12),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
-                    route.statusLabel,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: _statusColor,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 11,
-                    ),
+                    // route.statusLabel,
+                    // style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    //   color: _statusColor,
+                    //   fontWeight: FontWeight.w700,
+                    //   fontSize: 11,
+                    // ),
+                    "Status",
                   ),
                 ),
                 const SizedBox(width: 8),
