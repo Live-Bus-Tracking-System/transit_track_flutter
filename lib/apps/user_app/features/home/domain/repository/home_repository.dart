@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:transit_track_flutter/apps/user_app/features/profile/domain/entities.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/route/domain/entity/route_entity.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/route/domain/entity/stop_entity.dart';
 import 'package:transit_track_flutter/core/error/failure.dart';
 
 abstract class HomeRepository {

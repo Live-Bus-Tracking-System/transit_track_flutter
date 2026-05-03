@@ -4,10 +4,8 @@ import 'package:transit_track_flutter/apps/user_app/features/auth/presentation/v
 import 'package:transit_track_flutter/apps/user_app/features/auth/presentation/view/login.dart';
 import 'package:transit_track_flutter/apps/user_app/features/auth/presentation/view/otp.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/auth/presentation/widget/textfeild.dart';
+import 'package:transit_track_flutter/apps/user_app/features/home/presentation/view/home.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
-
-
-
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -34,7 +32,7 @@ class _SignupState extends State<Signup> {
               SizedBox(height: 20),
               Center(
                 child: CircleAvatar(
-                  backgroundColor:AppTheme.color,
+                  backgroundColor: AppTheme.color,
                   radius: 30,
                   child: Icon(
                     Icons.directions_bus,
@@ -175,7 +173,7 @@ class _SignupState extends State<Signup> {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (_) => Otp()),
+                      MaterialPageRoute(builder: (_) => HomePage()),
                     );
                   },
                   child: Text(
@@ -216,10 +214,10 @@ class _SignupState extends State<Signup> {
                       style: TextStyle(color: AppTheme.color),
                     ),
                     onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (_) => Login()),
-                      );
+                      // Navigator.pushReplacement(
+                      //   context,
+                      //   MaterialPageRoute(builder: (_) => Login()),
+                      // );
                     },
                   ),
                 ],

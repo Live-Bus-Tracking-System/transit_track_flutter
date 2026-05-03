@@ -5,7 +5,6 @@ import 'package:transit_track_flutter/apps/admin_app/features/dashboard/presenta
 import 'package:transit_track_flutter/apps/bus_owners/features/auth/presentation/bloc/bus_owner_auth_bloc.dart';
 import 'package:transit_track_flutter/apps/user_app/features/auth/presentation/view/login.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/auth/presentation/widget/textfeild.dart';
-import 'package:transit_track_flutter/core/constants/strings/bus_owner/auth_strings.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 import 'package:transit_track_flutter/core/validators/org_signup.dart';
 
@@ -52,7 +51,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 Center(
                   child: Text(
-                    AuthStrings.head1,
+                    "Create Organaization",
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.bold,
                       fontSize: w(0.06),
@@ -62,19 +61,22 @@ class _SignupScreenState extends State<SignupScreen> {
                 Center(
                   child: SizedBox(
                     width: w(0.7),
-                    child: Text(AuthStrings.head2, style: GoogleFonts.inter()),
+                    child: Text(
+                      'Join thousands of commuters tracking their city in real-time.',
+                      style: GoogleFonts.inter(),
+                    ),
                   ),
                 ),
 
                 Padding(
                   padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                  child: Text(AuthStrings.head3, style: GoogleFonts.inter()),
+                  child: Text("Full Name", style: GoogleFonts.inter()),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                   child: CustomTextField(
                     controller: nameController,
-                    hint: AuthStrings.head4,
+                    hint: "Full Name",
                     icon: Icons.person,
                     validator: (v) => OrgSignupValidator.name(v ?? ''),
                   ),
@@ -82,14 +84,14 @@ class _SignupScreenState extends State<SignupScreen> {
 
                 Padding(
                   padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                  child: Text(AuthStrings.head5, style: GoogleFonts.inter()),
+                  child: Text("Phone Number", style: GoogleFonts.inter()),
                 ),
 
                 Padding(
                   padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                   child: CustomTextField(
                     controller: phoneController,
-                    hint: AuthStrings.head6,
+                    hint: "Enter a Phone",
                     obscure: true,
                     icon: Icons.lock,
                     validator: (v) => OrgSignupValidator.phone(v ?? ''),
@@ -98,13 +100,13 @@ class _SignupScreenState extends State<SignupScreen> {
 
                 Padding(
                   padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                  child: Text(AuthStrings.head7, style: GoogleFonts.inter()),
+                  child: Text("Email", style: GoogleFonts.inter()),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                   child: CustomTextField(
                     controller: emailController,
-                    hint: AuthStrings.head8,
+                    hint: "E-mail",
                     icon: Icons.person,
                     validator: (v) => OrgSignupValidator.email(v ?? ''),
                   ),
@@ -114,7 +116,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   children: [
                     Checkbox(value: false, onChanged: (v) {}),
                     Text(
-                      AuthStrings.head9,
+                      "I agree to the Terms of Service and Privacy Policy.",
                       style: GoogleFonts.inter(fontSize: w(0.03)),
                     ),
                   ],
@@ -135,7 +137,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       );
                     },
                     child: Text(
-                      AuthStrings.head10,
+                      "Create Account →",
                       style: GoogleFonts.inter(
                         fontSize: w(0.04),
                         fontWeight: FontWeight.w600,
@@ -146,7 +148,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 SizedBox(height: 10),
 
-                Center(child: Text(AuthStrings.head11)),
+                Center(child: Text("OR")),
 
                 SizedBox(height: 10),
 
@@ -161,7 +163,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     children: [
                       Icon(Icons.g_mobiledata, size: 30),
                       SizedBox(width: 10),
-                      Text(AuthStrings.head12),
+                      Text("Continue with Google"),
                     ],
                   ),
                 ),
@@ -169,10 +171,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(AuthStrings.head13),
+                    Text("Don't have an account? "),
                     TextButton(
                       child: Text(
-                        AuthStrings.head14,
+                        "Sign In",
                         style: TextStyle(color: AppTheme.color),
                       ),
                       onPressed: () {
@@ -184,10 +186,10 @@ class _SignupScreenState extends State<SignupScreen> {
                             type: 2,
                           ),
                         );
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (_) => Login()),
-                        );
+                        // Navigator.pushReplacement(
+                        //   context,
+                        //   MaterialPageRoute(builder: (_) => Login()),
+                        // );
                       },
                     ),
                   ],
