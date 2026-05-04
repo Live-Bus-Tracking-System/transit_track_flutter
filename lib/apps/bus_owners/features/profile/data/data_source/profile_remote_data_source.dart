@@ -10,10 +10,27 @@ class ProfileRemoteDataSource {
   ProfileRemoteDataSource(this.client);
 
   Future<ProfileModel> getDetails(String id) async {
+    print('api called profile');
     try {
       final response = await client.dio.get('/Organisations/$id');
       final raw = response.data['data'];
+      print('$raw');
       return ProfileModel.fromJson(raw);
+    } on DioException catch (e) {
+      print('api called profile failed');
+      throw ApiExcetion(
+        message: ErrorHandler.handle(e),
+        statuCode: e.response?.statusCode,
+      );
+    }
+  }
+
+  Future<String> logOut() async {
+    try {
+      final response = await client.dio.post('/auth/logout');
+      final raw = response.data['data']['message'];
+      print('$raw');
+      return raw;
     } on DioException catch (e) {
       throw ApiExcetion(
         message: ErrorHandler.handle(e),
@@ -31,6 +48,7 @@ class ProfileRemoteDataSource {
       final raw = response.data['data'];
       return raw;
     } on DioException catch (e) {
+      print('error init${e.response?.statusCode}');
       throw ApiExcetion(
         message: ErrorHandler.handle(e),
         statuCode: e.response?.statusCode,

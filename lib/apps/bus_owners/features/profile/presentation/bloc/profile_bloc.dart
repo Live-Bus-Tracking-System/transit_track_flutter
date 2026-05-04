@@ -3,6 +3,7 @@ import 'package:transit_track_flutter/apps/bus_owners/features/profile/data/mode
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/domain/usecases/delete_confirm_use_case.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/domain/usecases/delete_init_use_case.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/domain/usecases/fetch_deatails_use_case.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/profile/domain/usecases/logout_org_use_case.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/domain/usecases/verify_otp_use_case.dart';
 
 part 'profile_event.dart';
@@ -13,7 +14,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final DeleteInitUseCase init;
   final VerifyOtpUseCase otp;
   final DeleteConfirmUseCase confirm;
-  ProfileBloc(this.fetchP, this.init, this.otp, this.confirm)
+  final LogoutOrgUseCase logout;
+  ProfileBloc(this.fetchP, this.init, this.otp, this.confirm, this.logout)
     : super(ProfileState()) {
     on<FetchDetailsEvent>((event, emit) async {
       emit(state.copyWithin(fetchStatus: ProfileStatus.loading));
@@ -29,6 +31,23 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           state.copyWithin(fetchStatus: ProfileStatus.success, model: data),
         ),
       );
+    });
+
+    on<LogoutOrgEvent>((event, emit) async {
+      emit(state.copyWithin(logoutStatus: ProfileStatus.loading));
+      final result = await logout.call();
+      result.fold(
+        (error) => emit(
+          state.copyWithin(
+            logoutStatus: ProfileStatus.error,
+            error: error.message,
+          ),
+        ),
+        (data) => emit(
+          state.copyWithin(logoutStatus: ProfileStatus.success, message: data),
+        ),
+      );
+      emit(state.copyWithin(logoutStatus: ProfileStatus.intital));
     });
 
     on<DeleteInitEvent>((event, emit) async {
@@ -48,6 +67,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           ),
         ),
       );
+      emit(state.copyWithin(dltInitStatus: ProfileStatus.intital));
     });
 
     on<OtpVerifyEvent>((event, emit) async {
@@ -64,6 +84,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           state.copyWithin(dltOtpStatus: ProfileStatus.success, token: data),
         ),
       );
+      emit(state.copyWithin(dltOtpStatus: ProfileStatus.intital));
     });
 
     on<ConfirmDeleteEvent>((event, emit) async {

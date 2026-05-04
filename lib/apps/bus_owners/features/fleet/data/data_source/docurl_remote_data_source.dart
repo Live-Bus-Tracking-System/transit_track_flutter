@@ -20,8 +20,8 @@ class DocurlRemoteDataSource {
     final startTime = DateTime.now();
 
     try {
-      final  response=await dio.get('/Documents/upload-url');
-       await dio.put(
+      final response = await dio.get('/Documents/upload-url');
+      await dio.put(
         '',
         data: fileBytes,
         options: Options(headers: {"Content-Type": "application/octet-stream"}),
@@ -41,7 +41,7 @@ class DocurlRemoteDataSource {
           }
         },
       );
-      onLong('upload success');
+      print('upload success');
       return '';
     } on DioException catch (e) {
       onLong('failed');

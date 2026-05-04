@@ -13,6 +13,7 @@ Widget deleteContain(
     alignment: AlignmentGeometry.center,
     child: Container(
       padding: EdgeInsets.all(size(0.08)),
+      margin: EdgeInsets.symmetric(horizontal: size(0.04)),
       width: w,
       height: h,
       decoration: BoxDecoration(

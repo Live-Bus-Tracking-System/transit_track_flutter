@@ -5,6 +5,7 @@ import 'package:transit_track_flutter/apps/bus_owners/features/profile/data/repo
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/domain/usecases/delete_confirm_use_case.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/domain/usecases/delete_init_use_case.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/domain/usecases/fetch_deatails_use_case.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/profile/domain/usecases/logout_org_use_case.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/domain/usecases/verify_otp_use_case.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:transit_track_flutter/core/network/dio_client_admin.dart';
@@ -23,6 +24,7 @@ class ProfileDi {
       DeleteInitUseCase(repo),
       VerifyOtpUseCase(repo),
       DeleteConfirmUseCase(repo),
+      LogoutOrgUseCase(repo)
     );
   }
 }

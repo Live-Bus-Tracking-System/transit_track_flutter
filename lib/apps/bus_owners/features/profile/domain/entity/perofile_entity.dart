@@ -7,6 +7,7 @@ class ProfileEntity {
   int? status;
   String? createdAt;
   String? imageUrl;
+  String? orgType;
 
   ProfileEntity({
     this.id,
@@ -15,6 +16,7 @@ class ProfileEntity {
     this.phone,
     this.type,
     this.status,
+    this.orgType,
     this.createdAt,
   });
 }

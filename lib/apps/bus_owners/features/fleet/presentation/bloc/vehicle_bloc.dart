@@ -65,8 +65,10 @@ class VehicleBloc extends Bloc<VehicleEvent, VehicleState> {
     });
 
     on<UploadPermitFileEvent>((event, emit) async {
+      print('bloc started');
       emit(state.copyWithin(uploadRgStatus: VehicleStatus.loading));
       final file = await pickFile();
+      print('bloc error:${file}');
       if (file == null) {
         emit(
           state.copyWithin(
@@ -76,12 +78,13 @@ class VehicleBloc extends Bloc<VehicleEvent, VehicleState> {
         );
         return;
       }
-
+      print('bloc error:${file}');
       final result = await upload.call(
         file: file,
         progress: (p0, p1) {},
         onLong: (p0) {},
       );
+      print('bloc error:${result}');
       result.fold(
         (error) => emit(
           state.copyWithin(

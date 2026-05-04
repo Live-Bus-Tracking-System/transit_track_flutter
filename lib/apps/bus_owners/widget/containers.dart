@@ -12,6 +12,7 @@ Widget mainContain(
     alignment: AlignmentGeometry.center,
     child: Container(
       padding: EdgeInsets.all(size(0.06)),
+      margin: EdgeInsets.symmetric(horizontal: size(0.04)),
       width: w,
       height: h,
       decoration: BoxDecoration(

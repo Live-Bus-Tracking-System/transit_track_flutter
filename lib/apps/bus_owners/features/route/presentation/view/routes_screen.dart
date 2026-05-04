@@ -45,19 +45,21 @@ class _RoutesScreenState extends State<RoutesScreen> {
       drawer: Menu(h: h, w: w),
       body: SafeArea(
         child: ListView(
-          padding: EdgeInsets.all(w(0.052)),
           children: [
             SizedBox(height: h(0.02)),
             Align(
               alignment: AlignmentGeometry.centerLeft,
-              child: SizedBox(
-                width: w(0.4),
-                child: Text(
-                  'Add New Routes',
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w700,
-                    fontSize: w(0.07),
-                    color: AppTheme.color,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: w(0.04)),
+                child: SizedBox(
+                  width: w(0.4),
+                  child: Text(
+                    'Add New Routes',
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w700,
+                      fontSize: w(0.07),
+                      color: AppTheme.color,
+                    ),
                   ),
                 ),
               ),
@@ -97,14 +99,16 @@ class _RoutesScreenState extends State<RoutesScreen> {
                     'ROUTE NAME',
                     'eg: north express',
                     w,
-                    h, (value) => VehicleValidator.name(value!),
+                    h,
+                    (value) => VehicleValidator.name(value!),
                     controller,
                   ),
                   commonField(
                     'ROUTE NAME',
                     'eg: north express',
                     w,
-                    h, (value) => VehicleValidator.name(value!),
+                    h,
+                    (value) => VehicleValidator.name(value!),
                     controller,
                   ),
                 ],
@@ -222,6 +226,7 @@ class _RoutesScreenState extends State<RoutesScreen> {
 
             Container(
               width: double.infinity,
+              margin: EdgeInsets.symmetric(horizontal: w(0.04)),
               height: h(0.07),
               decoration: BoxDecoration(
                 color: AppTheme.color,
@@ -250,6 +255,7 @@ class _RoutesScreenState extends State<RoutesScreen> {
                 ),
               ),
             ),
+            SizedBox(height: h(0.02)),
           ],
         ),
       ),

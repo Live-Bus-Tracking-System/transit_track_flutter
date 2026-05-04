@@ -7,4 +7,5 @@ abstract class ProfileRepo {
   Future<Either<Failure, String>> dltInit(String password);
   Future<Either<Failure, String>> dltOtpVerify(String intentedId,String otp);
   Future<Either<Failure, String>> dltConfirm(String confirmToken);
+  Future<Either<Failure,String>> logout();
 }

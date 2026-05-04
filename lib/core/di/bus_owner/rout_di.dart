@@ -12,17 +12,13 @@ import 'package:transit_track_flutter/core/services/route_calculation.dart';
 class RoutDi {
   final DioClientUser client;
   RoutDi(this.client);
-  RouteRepoImpl init() {
+
+  RouteBloc create() {
     final sorce = RouteRemoteDSource(client);
     final MapApi api = MapApi();
     final CoordinatesApi crd = CoordinatesApi();
     final RouteRepoImpl impl = RouteRepoImpl(api, crd, sorce);
 
-    return impl;
-  }
-
-  RouteBloc bloc() {
-    final impl = init();
     return RouteBloc(
       GetDeatilsUseCase(impl),
       GetCredtsUseCase(impl),

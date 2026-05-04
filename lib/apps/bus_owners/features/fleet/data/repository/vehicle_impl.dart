@@ -105,10 +105,13 @@ class VehicleImpl implements VehicleRepo {
         progress: progress,
         onLong: onLong,
       );
+      print('success');
       return Right(data);
     } on ApiExcetion catch (e) {
+      print('error other:${e.message}');
       return Left(NetworkFailure(e.message, statusCode: e.statuCode));
-    } catch (_) {
+    } catch (e) {
+      print('error other only catch:${e.toString()}');
       return Left(NetworkFailure('no internet'));
     }
   }

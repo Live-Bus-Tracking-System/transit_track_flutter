@@ -17,6 +17,7 @@ Widget dshMap(
   final MapController controller = MapController();
   return Container(
     width: double.infinity,
+    margin: EdgeInsets.symmetric(horizontal: w(0.04)),
     height: h(0.55),
     decoration: BoxDecoration(
       color: const Color.fromARGB(255, 215, 215, 215),
@@ -37,7 +38,7 @@ Widget dshMap(
                 'LIVE FLEET OPERATION',
                 style: GoogleFonts.inter(
                   fontWeight: FontWeight.w600,
-                  fontSize: w(0.05),
+                  fontSize: w(0.04),
                 ),
               ),
             ],

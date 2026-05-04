@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/dashboard/presentation/view/dashboard.dart';
 import 'package:transit_track_flutter/apps/user_app/features/home/presentation/view/home.dart';
-import 'package:transit_track_flutter/apps/user_app/features/landing/presentation/view/landing.dart';
-import 'package:transit_track_flutter/apps/user_app/features/splash/presentation/view/bloc/splash_bloc_bloc.dart';
+import 'package:transit_track_flutter/apps/user_app/features/splash/presentation/bloc/splash_bloc_bloc.dart';
+import 'package:transit_track_flutter/apps/user_app/features/splash/presentation/view/landing.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
 class UserSplash extends StatefulWidget {
@@ -40,7 +41,7 @@ class _UserSplashState extends State<UserSplash> {
               context,
               MaterialPageRoute(builder: (_) => HomePage()),
             );
-          } else {
+          } else if (state is NavigateNewUser) {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (_) => Landing()),
@@ -48,20 +49,27 @@ class _UserSplashState extends State<UserSplash> {
           }
         },
         builder: (context, state) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.directions_bus_filled_outlined, size: 20),
-              SizedBox(height: h(0.03)),
-              Text(
-                "TransitTrack",
-                style: TextStyle(
-                  color: AppTheme.colors,
-                  fontSize: w(0.08),
-                  fontWeight: FontWeight.bold,
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+
+              children: [
+                Icon(
+                  Icons.directions_bus,
+                  size: w(0.14),
+                  color: AppColors.white,
                 ),
-              ),
-            ],
+                SizedBox(height: h(0.02)),
+                Text(
+                  "TransitTrack",
+                  style: TextStyle(
+                    color: AppTheme.colors,
+                    fontSize: w(0.08),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
           );
         },
       ),

@@ -15,3 +15,5 @@ class OtpVerifyEvent extends ProfileEvent {
 }
 
 class ConfirmDeleteEvent extends ProfileEvent {}
+
+class LogoutOrgEvent extends ProfileEvent{}

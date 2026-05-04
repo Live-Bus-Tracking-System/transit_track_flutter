@@ -64,4 +64,19 @@ class ProfileImpl implements ProfileRepo {
       return Left(NetworkFailure('no internet'));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> logout() async {
+    try {
+      await local.deleteRoleLoggedId();
+      final data = await source.logOut();
+      return Right(data);
+    } on ApiExcetion catch (e) {
+      print('error ${e.statuCode}');
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
+    } catch (e) {
+      print('error ${e.toString()}');
+      return Left(NetworkFailure('no internet'));
+    }
+  }
 }
