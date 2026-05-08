@@ -1,33 +1,48 @@
 import 'package:dio/dio.dart';
 import 'package:transit_track_flutter/apps/user_app/features/auth/data/model/auth_model.dart';
 import 'package:transit_track_flutter/apps/user_app/features/map/data/repository/serve_exception.dart';
-import 'package:transit_track_flutter/core/network/dio_client.dart';
+import 'package:transit_track_flutter/core/error/api_excetion.dart';
+import 'package:transit_track_flutter/core/error/auth_error_handler.dart';
+import 'package:transit_track_flutter/core/network/dio_client_user.dart';
 
 class UserAuthService {
-  final Dio client = DioClient().dio;
-
+  final DioClientUser client;
+  UserAuthService(this.client);
 
   // register
 
-  Future<UserAuthModel> register(UserAuthModel useer)async{
+  Future<UserAuthModel> register(UserAuthModel useer) async {
     try {
-      Response respo = await client.post("UserAuth/ signup",data:useer.toMap());
+      Response respo = await client.dio.post(
+        "/auth/signup",
+        data: useer.toMap(),
+      );
       return UserAuthModel.fromJson(respo.data['data']);
     } catch (e) {
       throw ServeException(message: "");
     }
   }
 
-  Future<UserAuthModel>login({required String email,required String password})async {
+  Future<UserAuthModel> login({
+    required String email,
+    required String password,
+  }) async {
     try {
-      Response respo =await client.post("userauth/login",data: {'email':email,'password': password});
+      Response respo = await client.dio.post(
+        "/auth/login",
+        data: {"emailOrPhone": email, 'password': password},
+      );
       return UserAuthModel.fromJson(respo.data['data']);
-    } catch (e) {
-      throw ServeException(message: "Somthing error");
+    } on DioException catch (e) {
+      throw ApiExcetion(
+        message: AuthErrorHandler.handler(e),
+        statuCode: e.response?.statusCode,
+      );
     }
   }
-  Future<void> logout()async{
-    final respo= await client.post("userauth/logout");
+
+  Future<void> logout() async {
+    final respo = await client.dio.post("auth/logout");
     return respo.data;
-  } 
+  }
 }

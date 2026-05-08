@@ -14,6 +14,7 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => inject.permit.create()),
         BlocProvider(create: (context) => inject.auth.create()),
         BlocProvider(create: (context) => inject.check.create()),
         BlocProvider(create: (context) => inject.org.create()),

@@ -16,7 +16,7 @@ Widget feauturesCard(String title,String count, double Function(double) w, doubl
           title,
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
-            fontSize: w(0.05),
+            fontSize: w(0.04),
             color: AppTheme.color,
           ),
         ),

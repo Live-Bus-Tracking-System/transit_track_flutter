@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:dartz/dartz_streaming.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/data/data_source/profile_local_data_sorce.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/data/data_source/profile_remote_data_source.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/data/model/profile_model.dart';
@@ -61,6 +63,63 @@ class ProfileImpl implements ProfileRepo {
     } on ApiExcetion catch (e) {
       return Left(ServerFailure(e.message, statusCode: e.statuCode));
     } catch (_) {
+      return Left(NetworkFailure('no internet'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> logout() async {
+    try {
+      await local.deleteRoleLoggedId();
+      final data = await source.logOut();
+      return Right(data);
+    } on ApiExcetion catch (e) {
+      print('error ${e.statuCode}');
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
+    } catch (e) {
+      print('error ${e.toString()}');
+      return Left(NetworkFailure('no internet'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> editProfile(ProfileModel model) async {
+    try {
+      final data = await source.update(model);
+      return Right(data);
+    } on ApiExcetion catch (e) {
+      print('error ${e.statuCode}');
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
+    } catch (e) {
+      print('error ${e.toString()}');
+      return Left(NetworkFailure('no internet'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String?>> getProfile() async {
+    try {
+      final id = local.getId();
+      final file = local.getDpImage(id);
+
+      return Right(file);
+    } catch (e) {
+      print('error ${e.toString()}');
+      return Left(NetworkFailure('no internet'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String?>> setProfile() async {
+    try {
+      final picker = ImagePicker();
+      final file = await picker.pickImage(source: ImageSource.gallery);
+      final id = local.getId();
+      if (file == null) return Right(null);
+      await local.setDpImage(file.path, id);
+      return Right('Success');
+    } catch (e) {
+      print('error ${e.toString()}');
       return Left(NetworkFailure('no internet'));
     }
   }

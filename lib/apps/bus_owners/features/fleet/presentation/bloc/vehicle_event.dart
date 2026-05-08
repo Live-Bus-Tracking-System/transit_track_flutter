@@ -106,3 +106,7 @@ class DeActivateVehicleEvent extends VehicleEvent {
   String id;
   DeActivateVehicleEvent(this.id);
 }
+class SearchVehicleByIdEvent extends VehicleEvent{
+  String id;
+  SearchVehicleByIdEvent(this.id);
+}

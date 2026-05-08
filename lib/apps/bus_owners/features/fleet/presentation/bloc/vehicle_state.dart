@@ -11,12 +11,14 @@ class VehicleState {
   final VehicleStatus dltStatus;
   final VehicleStatus activateStatus;
   final VehicleStatus deActStatus;
+  final VehicleStatus searchStatus;
   final String? message;
   final List<VehicleModel>? datas;
   final String? url;
 
   final String? error;
   VehicleState({
+    this.searchStatus = VehicleStatus.initial,
     this.createStatus = VehicleStatus.initial,
     this.uploadRgStatus = VehicleStatus.initial,
     this.uploadPtStatus = VehicleStatus.initial,
@@ -24,6 +26,7 @@ class VehicleState {
     this.dltStatus = VehicleStatus.initial,
     this.activateStatus = VehicleStatus.initial,
     this.deActStatus = VehicleStatus.initial,
+
     this.message,
     this.getAllStatus = VehicleStatus.initial,
     this.datas = const [],
@@ -41,6 +44,7 @@ class VehicleState {
     VehicleStatus? dltStatus,
     VehicleStatus? activateStatus,
     VehicleStatus? deActStatus,
+    VehicleStatus? searchStatus,
     String? message,
     List<VehicleModel>? datas,
     String? url,
@@ -55,6 +59,7 @@ class VehicleState {
       dltStatus: dltStatus ?? this.dltStatus,
       activateStatus: activateStatus ?? this.activateStatus,
       deActStatus: deActStatus ?? this.deActStatus,
+      searchStatus: searchStatus ?? this.searchStatus,
       message: message ?? this.message,
       datas: datas ?? this.datas,
       url: url ?? this.url,

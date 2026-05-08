@@ -17,4 +17,5 @@ abstract class VehicleRepo {
   Future<Either<Failure, String>> deleteVehcile(String id);
   Future<Either<Failure, String>> activateVehcile(String id);
   Future<Either<Failure, String>> deactivateVehcile(String id);
+  Future<Either<Failure,VehicleModel>> getVehicleById(String id);
 }

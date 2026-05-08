@@ -4,13 +4,18 @@ class UserAuthModel extends Auth {
   UserAuthModel({
     required super.id,
     required super.email,
-    required super.password,
+    super.password,
+    required super.role,
+    required super.roleId,
   });
   factory UserAuthModel.fromJson(Map<String, dynamic> fromMap) {
     return UserAuthModel(
       id: fromMap["id"],
       email: fromMap["email"],
-      password: fromMap["password"],
+      role: (fromMap['roles'] as List<dynamic>)
+          .map((e) => e.toString())
+          .toList(),
+      roleId: fromMap["organizationId"],
     );
   }
   Map<String, dynamic> toMap() {

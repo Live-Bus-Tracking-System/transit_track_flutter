@@ -14,6 +14,7 @@ import 'package:transit_track_flutter/core/validators/vehicle_validator.dart';
 Widget certificateCont(
   double Function(double) w,
   double Function(double) h,
+  void Function()? onTap,
   BuildContext context, {
   required TextEditingController nameC,
   required TextEditingController licenseC,
@@ -23,26 +24,52 @@ Widget certificateCont(
   required TextEditingController startStopC,
   required TextEditingController endStopC,
   required TextEditingController additionalNotesC,
+  required TextEditingController registerIssuedAtC,
+  required TextEditingController permitIssuedAtC,
+  required TextEditingController registerExpiresAtC,
+  required TextEditingController permitExpiresAtC,
+  required TextEditingController registerNo,
+  required TextEditingController permitNo,
+  required TextEditingController registerIssuedBy,
+  required TextEditingController permitIssuedBy,
+  required TextEditingController controller,
+  required String registrationUrl,
+  required String permitUrl,
 }) {
-  final TextEditingController registerIssuedAtC = TextEditingController();
-  final TextEditingController permitIssuedAtC = TextEditingController();
-  final TextEditingController registerExpiresAtC = TextEditingController();
-  final TextEditingController permitExpiresAtC = TextEditingController();
-  final TextEditingController registerNo = TextEditingController();
-  final TextEditingController permitNo = TextEditingController();
-  final TextEditingController registerIssuedBy = TextEditingController();
-  final TextEditingController permitIssuedBy = TextEditingController();
-  final TextEditingController controller = TextEditingController();
-  String registrationUrl = '';
-  String permitUrl = '';
   return BlocListener<VehicleBloc, VehicleState>(
     listener: (context, state) {
       if (state.uploadPtStatus == VehicleStatus.error ||
           state.uploadRgStatus == VehicleStatus.error) {
-        showSnackbar(context, '${state.error}', AppColors.red);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: const Color.fromARGB(255, 134, 0, 0),
+            content: Text(
+              'error: ${state.error}',
+              style: GoogleFonts.poppins(color: AppColors.white),
+            ),
+          ),
+        );
       } else if (state.uploadRgStatus == VehicleStatus.success) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: const Color.fromARGB(255, 11, 134, 0),
+            content: Text(
+              'Success',
+              style: GoogleFonts.poppins(color: AppColors.white),
+            ),
+          ),
+        );
         registrationUrl = state.url!;
       } else if (state.uploadPtStatus == VehicleStatus.success) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: const Color.fromARGB(255, 11, 134, 0),
+            content: Text(
+              'Success',
+              style: GoogleFonts.poppins(color: AppColors.white),
+            ),
+          ),
+        );
         permitUrl = state.url!;
       }
     },
@@ -50,6 +77,7 @@ Widget certificateCont(
       children: [
         Container(
           padding: EdgeInsets.all(w(0.06)),
+          margin: EdgeInsets.symmetric(horizontal: w(0.04)),
           width: double.infinity,
           height: h(0.57),
           decoration: BoxDecoration(
@@ -168,7 +196,9 @@ Widget certificateCont(
         registerButton(
           w,
           h,
+          onTap,
           context,
+
           nameC: nameC,
           licenseC: licenseC,
           trackerIdC: trackerIdC,

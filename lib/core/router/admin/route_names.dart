@@ -7,4 +7,5 @@ class RouteNames {
   static const routes = '/routes';
   static const permit = '/permit';
   static const users = '/users';
+  static const createRoute='/createRoute';
 }
