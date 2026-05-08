@@ -28,6 +28,7 @@ void main() async {
         BlocProvider(create: (context) => injectionBusOwner.fleet.create()),
         BlocProvider(create: (context) => injectionBusOwner.profile.create()),
         BlocProvider(create: (context) => injectionBusOwner.route.create()),
+        BlocProvider(create: (context) => injectionBusOwner.dsh.create()),
       ],
       child: UserApp(),
     ),

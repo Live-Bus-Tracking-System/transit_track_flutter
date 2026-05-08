@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +9,7 @@ import 'package:transit_track_flutter/apps/bus_owners/features/profile/presentat
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/presentation/widget/profile_loading.dart';
 import 'package:transit_track_flutter/apps/bus_owners/menu.dart';
 import 'package:transit_track_flutter/apps/bus_owners/widget/containers.dart';
+import 'package:transit_track_flutter/apps/bus_owners/widget/snack_bar.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
@@ -18,9 +21,11 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final ScrollController controller = ScrollController();
   @override
   void initState() {
     context.read<ProfileBloc>().add(FetchDetailsEvent());
+    context.read<ProfileBloc>().add(GetDpProfileEvent());
     super.initState();
   }
 
@@ -45,15 +50,61 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       drawer: Menu(h: h, w: w),
       body: SafeArea(
-        child: BlocBuilder<ProfileBloc, ProfileState>(
+        child: BlocConsumer<ProfileBloc, ProfileState>(
+          listener: (context, state) {
+            if (state.updateStatus == ProfileStatus.error ||
+                state.setImageStatus == ProfileStatus.error) {
+              orgSnackbar(context, 'Failed', AppColors.red);
+            } else if (state.updateStatus == ProfileStatus.success ||
+                state.setImageStatus == ProfileStatus.success) {
+              orgSnackbar(
+                context,
+                'Success',
+                const Color.fromARGB(255, 0, 123, 4),
+              );
+            }
+            if (state.setImageStatus == ProfileStatus.success) {
+              context.read<ProfileBloc>().add(GetDpProfileEvent());
+            }
+          },
           builder: (context, state) {
-            if (state.fetchStatus == ProfileStatus.loading) {
+            if (state.fetchStatus == ProfileStatus.loading ||
+                state.setImageStatus == ProfileStatus.loading) {
               return profileShimmer(h, w);
+            } else if (state.fetchStatus == ProfileStatus.error) {
+              return Center(child: Text('error'));
             }
             return ListView(
+              controller: controller,
               children: [
                 SizedBox(height: h(0.04)),
-                mainContain(w, w(0.25), h(0.1), SizedBox(), AppColors.black),
+                Align(
+                  alignment: AlignmentGeometry.center,
+                  child: state.image == null
+                      ? Container(
+                          width: w(0.25),
+                          height: h(0.1),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 202, 202, 202),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Center(
+                            child: Icon(Icons.business, size: w(0.1)),
+                          ),
+                        )
+                      : Container(
+                          height: h(0.1),
+                          width: w(0.25),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            image: DecorationImage(
+                              image: FileImage(File(state.image!)),
+                              fit: BoxFit.cover
+                            ),
+                          ),
+                        ),
+                ),
+
                 SizedBox(height: h(0.02)),
                 Align(
                   alignment: AlignmentGeometry.center,
@@ -77,7 +128,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 SizedBox(height: h(0.02)),
-                infoCard(w, h),
+                infoCard(
+                  w,
+                  h,
+                  context,
+                  state.model,
+                  onTap: () {
+                    controller.animateTo(
+                      controller.position.maxScrollExtent,
+                      duration: Duration(milliseconds: 500),
+                      curve: Curves.easeInOut,
+                    );
+                  },
+                ),
                 SizedBox(height: h(0.02)),
                 mainContain(
                   w,
@@ -124,7 +187,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               double.infinity,
                               h(0.007),
                               SizedBox(),
-                              const Color.fromARGB(255, 171, 171, 171),
+                              color: const Color.fromARGB(255, 171, 171, 171),
                             ),
                           ),
                           Positioned(
@@ -134,14 +197,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               w(0.6),
                               h(0.007),
                               SizedBox(),
-                              AppTheme.color,
+                              color: AppTheme.color,
                             ),
                           ),
                         ],
                       ),
                     ],
                   ),
-                  const Color.fromARGB(255, 0, 10, 36),
+                  color: const Color.fromARGB(255, 0, 10, 36),
                 ),
                 SizedBox(height: h(0.02)),
                 Align(
@@ -149,7 +212,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: SizedBox(
                     width: w(0.4),
                     child: Padding(
-                      padding:EdgeInsets.symmetric(horizontal: w(0.04)),
+                      padding: EdgeInsets.symmetric(horizontal: w(0.04)),
                       child: Text(
                         'Profile Details',
                         style: GoogleFonts.poppins(
@@ -219,31 +282,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 SizedBox(height: h(0.02)),
-                mainContain(
-                  w,
-                  double.infinity,
-                  h(0.14),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'ORGANISATION TYPE',
-                        style: GoogleFonts.poppins(
-                          fontSize: w(0.035),
-                          color: const Color.fromARGB(255, 146, 146, 146),
-                          fontWeight: FontWeight.w600,
+                Container(
+                  child: mainContain(
+                    w,
+                    double.infinity,
+                    h(0.14),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'ORGANISATION TYPE',
+                          style: GoogleFonts.poppins(
+                            fontSize: w(0.035),
+                            color: const Color.fromARGB(255, 146, 146, 146),
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      Text(
-                        state.model?.orgType ?? 'Unknown',
-                        style: GoogleFonts.poppins(
-                          fontSize: w(0.04),
-                          color: AppColors.black,
-                          fontWeight: FontWeight.w600,
+                        Text(
+                          state.model?.type == null
+                              ? 'Unknown'
+                              : state.model?.type == 2
+                              ? 'Public'
+                              : 'Private',
+                          style: GoogleFonts.poppins(
+                            fontSize: w(0.04),
+                            color: AppColors.black,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: h(0.02)),

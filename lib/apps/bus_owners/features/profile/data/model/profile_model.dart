@@ -9,7 +9,6 @@ class ProfileModel extends ProfileEntity {
     super.phone,
     super.type,
     super.status,
-    super.orgType,
     super.createdAt,
   });
 
@@ -21,8 +20,15 @@ class ProfileModel extends ProfileEntity {
       phone: json['normalizedPhoneNumber'],
       type: json['type'],
       status: json['status'],
-      orgType: json["organizationType"],
       createdAt: json['createdAtUtc'],
     );
+  }
+  Map<String, dynamic> toJson() {
+    return {
+      "organisationId": id,
+      "name": name,
+      "email": email,
+      "phoneNumber": phone,
+    };
   }
 }

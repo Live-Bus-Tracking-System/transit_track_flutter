@@ -220,7 +220,7 @@ class _RoutesScreenState extends State<RoutesScreen> {
                   ),
                 ],
               ),
-              AppColors.ltOrange,
+             color:  AppColors.ltOrange,
             ),
             SizedBox(height: h(0.02)),
 

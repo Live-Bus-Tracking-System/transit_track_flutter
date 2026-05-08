@@ -1,9 +1,12 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/dashboard/presentation/widget/containers.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/dashboard/presentation/widget/map.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/profile/presentation/view/profile_screen.dart';
@@ -21,6 +24,12 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  @override
+  void initState() {
+    context.read<DashboardBloc>().add(GetProfileDpEvent());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -40,16 +49,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
         actions: [
-          GestureDetector(
-            child: CircleAvatar(backgroundColor: AppColors.bg,radius: w(0.05),),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => ProfileScreen()),
+          BlocBuilder<DashboardBloc, DashboardState>(
+            builder: (context, state) {
+              if (state.imageStatus == DshStatus.error ||
+                  state.imageStatus == DshStatus.loading ||
+                  state.imageStatus == DshStatus.initial) {
+                return CircleAvatar(
+                  backgroundColor: AppColors.bg,
+                  radius: w(0.05),
+                  child: Center(child: Icon(Icons.business)),
+                );
+              }
+              return CircleAvatar(
+                backgroundColor: AppColors.bg,
+                backgroundImage: FileImage(File(state.image!)),
+                radius: w(0.05),
               );
             },
           ),
-          SizedBox(width: w(0.04),)
+
+          SizedBox(width: w(0.04)),
         ],
       ),
       drawer: Menu(h: h, w: w),

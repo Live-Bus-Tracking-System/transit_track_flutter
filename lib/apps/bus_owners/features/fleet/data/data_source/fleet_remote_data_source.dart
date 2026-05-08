@@ -91,4 +91,17 @@ class FleetRemoteDataSource {
       );
     }
   }
+
+  Future<VehicleModel> search(String id) async {
+    try {
+      final response = await client.dio.put('/Vehicles/$id');
+      final raw=response.data['data'];
+      return VehicleModel.fromJson(raw);
+    } on DioException catch (e) {
+      throw ApiExcetion(
+        message: ErrorHandler.handle(e),
+        statuCode: e.response?.statusCode,
+      );
+    }
+  }
 }

@@ -14,6 +14,7 @@ import 'package:transit_track_flutter/core/validators/vehicle_validator.dart';
 Widget certificateCont(
   double Function(double) w,
   double Function(double) h,
+  void Function()? onTap,
   BuildContext context, {
   required TextEditingController nameC,
   required TextEditingController licenseC,
@@ -35,17 +36,6 @@ Widget certificateCont(
   required String registrationUrl,
   required String permitUrl,
 }) {
-  // final TextEditingController registerIssuedAtC = TextEditingController();
-  // final TextEditingController permitIssuedAtC = TextEditingController();
-  // final TextEditingController registerExpiresAtC = TextEditingController();
-  // final TextEditingController permitExpiresAtC = TextEditingController();
-  // final TextEditingController registerNo = TextEditingController();
-  // final TextEditingController permitNo = TextEditingController();
-  // final TextEditingController registerIssuedBy = TextEditingController();
-  // final TextEditingController permitIssuedBy = TextEditingController();
-  // final TextEditingController controller = TextEditingController();
-  // String registrationUrl = '';
-  // String permitUrl = '';
   return BlocListener<VehicleBloc, VehicleState>(
     listener: (context, state) {
       if (state.uploadPtStatus == VehicleStatus.error ||
@@ -206,7 +196,9 @@ Widget certificateCont(
         registerButton(
           w,
           h,
+          onTap,
           context,
+
           nameC: nameC,
           licenseC: licenseC,
           trackerIdC: trackerIdC,

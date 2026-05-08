@@ -6,6 +6,7 @@ import 'package:transit_track_flutter/apps/bus_owners/features/fleet/domain/usec
 import 'package:transit_track_flutter/apps/bus_owners/features/fleet/domain/usecases/delete_vehcile_use_case.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/fleet/domain/usecases/edit_vehcile_use_case.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/fleet/domain/usecases/get_all_fleets_use_case.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/fleet/domain/usecases/search_vehicle_use_case.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/fleet/domain/usecases/upload_file_use_case.dart';
 import 'package:transit_track_flutter/core/services/pick_file.dart';
 
@@ -20,6 +21,7 @@ class VehicleBloc extends Bloc<VehicleEvent, VehicleState> {
   final DeleteVehcileUseCase delete;
   final ActivateVehicleUseCase activate;
   final DeactivateVehicleUseCase deactivate;
+  final SearchVehicleUseCase search;
   VehicleBloc(
     this.create,
     this.upload,
@@ -28,6 +30,7 @@ class VehicleBloc extends Bloc<VehicleEvent, VehicleState> {
     this.delete,
     this.activate,
     this.deactivate,
+    this.search,
   ) : super(VehicleState()) {
     on<CreateVehicleEvent>((event, emit) async {
       emit(state.copyWithin(createStatus: VehicleStatus.loading));
@@ -233,6 +236,23 @@ class VehicleBloc extends Bloc<VehicleEvent, VehicleState> {
         ),
         (data) => emit(
           state.copyWithin(deActStatus: VehicleStatus.success, message: data),
+        ),
+      );
+    });
+
+    on<SearchVehicleByIdEvent>((event, emit) async {
+      emit(state.copyWithin(getAllStatus: VehicleStatus.loading));
+
+      final result = await search.call(event.id);
+      result.fold(
+        (error) => emit(
+          state.copyWithin(
+            getAllStatus: VehicleStatus.error,
+            error: error.message,
+          ),
+        ),
+        (data) => emit(
+          state.copyWithin(getAllStatus: VehicleStatus.success, datas: [data]),
         ),
       );
     });

@@ -16,4 +16,19 @@ class OtpVerifyEvent extends ProfileEvent {
 
 class ConfirmDeleteEvent extends ProfileEvent {}
 
-class LogoutOrgEvent extends ProfileEvent{}
+class LogoutOrgEvent extends ProfileEvent {}
+
+class UpdateOrgEvent extends ProfileEvent {
+  String id;
+  String name;
+  String email;
+  String phone;
+  UpdateOrgEvent({
+    required this.id,
+    required this.name,
+    required this.email,
+    required this.phone,
+  });
+}
+class SetDpProfileEvent extends ProfileEvent{}
+class GetDpProfileEvent extends ProfileEvent{}

@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:transit_track_flutter/core/di/bus_owner/auth_di.dart';
+import 'package:transit_track_flutter/core/di/bus_owner/dsh_di.dart';
 import 'package:transit_track_flutter/core/di/bus_owner/fleet_di.dart';
 import 'package:transit_track_flutter/core/di/bus_owner/profile_di.dart';
 import 'package:transit_track_flutter/core/di/bus_owner/rout_di.dart';
@@ -13,6 +14,7 @@ class InjectionBusOwner {
   late final FleetDi fleet;
   late final ProfileDi profile;
   late final RoutDi route;
+  late final DshDi dsh;
   Future<void> init() async {
     prefs = await SharedPreferences.getInstance();
     client = DioClientUser();
@@ -21,5 +23,6 @@ class InjectionBusOwner {
     route=RoutDi(client);
     auth = AuthDi(client,prefs);
     fleet = FleetDi(client,prefs);
+    dsh=DshDi(prefs);
   }
 }

@@ -9,6 +9,7 @@ import 'package:transit_track_flutter/apps/bus_owners/features/fleet/domain/usec
 import 'package:transit_track_flutter/apps/bus_owners/features/fleet/domain/usecases/delete_vehcile_use_case.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/fleet/domain/usecases/edit_vehcile_use_case.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/fleet/domain/usecases/get_all_fleets_use_case.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/fleet/domain/usecases/search_vehicle_use_case.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/fleet/domain/usecases/upload_file_use_case.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/fleet/presentation/bloc/vehicle_bloc.dart';
 import 'package:transit_track_flutter/core/network/dio_client_admin.dart';
@@ -32,6 +33,7 @@ class FleetDi {
       DeleteVehcileUseCase(repo),
       ActivateVehicleUseCase(repo),
       DeactivateVehicleUseCase(repo),
+      SearchVehicleUseCase(repo)
     );
   }
 }

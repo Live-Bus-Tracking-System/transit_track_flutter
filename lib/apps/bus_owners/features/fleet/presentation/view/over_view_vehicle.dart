@@ -242,7 +242,7 @@ class _OverViewVehicleState extends State<OverViewVehicle> {
                 bg: AppColors.bg,
               ),
               SizedBox(height: h(0.03)),
-              editDeleteCont(w, h, data),
+              editDeleteCont(w, h, data,context),
             ],
           ),
         ),

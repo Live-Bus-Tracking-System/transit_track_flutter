@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/fleet/data/model/vehicle_model.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/fleet/presentation/bloc/vehicle_bloc.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/fleet/presentation/widget/containers.dart';
 import 'package:transit_track_flutter/apps/bus_owners/menu.dart';
@@ -10,14 +11,15 @@ import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 import 'package:transit_track_flutter/core/validators/vehicle_validator.dart';
 
-class Fleet extends StatefulWidget {
-  const Fleet({super.key});
+class EditVehicle extends StatefulWidget {
+  final VehicleModel model;
+  const EditVehicle({super.key, required this.model});
 
   @override
-  State<Fleet> createState() => _FleetState();
+  State<EditVehicle> createState() => _EditVehicleState();
 }
 
-class _FleetState extends State<Fleet> {
+class _EditVehicleState extends State<EditVehicle> {
   final TextEditingController nameC = TextEditingController();
   final TextEditingController licenseC = TextEditingController();
   final TextEditingController trackerIdC = TextEditingController();
@@ -40,9 +42,11 @@ class _FleetState extends State<Fleet> {
   String permitUrl = '';
   @override
   Widget build(BuildContext context) {
+    VehicleModel data = widget.model;
     final size = MediaQuery.of(context).size;
     double h(double value) => size.height * value;
     double w(double value) => size.width * value;
+
     return Scaffold(
       backgroundColor: AppColors.bg,
       appBar: AppBar(
@@ -76,7 +80,7 @@ class _FleetState extends State<Fleet> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: w(0.04)),
               child: Text(
-                'ADD NEW VEHICLE',
+                'EDIT VEHICLE',
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w700,
                   fontSize: w(0.07),
@@ -247,7 +251,8 @@ class _FleetState extends State<Fleet> {
               h,
               () {
                 context.read<VehicleBloc>().add(
-                  CreateVehicleEvent(
+                  EditVehicleEvent(
+                    widget.model.id!,
                     name: nameC.text,
                     trackerId: trackerIdC.text,
                     licensePlt: licenseC.text,

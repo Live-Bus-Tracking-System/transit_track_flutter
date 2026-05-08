@@ -25,6 +25,25 @@ class ProfileRemoteDataSource {
     }
   }
 
+  Future<String> update(ProfileModel model) async {
+    print('${model.phone}');
+    try {
+      final response = await client.dio.put(
+        '/Organisations',
+        data: model.toJson(),
+      );
+      // final raw = response.data['data']['message'];
+      // print('$raw');
+      return 'Success';
+    } on DioException catch (e) {
+      print('api called profile failed ${e.response?.statusCode}');
+      throw ApiExcetion(
+        message: ErrorHandler.handle(e),
+        statuCode: e.response?.statusCode,
+      );
+    }
+  }
+
   Future<String> logOut() async {
     try {
       final response = await client.dio.post('/auth/logout');

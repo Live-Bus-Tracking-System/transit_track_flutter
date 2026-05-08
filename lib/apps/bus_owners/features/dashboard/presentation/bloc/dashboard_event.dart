@@ -10,3 +10,4 @@ class UpdateLocationEvent extends DashboardEvent {
 
   UpdateLocationEvent(this.lat ,this.lng);
 }
+class GetProfileDpEvent extends DashboardEvent{}

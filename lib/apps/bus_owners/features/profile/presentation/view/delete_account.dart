@@ -36,28 +36,13 @@ class _DeleteAccountState extends State<DeleteAccount> {
       listener: (context, state) {
         if (state.dltInitStatus == ProfileStatus.error ||
             state.dltOtpStatus == ProfileStatus.error ||
-            state.dltConfirmStatus == ProfileStatus.error) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              backgroundColor: AppColors.red,
-              content: Text(
-                'error: ${state.error}',
-                style: GoogleFonts.poppins(color: AppColors.white),
-              ),
-            ),
-          );
+            state.dltConfirmStatus == ProfileStatus.error ||
+            state.updateStatus == ProfileStatus.error) {
+          orgSnackbar(context, 'Failed', AppColors.red);
         } else if (state.dltInitStatus == ProfileStatus.success ||
             state.dltOtpStatus == ProfileStatus.success ||
             state.dltConfirmStatus == ProfileStatus.success) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              backgroundColor: const Color.fromARGB(255, 31, 145, 0),
-              content: Text(
-                'Success',
-                style: GoogleFonts.poppins(color: AppColors.white),
-              ),
-            ),
-          );
+          orgSnackbar(context, 'Success', const Color.fromARGB(255, 0, 123, 4));
         }
         if (state.dltConfirmStatus == ProfileStatus.success) {
           Navigator.of(

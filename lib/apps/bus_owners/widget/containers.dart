@@ -5,9 +5,11 @@ Widget mainContain(
   double Function(double) size,
   double w,
   double h,
-  Widget child, [
+
+  Widget child, {
+
   Color color = AppColors.white,
-]) {
+}) {
   return Align(
     alignment: AlignmentGeometry.center,
     child: Container(
