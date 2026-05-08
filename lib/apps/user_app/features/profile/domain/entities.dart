@@ -11,7 +11,7 @@ class RouteEntity extends Equatable {
   final String destination;
   final String currentStop;
   final String nextStop;
-  // final BusStatus status;
+  final BusStatus status;
   final double fare;
   final int durationMinutes;
   final String distanceKm;
@@ -27,7 +27,7 @@ class RouteEntity extends Equatable {
     required this.destination,
     required this.currentStop,
     required this.nextStop,
-    // required this.status,
+    required this.status,
     required this.fare,
     required this.durationMinutes,
     required this.distanceKm,
@@ -36,18 +36,17 @@ class RouteEntity extends Equatable {
     this.isFavorite = false,
   });
 
-  // String get statusLabel {
-  //   switch (status) {
-  //     case BusStatus.onTime:
-  //       return 'On Time';
-  //     case BusStatus.delayed:
-  //       return 'Delayed';
-  //   }
-  // }
+  String get statusLabel {
+    switch (status) {
+      case BusStatus.onTime:
+        return 'On Time';
+      case BusStatus.delayed:
+        return 'Delayed';
+    }
+  }
 
   @override
-  List<Object?> get props => [id, name, routeNumber, isFavorite];
-  // List<Object?> get props => [id, name, routeNumber,status, isFavorite];
+  List<Object?> get props => [id, name, routeNumber, status, isFavorite];
 }
 
 class StopEntity extends Equatable {

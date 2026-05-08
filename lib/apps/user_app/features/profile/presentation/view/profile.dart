@@ -223,7 +223,8 @@ class Profile extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              // Navigator.push(ctx, MaterialPageRoute(builder: (_) => Login()));
+              Navigator.push(ctx, MaterialPageRoute(builder: (_) => Login()));
+              ;
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: AppTheme.error,
