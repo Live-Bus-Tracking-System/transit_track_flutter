@@ -2,21 +2,21 @@ part of 'auth_bloc_bloc.dart';
 
 enum AuthRole { user, orgAdmin }
 
-abstract class AuthBlocState {}
+abstract class AuthUserState {}
 
-class AuthLoading extends AuthBlocState {}
+class AuthLoading extends AuthUserState {}
 
-class AuthAuthenticated extends AuthBlocState {
+class AuthSuccess extends AuthUserState {
   final UserAuthModel user;
   final AuthRole role;
-  AuthAuthenticated(this.user,{this.role=AuthRole.user});
+  AuthSuccess(this.user,{this.role=AuthRole.user});
 }
 
-class AuthError extends AuthBlocState {
+class AuthError extends AuthUserState {
   final String message;
   AuthError(this.message);
 }
 
-class AuthUnauthenticated extends AuthBlocState {}
+class AuthUnauthenticated extends AuthUserState {}
 
-final class AuthBlocInitial extends AuthBlocState {}
+final class AuthUserInitial extends AuthUserState {}

@@ -45,7 +45,7 @@ Widget certificateCont(
             backgroundColor: const Color.fromARGB(255, 134, 0, 0),
             content: Text(
               'error: ${state.error}',
-              style: GoogleFonts.poppins(color: AppColors.white),
+              style: GoogleFonts.poppins(color: AppColors.ThemeDasrkWhite(context)),
             ),
           ),
         );
@@ -55,7 +55,7 @@ Widget certificateCont(
             backgroundColor: const Color.fromARGB(255, 11, 134, 0),
             content: Text(
               'Success',
-              style: GoogleFonts.poppins(color: AppColors.white),
+              style: GoogleFonts.poppins(color: AppColors.ThemeDasrkWhite(context)),
             ),
           ),
         );
@@ -66,7 +66,7 @@ Widget certificateCont(
             backgroundColor: const Color.fromARGB(255, 11, 134, 0),
             content: Text(
               'Success',
-              style: GoogleFonts.poppins(color: AppColors.white),
+              style: GoogleFonts.poppins(color: AppColors.ThemeDasrkWhite(context)),
             ),
           ),
         );
@@ -81,7 +81,7 @@ Widget certificateCont(
           width: double.infinity,
           height: h(0.57),
           decoration: BoxDecoration(
-            color: AppColors.white,
+            color: AppColors.ThemeDasrkWhite(context),
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(

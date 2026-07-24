@@ -8,7 +8,7 @@ Widget mainContain(
 
   Widget child, {
 
-  Color color = AppColors.white,
+  Color color = Colors.white,
 }) {
   return Align(
     alignment: AlignmentGeometry.center,

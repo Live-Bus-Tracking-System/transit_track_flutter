@@ -8,9 +8,12 @@ import 'package:transit_track_flutter/apps/bus_owners/features/fleet/presentatio
 import 'package:transit_track_flutter/apps/user_app/features/auth/presentation/view/login.dart';
 import 'package:transit_track_flutter/apps/user_app/features/splash/presentation/view/landing.dart';
 import 'package:transit_track_flutter/apps/user_app/features/splash/presentation/view/splash.dart';
+import 'package:transit_track_flutter/apps/user_app/features/theme/presentation/bloc/theme_bloc.dart';
+import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 import 'package:transit_track_flutter/core/di/bus_owner/main_di.dart';
 
 import 'package:transit_track_flutter/core/di/user/main_di.dart';
+import 'package:transit_track_flutter/core/utils/app_scrollbehavior.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +25,7 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => ThemeBloc()),
         BlocProvider(create: (context) => injectionUser.auth.create()),
         BlocProvider(create: (context) => injectionUser.landing.create()),
         BlocProvider(create: (context) => injectionBusOwner.auth.create()),
@@ -29,6 +33,10 @@ void main() async {
         BlocProvider(create: (context) => injectionBusOwner.profile.create()),
         BlocProvider(create: (context) => injectionBusOwner.route.create()),
         BlocProvider(create: (context) => injectionBusOwner.dsh.create()),
+        BlocProvider(create: (context) => injectionUser.home.create()),
+        BlocProvider(create: (context) => injectionUser.route.create()),
+        BlocProvider(create: (context) => injectionUser.profile.create()),
+        BlocProvider(create: (context) => injectionUser.save.create()),
       ],
       child: UserApp(),
     ),
@@ -40,6 +48,19 @@ class UserApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: UserSplash());
+    return BlocBuilder<ThemeBloc, ThemeState>(
+      builder: (context, state) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          scrollBehavior: MaterialScrollBehavior().copyWith(
+            physics: BouncingScrollPhysics(),
+          ),
+          theme: AppTheme.light,
+          darkTheme: AppTheme.dark,
+          themeMode: state.mode,
+          home: UserSplash(),
+        );
+      },
+    );
   }
 }

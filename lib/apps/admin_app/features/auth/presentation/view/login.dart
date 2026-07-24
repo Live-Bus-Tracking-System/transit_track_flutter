@@ -53,7 +53,7 @@ class Login extends StatelessWidget {
             width: w(0.8),
             height: h(0.85),
             decoration: BoxDecoration(
-              color: AppColors.white,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(
@@ -145,7 +145,7 @@ class Login extends StatelessWidget {
                   width: w(0.5),
                   height: double.infinity,
                   decoration: BoxDecoration(
-                    color: AppColors.white,
+                    color: Colors.white,
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(10),
                       bottomRight: Radius.circular(10),
@@ -233,7 +233,7 @@ class Login extends StatelessWidget {
                               AuthString.login,
                               style: GoogleFonts.poppins(
                                 fontSize: w(0.01),
-                                color: AppColors.white,
+                                color: Colors.white,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextField extends StatelessWidget {
-
   final TextEditingController controller;
   final String hint;
   final IconData icon;
@@ -15,35 +14,36 @@ class CustomTextField extends StatelessWidget {
     required this.hint,
     required this.icon,
     this.obscure = false,
-    required this.validator
+    required this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
-         final size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     double h(double value) => size.height * value;
     double w(double value) => size.width * value;
     return Container(
       width: double.infinity,
       height: h(0.06),
+      alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: const Color.fromARGB(255, 232, 232, 232)
+        color: const Color.fromARGB(255, 232, 232, 232),
       ),
       child: TextFormField(
         controller: controller,
         obscureText: obscure,
-      
+
         decoration: InputDecoration(
           hintText: hint,
-          prefixIcon: Icon(icon),
-          hintStyle: GoogleFonts.poppins(),
+          prefixIcon: Icon(icon, size: w(0.05)),
+          hintStyle: GoogleFonts.poppins(fontSize: w(0.035)),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(12),
           ),
         ),
-        validator: (validator)
+        validator: (validator),
       ),
     );
   }

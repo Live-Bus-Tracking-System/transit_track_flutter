@@ -1,24 +1,27 @@
 part of 'auth_bloc_bloc.dart';
 
- abstract class AuthBlocEvent {}
+ abstract class AuthUserEvent {}
 
- class LoginSubmitted extends AuthBlocEvent {
+ class AuthLoginEvent extends AuthUserEvent {
   final String email;
   final String password;
-  LoginSubmitted({required this.email, required this.password});
+  AuthLoginEvent({required this.email, required this.password});
 }
 
-class RegisterSubmitted extends AuthBlocEvent {
-  final UserAuthModel user;
-  RegisterSubmitted(this.user);
+class AuthRegisterEvent extends AuthUserEvent {
+  String name;
+  String phone;
+  String email;
+  String password;
+  AuthRegisterEvent({required this.name,required this.email,required this.phone,required this.password});
 }
 
-class UserLocalData extends AuthBlocEvent{
+class UserLocalData extends AuthUserEvent{
   final String? email;
   final String? password;
   UserLocalData({ this.email, this.password});
 }
 
-class AppStarted extends AuthBlocEvent {}
+class AppStarted extends AuthUserEvent {}
 
-class LogoutRequested extends AuthBlocEvent {}
+class AuthLogoutEvent extends AuthUserEvent {}

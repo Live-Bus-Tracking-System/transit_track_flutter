@@ -126,7 +126,7 @@ Widget editDeleteCont(
                       style: GoogleFonts.poppins(
                         fontSize: w(0.05),
                         fontWeight: FontWeight.w700,
-                        color: AppColors.white,
+                        color: AppColors.ThemeDasrkWhite(context),
                       ),
                     ),
                   ],

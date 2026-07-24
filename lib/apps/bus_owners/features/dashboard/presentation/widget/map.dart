@@ -96,7 +96,7 @@ Widget dshMap(
                     ),
                     const SizedBox(height: 10),
                     FloatingActionButton(
-                      backgroundColor: AppColors.white,
+                      backgroundColor: AppColors.ThemeDasrkWhite(context),
                       heroTag: "zoomOut",
                       mini: true,
                       onPressed: () {

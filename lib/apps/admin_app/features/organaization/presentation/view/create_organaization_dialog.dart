@@ -18,7 +18,7 @@ class _CreateOrganaizationDialogState extends State<CreateOrganaizationDialog> {
       child: Container(
         width: 500,
         decoration: BoxDecoration(
-          color: AppColors.white,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(

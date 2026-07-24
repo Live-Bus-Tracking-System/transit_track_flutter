@@ -36,7 +36,7 @@ class _FleetState extends State<Fleet> {
     double h(double value) => size.height * value;
     double w(double value) => size.width * value;
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: Colors.white,
       body: Row(
         children: [
           Sidebar(),

@@ -9,7 +9,7 @@ import 'package:transit_track_flutter/apps/bus_owners/menu.dart';
 import 'package:transit_track_flutter/apps/bus_owners/widget/containers.dart';
 import 'package:transit_track_flutter/apps/bus_owners/widget/shimmer.dart';
 import 'package:transit_track_flutter/apps/bus_owners/widget/text_Field.dart';
-import 'package:transit_track_flutter/apps/user_app/features/root/presentation/view/bloc/rout_bloc_bloc.dart';
+import 'package:transit_track_flutter/apps/user_app/features/root/presentation/bloc/rout_bloc_bloc.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 import 'package:transit_track_flutter/core/validators/vehicle_validator.dart';
@@ -32,7 +32,7 @@ class _RoutesScreenState extends State<RoutesScreen> {
       backgroundColor: AppColors.bg,
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.ThemeDasrkWhite(context),
         title: Text(
           'Route',
           style: GoogleFonts.poppins(
@@ -250,7 +250,7 @@ class _RoutesScreenState extends State<RoutesScreen> {
                   style: GoogleFonts.poppins(
                     fontSize: w(0.05),
                     fontWeight: FontWeight.w800,
-                    color: AppColors.white,
+                    color: AppColors.ThemeDasrkWhite(context),
                   ),
                 ),
               ),

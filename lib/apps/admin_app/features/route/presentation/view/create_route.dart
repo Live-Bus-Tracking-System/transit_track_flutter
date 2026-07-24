@@ -60,7 +60,7 @@ class _CreateRouteState extends State<CreateRoute> {
                     child: Column(
                       children: [
                         FloatingActionButton(
-                          backgroundColor: AppColors.white,
+                          backgroundColor: Colors.white,
                           heroTag: "zoomIn",
                           mini: true,
                           onPressed: () {
@@ -71,7 +71,7 @@ class _CreateRouteState extends State<CreateRoute> {
                         ),
                         const SizedBox(height: 10),
                         FloatingActionButton(
-                          backgroundColor: AppColors.white,
+                          backgroundColor: Colors.white,
                           heroTag: "zoomOut",
                           mini: true,
                           onPressed: () {
@@ -95,7 +95,7 @@ class _CreateRouteState extends State<CreateRoute> {
                       onPressed: () {
                         controller.move(center, 15);
                       },
-                      child: Icon(Icons.my_location, color: AppColors.white),
+                      child: Icon(Icons.my_location, color: Colors.white),
                     ),
                   ),
                 ],
@@ -104,7 +104,7 @@ class _CreateRouteState extends State<CreateRoute> {
           ),
           Container(
             width: w(0.3),
-            decoration: BoxDecoration(color: AppColors.white),
+            decoration: BoxDecoration(color: Colors.white),
             child: Padding(
               padding: EdgeInsets.all(w(0.02)),
               child: Column(
@@ -212,7 +212,7 @@ class _CreateRouteState extends State<CreateRoute> {
                               style: GoogleFonts.poppins(
                                 fontWeight: FontWeight.w700,
                                 fontSize: w(0.011),
-                                color: AppColors.white,
+                                color: Colors.white,
                               ),
                             ),
                           ),
@@ -253,7 +253,7 @@ class _CreateRouteState extends State<CreateRoute> {
                         style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w700,
                           fontSize: w(0.015),
-                          color: AppColors.white,
+                          color: Colors.white,
                         ),
                       ),
                     ),

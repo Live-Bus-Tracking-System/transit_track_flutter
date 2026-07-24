@@ -17,13 +17,9 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  Future<bool> get() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(AuthString.isLogged) ?? false;
-  }
-
   @override
   void initState() {
+  
     context.read<OrganaizationBloc>().add(GetAllOrgEvent());
     super.initState();
   }

@@ -14,20 +14,23 @@
         // },
         
         {
-            "name": "transit_track_flutter",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "transit_track_flutter (profile mode)",
+            "name": "transit_track_flutter_ai",
             "request": "launch",
             "type": "dart",
+            "program": "lib/apps/user_app/main.dart"
+        },
+        {
+            "name": "transit_track_flutter_ai (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/apps/user_app/main.dart",
             "flutterMode": "profile"
         },
         {
-            "name": "transit_track_flutter (release mode)",
+            "name": "transit_track_flutter_ai (release mode)",
             "request": "launch",
             "type": "dart",
+            "program": "lib/apps/user_app/main.dart",
             "flutterMode": "release"
         },
         {

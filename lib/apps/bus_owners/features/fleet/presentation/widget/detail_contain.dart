@@ -5,8 +5,9 @@ import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 Widget detailCont(
   double Function(double) w,
   double h,
+
   Widget child, {
-  Color bg = AppColors.white,
+  Color bg = Colors.white,
 }) {
   return Align(
     alignment: AlignmentGeometry.center,
@@ -92,7 +93,7 @@ Widget idCont(
         width: double.infinity,
         height: h(0.03),
         decoration: BoxDecoration(
-          color: AppColors.white,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(5),
         ),
         child: Padding(

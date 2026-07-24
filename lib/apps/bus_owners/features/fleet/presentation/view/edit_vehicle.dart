@@ -51,7 +51,7 @@ class _EditVehicleState extends State<EditVehicle> {
       backgroundColor: AppColors.bg,
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.ThemeDasrkWhite(context),
         title: Text(
           'Fleet',
           style: GoogleFonts.poppins(

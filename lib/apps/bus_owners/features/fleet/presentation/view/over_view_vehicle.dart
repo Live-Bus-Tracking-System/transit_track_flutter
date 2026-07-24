@@ -23,10 +23,10 @@ class _OverViewVehicleState extends State<OverViewVehicle> {
     double h(double value) => size.height * value;
     double w(double value) => size.width * value;
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.ThemeDasrkWhite(context),
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.ThemeDasrkWhite(context),
         title: Text(
           'Vehicle Deatails',
           style: GoogleFonts.poppins(
@@ -154,7 +154,7 @@ class _OverViewVehicleState extends State<OverViewVehicle> {
                   children: [
                     Icon(
                       Icons.directions_bus,
-                      color: AppColors.white,
+                      color: AppColors.ThemeDasrkWhite(context),
                       size: w(0.1),
                     ),
                     Text(
@@ -170,7 +170,8 @@ class _OverViewVehicleState extends State<OverViewVehicle> {
                       style: GoogleFonts.poppins(
                         fontSize: w(0.06),
                         fontWeight: FontWeight.w700,
-                        color: AppColors.white,
+                        color: AppColors.ThemeDasrkWhite
+                        (context),
                       ),
                     ),
                   ],

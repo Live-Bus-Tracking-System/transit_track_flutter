@@ -170,7 +170,7 @@ class Dashboard extends StatelessWidget {
                               width: w(0.27),
                               height: h(1.25),
                               decoration: BoxDecoration(
-                                color: AppColors.white,
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(10),
                                 boxShadow: [
                                   BoxShadow(

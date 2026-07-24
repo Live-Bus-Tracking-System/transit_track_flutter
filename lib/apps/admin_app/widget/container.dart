@@ -5,9 +5,9 @@ Widget overContainer(
   double width,
   double height,
   Widget child,
-  double padding,
-  [Color bg=AppColors.white]
-) {
+  double padding, [
+  Color bg = Colors.white,
+]) {
   return Container(
     padding: EdgeInsets.all(padding),
     width: width,

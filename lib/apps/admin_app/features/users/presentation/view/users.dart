@@ -68,13 +68,13 @@ class Users extends StatelessWidget {
                                   Icons.add,
                                   size: 17,
                                   weight: 7,
-                                  color: AppColors.white,
+                                  color: AppColors.ThemeDasrkWhite(context),
                                 ),
                                 Text(
                                   UsersStrings.add,
                                   style: GoogleFonts.poppins(
                                     fontSize: w(0.012),
-                                    color: AppColors.white,
+                                    color: AppColors.ThemeDasrkWhite(context),
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),

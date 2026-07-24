@@ -11,7 +11,7 @@ void busOwnersSanckBar({
     SnackBar(
       behavior: SnackBarBehavior.floating,
       elevation: 8,
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.ThemeDasrkWhite(context),
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       content: Row(

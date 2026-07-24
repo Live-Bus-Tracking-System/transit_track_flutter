@@ -18,8 +18,11 @@ class UserAuthService {
         data: useer.toMap(),
       );
       return UserAuthModel.fromJson(respo.data['data']);
-    } catch (e) {
-      throw ServeException(message: "");
+    } on DioException catch (e) {
+      throw ApiExcetion(
+        message: AuthErrorHandler.handler(e),
+        statuCode: e.response?.statusCode,
+      );
     }
   }
 
@@ -42,7 +45,14 @@ class UserAuthService {
   }
 
   Future<void> logout() async {
-    final respo = await client.dio.post("auth/logout");
-    return respo.data;
+    try {
+      final respo = await client.dio.post("auth/logout");
+      return respo.data;
+    } on DioException catch (e) {
+      throw ApiExcetion(
+        message: AuthErrorHandler.handler(e),
+        statuCode: e.response?.statusCode,
+      );
+    }
   }
 }

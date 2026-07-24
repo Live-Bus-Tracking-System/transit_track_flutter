@@ -147,7 +147,7 @@ Widget detailsCard(
                   style: GoogleFonts.poppins(
                     fontSize: w(0.05),
                     fontWeight: FontWeight.w800,
-                    color: AppColors.white,
+                    color: AppColors.ThemeDasrkWhite(context),
                   ),
                 ),
               ),

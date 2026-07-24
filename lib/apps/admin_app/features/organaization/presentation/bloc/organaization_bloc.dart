@@ -33,8 +33,18 @@ class OrganaizationBloc extends Bloc<OrganaizationEvent, OrganaizationState> {
         (error) => emit(
           state.copyWithin(getStatus: OrgStatus.error, error: error.message),
         ),
-        (data) =>
-            emit(state.copyWithin(getStatus: OrgStatus.success, data: data)),
+        (data) {
+          if (data == null) {
+            emit(
+              state.copyWithin(
+                getStatus: OrgStatus.error,
+                error: "unauthorized",
+              ),
+            );
+          } else {
+            emit(state.copyWithin(getStatus: OrgStatus.success, data: data));
+          }
+        },
       );
     });
 
@@ -101,16 +111,25 @@ class OrganaizationBloc extends Bloc<OrganaizationEvent, OrganaizationState> {
           );
         },
         (d) {
-          if (event.status == 2) {
-            data = d.where((e) => e.status == 2).toList();
-          } else if (event.status == 3) {
-            data = d.where((e) => e.status == 3).toList();
-          } else if (event.status == 1) {
-            data = d.where((e) => e.status == 1).toList();
+          if (d == null) {
+            emit(
+              state.copyWithin(
+                getStatus: OrgStatus.error,
+                error: "unauthorized",
+              ),
+            );
           } else {
-            data = d.where((e) => e.status == 4).toList();
+            if (event.status == 2) {
+              data = d.where((e) => e.status == 2).toList();
+            } else if (event.status == 3) {
+              data = d.where((e) => e.status == 3).toList();
+            } else if (event.status == 1) {
+              data = d.where((e) => e.status == 1).toList();
+            } else {
+              data = d.where((e) => e.status == 4).toList();
+            }
+            emit(state.copyWithin(getStatus: OrgStatus.success, data: data));
           }
-          emit(state.copyWithin(getStatus: OrgStatus.success, data: data));
         },
       );
     });

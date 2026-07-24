@@ -8,6 +8,7 @@ Widget busCard(
   double Function(double) w,
   double Function(double) h,
   VehicleModel model,
+  BuildContext context
 ) {
   return Align(
     alignment: AlignmentGeometry.center,
@@ -17,7 +18,7 @@ Widget busCard(
       width: double.infinity,
       height: h(0.48),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: AppColors.ThemeDasrkWhite(context),
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(

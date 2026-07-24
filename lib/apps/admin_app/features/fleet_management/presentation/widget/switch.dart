@@ -34,7 +34,7 @@ class SwitchFleet extends StatelessWidget {
                       style: GoogleFonts.poppins(
                         fontSize: w(0.012),
                         fontWeight: FontWeight.w600,
-                        color: AppColors.white,
+                        color: Colors.white,
                       ),
                     ),
                   )
@@ -45,7 +45,7 @@ class SwitchFleet extends StatelessWidget {
                       style: GoogleFonts.poppins(
                         fontSize: w(0.012),
                         fontWeight: FontWeight.w600,
-                        color: AppColors.white,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -59,7 +59,7 @@ class SwitchFleet extends StatelessWidget {
             child: Container(
               width: w(0.10),
               decoration: BoxDecoration(
-                color: AppColors.white,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(5),
               ),
               child: Center(

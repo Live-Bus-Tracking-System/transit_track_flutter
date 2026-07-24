@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:transit_track_flutter/apps/user_app/features/map/view/map.dart';
 import 'package:transit_track_flutter/apps/user_app/features/root/presentation/widgets/action_item.dart';
 import 'package:transit_track_flutter/apps/user_app/features/root/presentation/widgets/time_line_tile.dart';
 import 'package:transit_track_flutter/apps/user_app/features/save/presentation/view/save.dart';
@@ -155,10 +154,10 @@ class BusScreen extends StatelessWidget {
                     icon: Icons.map,
                     label: "Live Map",
                     function: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => LiveTrackingScreen()),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (_) => LiveTrackingScreen()),
+                      // );
                     },
                   ),
                 ],

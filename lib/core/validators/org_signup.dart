@@ -8,7 +8,7 @@ class OrgSignupValidator {
   }
 
   static String? email(String value) {
-    if (value.isEmpty) return 'Email is required';
+    if (value.isEmpty) return "email is required";
     final regx = RegExp(r'^[^@]+@[^@]+\.[^@]+');
     if (!regx.hasMatch(value)) return 'Invalid email';
     return null;

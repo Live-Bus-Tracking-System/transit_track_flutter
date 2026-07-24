@@ -20,12 +20,12 @@ class UserReposImp implements AuthRepos {
     try {
       final user = await remoteService.login(email: email, password: password);
 
-      if (user.role.contains('OrgAdmin')) {
+      if (user.role!.contains('OrgAdmin')) {
         await localDataService.setRole('OrgAdmin');
-        await localDataService.setId(user.roleId);
+        await localDataService.setId(user.roleId!);
       } else {
         await localDataService.setRole('User');
-        await localDataService.setId(user.id);
+        await localDataService.setId(user.id!);
       }
 
       return Right(user);
@@ -37,15 +37,26 @@ class UserReposImp implements AuthRepos {
   }
 
   @override
-  Future<UserAuthModel> register(UserAuthModel user) async {
-    final newUser = await remoteService.register(user);
-    // await localDataService.cacheUserData(newUser.id, newUser.email);
-
-    return newUser;
+  Future<Either<Failure, UserAuthModel>> register(UserAuthModel user) async {
+     try {
+        final newUser = await remoteService.register(user);
+        return Right(newUser);
+    } on ApiExcetion catch (e) {
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
+    } catch (e) {
+      return Left(NetworkFailure('no internet $e'));
+    }
   }
 
-  Future<void> logout(bool isLogged) async {
-    await remoteService.logout();
-    await localDataService.clearData();
+  Future<Either<Failure, bool>> logout(bool isLogged) async {
+    try {
+      await remoteService.logout();
+      await localDataService.clearData();
+      return Right(true);
+    } on ApiExcetion catch (e) {
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
+    } catch (e) {
+      return Left(NetworkFailure('no internet $e'));
+    }
   }
 }
