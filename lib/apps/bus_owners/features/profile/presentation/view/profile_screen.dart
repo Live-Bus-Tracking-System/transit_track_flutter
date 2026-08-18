@@ -38,7 +38,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       backgroundColor: AppColors.bg,
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.ThemeDasrkWhite(context),
         title: Text(
           'Profile',
           style: GoogleFonts.poppins(

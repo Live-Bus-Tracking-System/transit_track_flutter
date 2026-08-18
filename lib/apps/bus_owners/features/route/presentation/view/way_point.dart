@@ -29,7 +29,7 @@ class _WayPointState extends State<WayPoint> {
     double h(double value) => size.height * value;
     double w(double value) => size.width * value;
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.ThemeDasrkWhite(context),
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -38,7 +38,7 @@ class _WayPointState extends State<WayPoint> {
           icon: Icon(Icons.arrow_back),
         ),
         scrolledUnderElevation: 0,
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.ThemeDasrkWhite(context),
         title: Text(
           'Way Point',
           style: GoogleFonts.poppins(
@@ -116,7 +116,7 @@ class _WayPointState extends State<WayPoint> {
               child: Column(
                 children: [
                   FloatingActionButton(
-                    backgroundColor: AppColors.white,
+                    backgroundColor: AppColors.ThemeDasrkWhite(context),
                     heroTag: "zoomIn",
                     mini: true,
                     onPressed: () {
@@ -130,7 +130,7 @@ class _WayPointState extends State<WayPoint> {
                   ),
                   const SizedBox(height: 10),
                   FloatingActionButton(
-                    backgroundColor: AppColors.white,
+                    backgroundColor: AppColors.ThemeDasrkWhite(context),
                     heroTag: "zoomOut",
                     mini: true,
                     onPressed: () {
@@ -157,7 +157,7 @@ class _WayPointState extends State<WayPoint> {
                     15,
                   );
                 },
-                child: Icon(Icons.my_location, color: AppColors.white),
+                child: Icon(Icons.my_location, color: AppColors.ThemeDasrkWhite(context)),
               ),
             ),
         

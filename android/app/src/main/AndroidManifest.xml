@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="transit_track_flutter"
+        android:label="TransitTrack"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -18,7 +18,7 @@ Widget stopTile(
       width: double.infinity,
       height: h(0.1),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: AppColors.ThemeDasrkWhite(context),
         borderRadius: BorderRadius.circular(50),
       ),
       child: Center(

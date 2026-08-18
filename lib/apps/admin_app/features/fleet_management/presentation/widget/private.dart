@@ -134,7 +134,7 @@ class _PrivateState extends State<Private> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        orgHead1('A+', w(0.025), AppColors.white),
+                        orgHead1('A+', w(0.025), Colors.white),
                         SizedBox(width: w(0.08)),
                         Icon(
                           Icons.star,
@@ -306,7 +306,7 @@ class _PrivateState extends State<Private> {
                 width: w(0.27),
                 height: h(1.25),
                 decoration: BoxDecoration(
-                  color: AppColors.white,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(

@@ -86,7 +86,7 @@ Widget permitRow(double Function(double) w, double Function(double) h) {
               'Request Renewal',
               style: GoogleFonts.poppins(
                 fontSize: w(0.009),
-                color: AppColors.white,
+                color: Colors.white,
                 fontWeight: FontWeight.w600
               ),
             ),

@@ -37,7 +37,7 @@ class _EditProfileState extends State<EditProfile> {
     double h(double value) => size.height * value;
     double w(double value) => size.width * value;
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.ThemeDasrkWhite(context),
       appBar: AppBar(
         actions: [
           GestureDetector(
@@ -67,7 +67,7 @@ class _EditProfileState extends State<EditProfile> {
                   'Save',
                   style: GoogleFonts.poppins(
                     fontSize: w(0.035),
-                    color: AppColors.white,
+                    color: AppColors.ThemeDasrkWhite(context),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -76,7 +76,7 @@ class _EditProfileState extends State<EditProfile> {
           ),
         ],
         scrolledUnderElevation: 0,
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.ThemeDasrkWhite(context),
         title: Text(
           'Edit Profile',
           style: GoogleFonts.poppins(
@@ -98,7 +98,7 @@ class _EditProfileState extends State<EditProfile> {
                 width: double.infinity,
                 height: h(0.2),
                 decoration: BoxDecoration(
-                  color: AppColors.white,
+                  color: AppColors.ThemeDasrkWhite(context),
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(

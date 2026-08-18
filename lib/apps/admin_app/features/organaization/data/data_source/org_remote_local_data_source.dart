@@ -9,15 +9,21 @@ class OrgRemoteLocalDataSource {
   final DioClientAdmin client;
   OrgRemoteLocalDataSource(this.client);
 
-  Future<List<OrganaizationModel>> getAll() async {
+  Future<List<OrganaizationModel>?> getAll() async {
     try {
       final response = await client.dio.get(
         '/Organisations',
         queryParameters: {'Page': 1, 'PageSize': 1},
       );
+      if (response.statusCode == 401) {
+        return null;
+      }
       final raw = response.data['data']['items'] as List;
       return raw.map((e) => OrganaizationModel.fromJson(e)).toList();
     } on DioException catch (e) {
+      if (e.response?.statusCode == 401) {
+        return null;
+      }
       throw ApiExcetion(
         message: ErrorHandler.handle(e),
         statuCode: e.response?.statusCode,

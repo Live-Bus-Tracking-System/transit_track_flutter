@@ -54,7 +54,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
         backgroundColor: AppColors.bg,
         appBar: AppBar(
           scrolledUnderElevation: 0,
-          backgroundColor: AppColors.white,
+          backgroundColor: AppColors.ThemeDasrkWhite(context),
           title: Text(
             'Delete Account',
             style: GoogleFonts.poppins(
@@ -174,7 +174,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
                           'Verify Identity',
                           style: GoogleFonts.poppins(
                             fontSize: w(0.05),
-                            color: AppColors.white,
+                            color: AppColors.ThemeDasrkWhite(context),
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -250,7 +250,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
                           'Verify Otp',
                           style: GoogleFonts.poppins(
                             fontSize: w(0.05),
-                            color: AppColors.white,
+                            color: AppColors.ThemeDasrkWhite(context),
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -334,7 +334,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
                           'Delete Permanently',
                           style: GoogleFonts.poppins(
                             fontSize: w(0.05),
-                            color: AppColors.white,
+                            color: AppColors.ThemeDasrkWhite(context),
                             fontWeight: FontWeight.w600,
                           ),
                         ),

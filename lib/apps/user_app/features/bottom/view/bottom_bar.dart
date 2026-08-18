@@ -1,28 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:transit_track_flutter/apps/user_app/features/fleet/presentation/view/bus_view.dart';
+import 'package:transit_track_flutter/apps/user_app/features/map/presentation/view/tracking.dart';
 import 'package:transit_track_flutter/apps/user_app/features/save/presentation/view/save.dart';
 import 'package:transit_track_flutter/core/constants/text.dart';
 import 'package:transit_track_flutter/apps/user_app/features/home/presentation/view/home.dart';
 import 'package:transit_track_flutter/apps/user_app/features/root/presentation/view/rout.dart';
 import 'package:transit_track_flutter/apps/user_app/features/profile/presentation/view/profile.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
 
-class BottomBar extends StatefulWidget {
-  const BottomBar({super.key});
+class BottomBarApp extends StatefulWidget {
+  const BottomBarApp({super.key});
 
   @override
-  State<BottomBar> createState() => _BottomBarState();
+  State<BottomBarApp> createState() => _BottomBarAppState();
 }
 
-class _BottomBarState extends State<BottomBar> {
+class _BottomBarAppState extends State<BottomBarApp> {
   int selectedIndex = 0;
-  List<Widget> pages = [HomePage(), Rout(), Profile()];
+  List<Widget> pages = [HomePage(), Rout(), LiveTrackingPage(), ProfilePage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: AppTheme.colors,
+        backgroundColor: AppColors.ThemeDasrkWhite(context),
         type: BottomNavigationBarType.fixed,
-        unselectedItemColor: Colors.black,
+        unselectedItemColor: AppColors.ThemeWhiteDark(context),
         selectedItemColor: AppTheme.color,
         currentIndex: selectedIndex,
         onTap: (index) {

@@ -47,7 +47,7 @@ class _FleetState extends State<Fleet> {
       backgroundColor: AppColors.bg,
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.ThemeDasrkWhite(context),
         title: Text(
           'Fleet',
           style: GoogleFonts.poppins(

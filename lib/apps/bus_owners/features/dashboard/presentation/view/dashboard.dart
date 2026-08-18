@@ -40,7 +40,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       backgroundColor: AppColors.bg,
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.ThemeDasrkWhite(context),
         title: Text(
           ConstText.transitTrack,
           style: GoogleFonts.poppins(

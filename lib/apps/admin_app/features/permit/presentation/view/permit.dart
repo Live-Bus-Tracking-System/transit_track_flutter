@@ -69,13 +69,13 @@ class Permit extends StatelessWidget {
                                   Icons.add,
                                   size: 17,
                                   weight: 7,
-                                  color: AppColors.white,
+                                  color: Colors.white,
                                 ),
                                 Text(
                                   PermitStrings.add,
                                   style: GoogleFonts.poppins(
                                     fontSize: w(0.012),
-                                    color: AppColors.white,
+                                    color:Colors.white,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -363,7 +363,7 @@ class Permit extends StatelessWidget {
                             h(0.55),
                             SizedBox(),
                             w(0.12),
-                            AppColors.white,
+                            Colors.white,
                           ),
                           overContainer(
                             w(0.2),

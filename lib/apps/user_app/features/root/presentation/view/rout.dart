@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:transit_track_flutter/apps/user_app/features/details/presentation/view/details.dart';
+import 'package:transit_track_flutter/apps/user_app/features/root/presentation/widgets/category_bar.dart';
+import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
+
 class Rout extends StatefulWidget {
   const Rout({super.key});
 
@@ -48,21 +52,49 @@ class _RoutState extends State<Rout> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    double h(double value) => size.height * value;
+    double w(double value) => size.width * value;
     return Scaffold(
-      appBar: AppBar(title: const Text("Rout")),
+      backgroundColor: AppColors.ThemeDasrkWhite(context),
+      appBar: AppBar(
+        backgroundColor: AppColors.ThemeDasrkWhite(context),
+        title: Text(
+          "Rout",
+          style: GoogleFonts.poppins(
+            fontSize: w(0.045),
+            fontWeight: FontWeight(550),
+          ),
+        ),
+      ),
 
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(10),
+          Container(
+            margin: EdgeInsets.all(w(0.04)),
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: const Color.fromARGB(
+                    255,
+                    136,
+                    136,
+                    136,
+                  ).withOpacity(.25),
+                  blurRadius: 25,
+                ),
+              ],
+            ),
             child: TextField(
               controller: searchController,
               onChanged: searchBus,
               decoration: InputDecoration(
-                hintText: "Search bus...",
+                hintText: "Search buses or route",
+                hintStyle: GoogleFonts.inter(fontSize: w(0.04)),
                 prefixIcon: const Icon(Icons.search),
                 filled: true,
-                fillColor: Colors.grey[200],
+                fillColor: const Color.fromARGB(255, 255, 255, 255),
                 contentPadding: const EdgeInsets.symmetric(vertical: 0),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
@@ -71,7 +103,11 @@ class _RoutState extends State<Rout> {
               ),
             ),
           ),
-
+          CategoryBar(),
+          Padding(
+            padding: EdgeInsets.all(w(0.04)),
+            child: Text("Search Results", style: GoogleFonts.inter()),
+          ),
           Expanded(
             child: ListView.builder(
               itemCount: filteredList.length,

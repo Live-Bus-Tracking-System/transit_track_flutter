@@ -133,13 +133,13 @@ class _OrganaizationState extends State<Organaization>
                                       Icons.add,
                                       size: 17,
                                       weight: 7,
-                                      color: AppColors.white,
+                                      color: Colors.white,
                                     ),
                                     Text(
                                       OrganaizationStrings.add,
                                       style: GoogleFonts.poppins(
                                         fontSize: w(0.012),
-                                        color: AppColors.white,
+                                        color: Colors.white,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),

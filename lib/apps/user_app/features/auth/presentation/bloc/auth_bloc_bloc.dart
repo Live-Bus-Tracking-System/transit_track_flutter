@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 
-
 import 'package:transit_track_flutter/apps/user_app/features/auth/data/model/auth_model.dart';
 
 import 'package:transit_track_flutter/apps/user_app/features/auth/domain/usecase/login_user.dart';
@@ -10,34 +9,42 @@ import 'package:transit_track_flutter/apps/user_app/features/auth/domain/usecase
 part 'auth_bloc_event.dart';
 part 'auth_bloc_state.dart';
 
-class AuthBlocBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
+class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
   final LoginUser loginUser;
   final UserRegister registerUser;
   final LogoutUser logoutUser;
-  AuthBlocBloc({
+  AuthUserBloc({
     required this.loginUser,
     required this.registerUser,
     required this.logoutUser,
-  }) : super(AuthBlocInitial()) {
-    on<LoginSubmitted>((event, emit) async {
+  }) : super(AuthUserInitial()) {
+    on<AuthLoginEvent>((event, emit) async {
       emit(AuthLoading());
 
       final user = await loginUser(event.email, event.password);
       user.fold((error) => emit(AuthError(error.message)), (data) async {
-        if (data.role.contains('OrgAdmin')) {
-          return emit(AuthAuthenticated(data, role: AuthRole.orgAdmin));
+        if (data.role!.contains('OrgAdmin')) {
+          return emit(AuthSuccess(data, role: AuthRole.orgAdmin));
         }
-        return emit(AuthAuthenticated(data));
+        return emit(AuthSuccess(data));
       });
     });
-    on<RegisterSubmitted>((event, emit) async {
+    on<AuthRegisterEvent>((event, emit) async {
       emit(AuthLoading());
-      try {
-        final user = await registerUser(event.user);
-        emit(AuthAuthenticated(user));
-      } catch (e) {
-        emit(AuthError("Register Failed:${e.toString()}"));
-      }
+
+      final user = await registerUser(
+        UserAuthModel(
+          name: event.name,
+          email: event.email,
+          password: event.password,
+          phone: event.phone,
+        ),
+      );
+
+      user.fold(
+        (error) => AuthError(error.toString()),
+        (data) => AuthSuccess(data),
+      );
     });
   }
 }

@@ -37,7 +37,7 @@ class _VehiclesPageState extends State<VehiclesPage> {
       backgroundColor: AppColors.bg,
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.ThemeDasrkWhite(context),
         title: Text(
           'Vehicles',
           style: GoogleFonts.poppins(
@@ -150,7 +150,7 @@ class _VehiclesPageState extends State<VehiclesPage> {
                       itemCount: datas.length,
                       itemBuilder: (context, index) {
                         final model = datas[index];
-                        return busCard(w, h, model);
+                        return busCard(w, h, model,context);
                       },
                     );
                   }

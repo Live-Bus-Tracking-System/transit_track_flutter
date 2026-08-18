@@ -8,7 +8,7 @@ class GetAllUseCase {
 
   GetAllUseCase(this.repo);
 
-  Future<Either<Failure,List<OrganaizationModel>>> call()async{
+  Future<Either<Failure,List<OrganaizationModel>?>> call()async{
     return repo.getAllOrg();
   }
 }

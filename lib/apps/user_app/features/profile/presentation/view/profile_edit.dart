@@ -102,7 +102,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (_) => Profile()),
+                      MaterialPageRoute(builder: (_) => ProfilePage()),
                     );
                   },
                   child: Text(

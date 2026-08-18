@@ -13,10 +13,10 @@ class AuthDi {
   final SharedPreferences prefs;
   AuthDi(this.client,this.prefs);
 
-  AuthBlocBloc create(){
+  AuthUserBloc create(){
     final local=AuthUserLocalDSource(prefs);
     final source=UserAuthService(client);
     final repo=UserReposImp(remoteService: source, localDataService: local);
-    return AuthBlocBloc(loginUser: LoginUser(repo: repo), registerUser: UserRegister(repo), logoutUser: LogoutUser(repo));
+    return AuthUserBloc(loginUser: LoginUser(repo: repo), registerUser: UserRegister(repo), logoutUser: LogoutUser(repo));
   }
 }

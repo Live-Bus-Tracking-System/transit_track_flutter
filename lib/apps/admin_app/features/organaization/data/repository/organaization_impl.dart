@@ -11,7 +11,7 @@ class OrganaizationImpl implements OrganaizationRepo {
   OrganaizationImpl(this.source);
 
   @override
-  Future<Either<Failure, List<OrganaizationModel>>> getAllOrg() async {
+  Future<Either<Failure, List<OrganaizationModel>?>> getAllOrg() async {
     try {
       final data = await source.getAll();
       return Right(data);
