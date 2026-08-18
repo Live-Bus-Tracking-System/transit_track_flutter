@@ -5,13 +5,16 @@ Widget mainContain(
   double Function(double) size,
   double w,
   double h,
-  Widget child, [
+
+  Widget child, {
+
   Color color = AppColors.white,
-]) {
+}) {
   return Align(
     alignment: AlignmentGeometry.center,
     child: Container(
       padding: EdgeInsets.all(size(0.06)),
+      margin: EdgeInsets.symmetric(horizontal: size(0.04)),
       width: w,
       height: h,
       decoration: BoxDecoration(

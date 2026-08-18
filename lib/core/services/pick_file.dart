@@ -1,9 +1,11 @@
 import 'package:file_picker/file_picker.dart';
 
 Future<PlatformFile?> pickFile() async {
-  final file = await FilePicker.pickFiles( );
+  final result = await FilePicker.pickFiles(
+    withData: true, // 🔥 IMPORTANT
+  );
 
-  if (file == null) return null;
+  if (result == null) return null;
 
-  return file.files.first;
+  return result.files.first;
 }

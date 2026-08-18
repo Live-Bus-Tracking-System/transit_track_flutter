@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/fleet/data/model/vehicle_model.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/fleet/presentation/bloc/vehicle_bloc.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/fleet/presentation/widget/detail_contain.dart';
 import 'package:transit_track_flutter/core/constants/theme/colors.dart';
 import 'package:transit_track_flutter/core/constants/theme/theme.dart';
@@ -9,6 +11,7 @@ Widget editDeleteCont(
   double Function(double) w,
   double Function(double) h,
   VehicleModel model,
+  BuildContext context,
 ) {
   return detailCont(
     w,
@@ -130,28 +133,33 @@ Widget editDeleteCont(
                 ),
               ),
             ),
-            Container(
-              width: w(0.35),
-              height: h(0.06),
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 233, 233, 233),
-                borderRadius: BorderRadius.circular(5),
-                border: Border.all(width: 2, color: AppTheme.color),
-              ),
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Icon(Icons.delete, color: AppTheme.color),
-                    Text(
-                      'DELETE',
-                      style: GoogleFonts.poppins(
-                        fontSize: w(0.05),
-                        fontWeight: FontWeight.w700,
-                        color: AppTheme.color,
+            GestureDetector(
+              onTap: () {
+                context.read<VehicleBloc>().add(DeleteVehicleEvent(model.id!));
+              },
+              child: Container(
+                width: w(0.35),
+                height: h(0.06),
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 233, 233, 233),
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(width: 2, color: AppTheme.color),
+                ),
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Icon(Icons.delete, color: AppTheme.color),
+                      Text(
+                        'DELETE',
+                        style: GoogleFonts.poppins(
+                          fontSize: w(0.05),
+                          fontWeight: FontWeight.w700,
+                          color: AppTheme.color,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -22,7 +22,7 @@ class VehicleImpl implements VehicleRepo {
       final data = await source.create(model);
       return Right(data);
     } on ApiExcetion catch (e) {
-      return Left(NetworkFailure(e.message, statusCode: e.statuCode));
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
     } catch (_) {
       return Left(NetworkFailure('no internet'));
     }
@@ -35,7 +35,7 @@ class VehicleImpl implements VehicleRepo {
       final data = await source.getALl(id);
       return Right(data);
     } on ApiExcetion catch (e) {
-      return Left(NetworkFailure(e.message, statusCode: e.statuCode));
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
     } catch (_) {
       return Left(NetworkFailure('no internet'));
     }
@@ -47,7 +47,7 @@ class VehicleImpl implements VehicleRepo {
       final data = await source.activate(id);
       return Right(data);
     } on ApiExcetion catch (e) {
-      return Left(NetworkFailure(e.message, statusCode: e.statuCode));
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
     } catch (_) {
       return Left(NetworkFailure('no internet'));
     }
@@ -59,7 +59,7 @@ class VehicleImpl implements VehicleRepo {
       final data = await source.deActivate(id);
       return Right(data);
     } on ApiExcetion catch (e) {
-      return Left(NetworkFailure(e.message, statusCode: e.statuCode));
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
     } catch (_) {
       return Left(NetworkFailure('no internet'));
     }
@@ -72,7 +72,7 @@ class VehicleImpl implements VehicleRepo {
       final data = await source.delete(id);
       return Right(data);
     } on ApiExcetion catch (e) {
-      return Left(NetworkFailure(e.message, statusCode: e.statuCode));
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
     } catch (_) {
       return Left(NetworkFailure('no internet'));
     }
@@ -87,7 +87,7 @@ class VehicleImpl implements VehicleRepo {
       final data = await source.edit(id, model);
       return Right(data);
     } on ApiExcetion catch (e) {
-      return Left(NetworkFailure(e.message, statusCode: e.statuCode));
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
     } catch (_) {
       return Left(NetworkFailure('no internet'));
     }
@@ -105,9 +105,25 @@ class VehicleImpl implements VehicleRepo {
         progress: progress,
         onLong: onLong,
       );
+      print('success');
       return Right(data);
     } on ApiExcetion catch (e) {
-      return Left(NetworkFailure(e.message, statusCode: e.statuCode));
+      print('error other:${e.message}');
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
+    } catch (e) {
+      print('error other only catch:${e.toString()}');
+      return Left(NetworkFailure('no internet'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, VehicleModel>> getVehicleById(String id) async {
+    try {
+      final data = await source.search(id);
+      return Right(data);
+    } on ApiExcetion catch (e) {
+      if (e.statuCode == 400) return Left(ServerFailure('Invalid Id'));
+      return Left(ServerFailure(e.message, statusCode: e.statuCode));
     } catch (_) {
       return Left(NetworkFailure('no internet'));
     }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/container.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/text.dart';
@@ -53,38 +54,44 @@ class Routes extends StatelessWidget {
                             ),
                           ),
                           SizedBox(width: w(0.05)),
-                          Container(
-                            width: w(0.15),
-                            height: h(0.08),
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  AppTheme.color,
-                                  const Color.fromARGB(255, 255, 98, 50),
-                                ],
-                                begin: AlignmentGeometry.topLeft,
-                                end: AlignmentGeometry.bottomRight,
+                          GestureDetector(
+                            onTap: () {
+                              context.push('/createRoute');
+                            },
+                            child: Container(
+                              width: w(0.15),
+                              height: h(0.08),
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    AppTheme.color,
+                                    const Color.fromARGB(255, 255, 98, 50),
+                                  ],
+                                  begin: AlignmentGeometry.topLeft,
+                                  end: AlignmentGeometry.bottomRight,
+                                ),
+                                borderRadius: BorderRadius.circular(5),
                               ),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Icon(
-                                  Icons.add,
-                                  size: 17,
-                                  weight: 7,
-                                  color: AppColors.white,
-                                ),
-                                Text(
-                                  RouteStrings.add,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: w(0.012),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Icon(
+                                    Icons.add,
+                                    size: 17,
+                                    weight: 7,
                                     color: AppColors.white,
-                                    fontWeight: FontWeight.w600,
                                   ),
-                                ),
-                              ],
+                                  Text(
+                                    RouteStrings.add,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: w(0.012),
+                                      color: AppColors.white,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],

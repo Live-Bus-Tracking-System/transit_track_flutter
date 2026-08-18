@@ -12,6 +12,7 @@ import 'package:transit_track_flutter/core/validators/vehicle_validator.dart';
 Widget registerButton(
   double Function(double) w,
   double Function(double) h,
+  void Function()? onTap,
   BuildContext context, {
   required TextEditingController nameC,
   required TextEditingController licenseC,
@@ -140,32 +141,11 @@ Widget registerButton(
       ),
       SizedBox(height: h(0.04)),
       GestureDetector(
-        onTap: () {
-          context.read<VehicleBloc>().add(
-            CreateVehicleEvent(
-              name: nameC.text,
-              trackerId: trackerIdC.text,
-              licensePlt: licenseC.text,
-              capacity: int.tryParse(capacityC.text)!,
-              registrationCertificateUrl: registerUrl,
-              registrationCertificateNo: permitUrl,
-              registrationCertExpiresAt: registrationCertExpiresAt.text,
-              registrationCertIssuedAt: registerIssuedAt.text,
-              registrationCertIssuedBy: registerIssuedBy.text,
-              permitCertificateUrl: permitUrl,
-              permitCertificateNo: permitNo.text,
-              permitCertExpiresAt: permitExpiresAt.text,
-              permitCertIssuedAt: permitIssuedBy.text,
-              permitCertIssuedBy: permitIssuedBy.text,
-              routeName: routeNameC.text,
-              startStopName: startStopC.text,
-              endStopName: endStopC.text,
-              additionalNotes: additionalNotesC.text,
-            ),
-          );
-        },
+        onTap: onTap,
+
         child: Container(
           width: double.infinity,
+          margin: EdgeInsets.symmetric(horizontal: w(0.04)),
           height: h(0.07),
           decoration: BoxDecoration(
             color: AppTheme.color,

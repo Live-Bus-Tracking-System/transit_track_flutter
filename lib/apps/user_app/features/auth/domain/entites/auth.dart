@@ -1,6 +1,8 @@
 class Auth {
-  final int id;
+  final String id;
   final String email;
-  final String password;
-  Auth({required this.id, required this.email,required this.password});
+  final String? password;
+  final List<String> role;
+  final String roleId;
+  Auth({required this.id, required this.email, this.password,required this.role,required this.roleId});
 }

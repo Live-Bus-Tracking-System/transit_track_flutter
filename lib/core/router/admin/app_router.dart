@@ -5,6 +5,7 @@ import 'package:transit_track_flutter/apps/admin_app/features/landing/presentati
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/data/model/organaization_model.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/organaization/presentation/view/organaization.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/permit/presentation/view/permit.dart';
+import 'package:transit_track_flutter/apps/admin_app/features/route/presentation/view/create_route.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/route/presentation/view/route.dart';
 import 'package:transit_track_flutter/apps/admin_app/features/users/presentation/view/users.dart';
 import 'package:transit_track_flutter/apps/admin_app/widget/animation.dart';
@@ -50,6 +51,10 @@ class AppRouter {
       GoRoute(
         path: RouteNames.users,
         pageBuilder: (context, state) => slideNav(Users()),
+      ),
+      GoRoute(
+        path: RouteNames.createRoute,
+        pageBuilder: (context, state) => slideNav(CreateRoute()),
       ),
     ],
   );

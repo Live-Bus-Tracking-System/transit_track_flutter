@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:transit_track_flutter/apps/bus_owners/features/fleet/presentation/bloc/vehicle_bloc.dart';
 import 'package:transit_track_flutter/apps/bus_owners/features/fleet/presentation/widget/containers.dart';
 import 'package:transit_track_flutter/apps/bus_owners/menu.dart';
 import 'package:transit_track_flutter/apps/bus_owners/widget/containers.dart';
@@ -16,18 +18,28 @@ class Fleet extends StatefulWidget {
 }
 
 class _FleetState extends State<Fleet> {
+  final TextEditingController nameC = TextEditingController();
+  final TextEditingController licenseC = TextEditingController();
+  final TextEditingController trackerIdC = TextEditingController();
+  final TextEditingController capacityC = TextEditingController();
+  final TextEditingController routeNameC = TextEditingController();
+  final TextEditingController startStopC = TextEditingController();
+  final TextEditingController endStopC = TextEditingController();
+  final TextEditingController additionalNotesC = TextEditingController();
+  final TextEditingController busNameController = TextEditingController();
+  final TextEditingController registerIssuedAtC = TextEditingController();
+  final TextEditingController permitIssuedAtC = TextEditingController();
+  final TextEditingController registerExpiresAtC = TextEditingController();
+  final TextEditingController permitExpiresAtC = TextEditingController();
+  final TextEditingController registerNo = TextEditingController();
+  final TextEditingController permitNo = TextEditingController();
+  final TextEditingController registerIssuedBy = TextEditingController();
+  final TextEditingController permitIssuedBy = TextEditingController();
+  final TextEditingController controller = TextEditingController();
+  String registrationUrl = '';
+  String permitUrl = '';
   @override
   Widget build(BuildContext context) {
-    final TextEditingController nameC = TextEditingController();
-    final TextEditingController licenseC = TextEditingController();
-    final TextEditingController trackerIdC = TextEditingController();
-    final TextEditingController capacityC = TextEditingController();
-    final TextEditingController routeNameC = TextEditingController();
-    final TextEditingController startStopC = TextEditingController();
-    final TextEditingController endStopC = TextEditingController();
-    final TextEditingController additionalNotesC = TextEditingController();
-    final TextEditingController busNameController = TextEditingController();
-  
     final size = MediaQuery.of(context).size;
     double h(double value) => size.height * value;
     double w(double value) => size.width * value;
@@ -48,31 +60,39 @@ class _FleetState extends State<Fleet> {
       drawer: Menu(h: h, w: w),
       body: SafeArea(
         child: ListView(
-          padding: EdgeInsets.all(w(0.052)),
           children: [
             SizedBox(height: h(0.01)),
-            Text(
-              'Registreation',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w500,
-                fontSize: w(0.05),
-                color: AppTheme.color,
-              ),
-            ),
-            Text(
-              'ADD NEW VEHICLE',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w700,
-                fontSize: w(0.07),
-              ),
-            ),
-            SizedBox(
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: w(0.04)),
               child: Text(
-                'Initialize technical elementary and fleet documentation',
-                style: GoogleFonts.inter(
+                'Registreation',
+                style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w500,
-                  fontSize: w(0.04),
-                  color: const Color.fromARGB(255, 110, 110, 110),
+                  fontSize: w(0.05),
+                  color: AppTheme.color,
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: w(0.04)),
+              child: Text(
+                'ADD NEW VEHICLE',
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w700,
+                  fontSize: w(0.07),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: w(0.04)),
+              child: SizedBox(
+                child: Text(
+                  'Initialize technical elementary and fleet documentation',
+                  style: GoogleFonts.inter(
+                    fontWeight: FontWeight.w500,
+                    fontSize: w(0.04),
+                    color: const Color.fromARGB(255, 110, 110, 110),
+                  ),
                 ),
               ),
             ),
@@ -186,7 +206,7 @@ class _FleetState extends State<Fleet> {
             mainContain(
               w,
               double.infinity,
-              h(0.25),
+              h(0.26),
               Column(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -225,6 +245,30 @@ class _FleetState extends State<Fleet> {
             certificateCont(
               w,
               h,
+              () {
+                context.read<VehicleBloc>().add(
+                  CreateVehicleEvent(
+                    name: nameC.text,
+                    trackerId: trackerIdC.text,
+                    licensePlt: licenseC.text,
+                    capacity: int.tryParse(capacityC.text)!,
+                    registrationCertificateUrl: registrationUrl,
+                    registrationCertificateNo: permitUrl,
+                    registrationCertExpiresAt: registerExpiresAtC.text,
+                    registrationCertIssuedAt: registerIssuedAtC.text,
+                    registrationCertIssuedBy: registerIssuedBy.text,
+                    permitCertificateUrl: permitUrl,
+                    permitCertificateNo: permitNo.text,
+                    permitCertExpiresAt: permitExpiresAtC.text,
+                    permitCertIssuedAt: permitIssuedBy.text,
+                    permitCertIssuedBy: permitIssuedBy.text,
+                    routeName: routeNameC.text,
+                    startStopName: startStopC.text,
+                    endStopName: endStopC.text,
+                    additionalNotes: additionalNotesC.text,
+                  ),
+                );
+              },
               context,
               nameC: nameC,
               licenseC: licenseC,
@@ -234,6 +278,17 @@ class _FleetState extends State<Fleet> {
               startStopC: startStopC,
               endStopC: endStopC,
               additionalNotesC: additionalNotesC,
+              registerIssuedAtC: registerIssuedAtC,
+              permitIssuedAtC: permitIssuedAtC,
+              registerExpiresAtC: registerExpiresAtC,
+              permitExpiresAtC: permitExpiresAtC,
+              registerNo: registerNo,
+              permitNo: permitNo,
+              registerIssuedBy: registerIssuedBy,
+              permitIssuedBy: permitIssuedBy,
+              controller: controller,
+              registrationUrl: registrationUrl,
+              permitUrl: permitUrl,
             ),
           ],
         ),
